@@ -30,4 +30,8 @@
       <ProjectReference Include="..\DatabaseReportingSystem.Vector\DatabaseReportingSystem.Vector.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Features\" />
+    </ItemGroup>
+
 </Project>

@@ -1,6 +1,6 @@
 using DatabaseReportingSystem.Context;
 using DatabaseReportingSystem.Vector.Context;
-using Microsoft.AspNetCore.Authentication.Negotiate;
+using DatabaseReportingSystem.Vector.Features;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -8,17 +8,11 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-    .AddNegotiate();
-
-builder.Services.AddAuthorization(options =>
-{
-    // By default, all incoming requests will be authorized according to the default policy.
-    options.FallbackPolicy = options.DefaultPolicy;
-});
 
 builder.Services.AddDbContext<SystemDbContext>();
 builder.Services.AddDbContext<VectorDbContext>();
+
+builder.Services.AddGetNearestQuestionsFeature();
 
 WebApplication app = builder.Build();
 
@@ -30,5 +24,16 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+RouteGroupBuilder methodGroup = app.MapGroup("methods");
+
+methodGroup.MapGet("nearest", async (GetNearestQuestions.Feature feature) =>
+{
+    var response = await feature.GetNearestQuestionsAsync(new GetNearestQuestions.Request(""));
+
+    return response.Count == 0
+        ? Results.NoContent()
+        : Results.Ok(response);
+});
 
 app.Run();

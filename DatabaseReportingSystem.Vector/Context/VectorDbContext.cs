@@ -22,7 +22,7 @@ public class VectorDbContext(IConfiguration configuration) : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasPostgresExtension("vector");
-
+        
         modelBuilder.Entity<SpiderSchema>()
             .HasKey(s => s.DatabaseId);
 
