@@ -10,6 +10,8 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="8.0.5"/>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.5"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
@@ -17,6 +19,10 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DatabaseReportingSystem.Vector\DatabaseReportingSystem.Vector.csproj" />
     </ItemGroup>
 
 </Project>

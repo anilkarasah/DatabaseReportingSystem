@@ -3,3 +3,4 @@
 */bin
 */obj
 global.json
+*.env
