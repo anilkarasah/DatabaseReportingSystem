@@ -5,10 +5,10 @@ services:
     image: postgres:17-alpine
     container_name: system_db
     ports:
-      - '5434:5432'
+      - '5436:5432'
     volumes:
       - system_db_data:/var/lib/postgresql/data
-      - ./data/systemdb_init.sql:/docker-entrypoint-initdb.d/0-systemdb_init.sql
+      # - ./data/systemdb_init.sql:/docker-entrypoint-initdb.d/0-systemdb_init.sql
     networks:
       - default
 
@@ -18,10 +18,10 @@ services:
     image: pgvector/pgvector:pg17
     container_name: vector_db
     ports:
-      - '5435:5432'
+      - '5437:5432'
     volumes:
       - vector_db_data:/var/lib/postgresql/data
-      - ./data/vectordb_init.sql:/docker-entrypoint-initdb.d/0-vectordb_init.sql
+      # - ./data/vectordb_init.sql:/docker-entrypoint-initdb.d/0-vectordb_init.sql
     networks:
       - default
 

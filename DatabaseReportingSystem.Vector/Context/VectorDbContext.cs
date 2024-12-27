@@ -39,6 +39,10 @@ public class VectorDbContext(IConfiguration configuration) : DbContext
             .HasKey(e => e.Id);
 
         modelBuilder.Entity<SpiderEmbedding>()
+            .Property(embedding => embedding.Embedding)
+            .HasColumnType("vector(1536)");
+
+        modelBuilder.Entity<SpiderEmbedding>()
             .HasIndex(e => e.Embedding)
             .HasMethod("ivfflat")
             .HasOperators("vector_l2_ops")

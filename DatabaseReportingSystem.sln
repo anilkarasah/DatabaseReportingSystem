@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseReportingSystem", "DatabaseReportingSystem\DatabaseReportingSystem.csproj", "{DA0FA196-4279-4E93-B889-FE6B918ADB9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseReportingSystem.API", "DatabaseReportingSystem.API\DatabaseReportingSystem.API.csproj", "{DA0FA196-4279-4E93-B889-FE6B918ADB9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseReportingSystem.Vector", "DatabaseReportingSystem.Vector\DatabaseReportingSystem.Vector.csproj", "{A5B473C4-74EE-4CF5-BA53-87E85B47C6E8}"
 EndProject
