@@ -2,6 +2,7 @@ using DatabaseReportingSystem.Context;
 using DatabaseReportingSystem.Modules;
 using DatabaseReportingSystem.Vector.Context;
 using DatabaseReportingSystem.Vector.Features;
+using DatabaseReportingSystem.Vector.Shared;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +15,7 @@ builder.Services.AddDbContext<SystemDbContext>();
 builder.Services.AddDbContext<VectorDbContext>();
 
 builder.Services
-    .AddGetNearestQuestionsFeature()
-    .AddCreateEmbeddingFeature();
+    .AddVector();
 
 WebApplication app = builder.Build();
 
@@ -28,6 +28,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapVectorModule();
+app
+    .MapVectorModule()
+    .MapPromptModule();
 
 app.Run();

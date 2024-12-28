@@ -1,3 +1,4 @@
+using DatabaseReportingSystem.Shared;
 using DatabaseReportingSystem.Vector.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +18,7 @@ public static class GetNearestQuestions
         private readonly CreateEmbedding.Feature _createEmbeddingFeature = createEmbeddingFeature;
         private readonly VectorDbContext _dbContext = dbContext;
 
-        public async Task<List<NearestQuestionDto>> GetNearestQuestionsAsync(Request request)
+        public async Task<List<NearestQuestionDto>> GetNearestQuestionsAsync(GetNearestQuestionsRequest request)
         {
             ArgumentException.ThrowIfNullOrWhiteSpace(request.Question, nameof(request.Question));
 
@@ -28,7 +29,7 @@ public static class GetNearestQuestions
             var nearestQuestions = await _dbContext.Embeddings
                 .Include(e => e.Schema)
                 .OrderBy(e => e.Embedding.L2Distance(pgVectorEmbedding))
-                .Take(5)
+                .Take(request.NumberOfQuestions)
                 .Select(e => new NearestQuestionDto(e.Question, e.Schema.Schema, e.Query))
                 .ToListAsync();
 
@@ -36,7 +37,9 @@ public static class GetNearestQuestions
         }
     }
 
-    public sealed record Request(string Question);
-
     public sealed record NearestQuestionDto(string Question, string Schema, string Query);
 }
+
+public sealed record GetNearestQuestionsRequest(
+    string Question,
+    int NumberOfQuestions = Constants.Strategy.DefaultNumberOfExamples);

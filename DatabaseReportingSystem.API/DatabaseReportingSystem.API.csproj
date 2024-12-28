@@ -28,6 +28,8 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\DatabaseReportingSystem.Agency\DatabaseReportingSystem.Agency.csproj" />
+        <ProjectReference Include="..\DatabaseReportingSystem.Shared\DatabaseReportingSystem.Shared.csproj" />
         <ProjectReference Include="..\DatabaseReportingSystem.Vector\DatabaseReportingSystem.Vector.csproj" />
     </ItemGroup>
 
