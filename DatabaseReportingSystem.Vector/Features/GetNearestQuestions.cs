@@ -8,19 +8,26 @@ namespace DatabaseReportingSystem.Vector.Features;
 public static class GetNearestQuestions
 {
     public static IServiceCollection AddGetNearestQuestionsFeature(this IServiceCollection services)
-        => services.AddScoped<Feature>();
-
-    public sealed class Feature(VectorDbContext dbContext)
     {
+        return services.AddScoped<Feature>();
+    }
+
+    public sealed class Feature(VectorDbContext dbContext, CreateEmbedding.Feature createEmbeddingFeature)
+    {
+        private readonly CreateEmbedding.Feature _createEmbeddingFeature = createEmbeddingFeature;
         private readonly VectorDbContext _dbContext = dbContext;
 
         public async Task<List<NearestQuestionDto>> GetNearestQuestionsAsync(Request request)
         {
-            float[] exampleEmbeddings = [ /* 1536 elements, representing an embedding */ ];
+            ArgumentException.ThrowIfNullOrWhiteSpace(request.Question, nameof(request.Question));
+
+            var questionVector = await _createEmbeddingFeature.GetEmbeddingVectorAsync(request.Question);
+
+            var pgVectorEmbedding = new Pgvector.Vector(questionVector);
 
             var nearestQuestions = await _dbContext.Embeddings
                 .Include(e => e.Schema)
-                .OrderBy(e => e.Embedding.L2Distance(new Pgvector.Vector(exampleEmbeddings)))
+                .OrderBy(e => e.Embedding.L2Distance(pgVectorEmbedding))
                 .Take(5)
                 .Select(e => new NearestQuestionDto(e.Question, e.Schema.Schema, e.Query))
                 .ToListAsync();

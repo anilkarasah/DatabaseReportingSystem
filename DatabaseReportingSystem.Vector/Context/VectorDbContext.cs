@@ -7,22 +7,22 @@ namespace DatabaseReportingSystem.Vector.Context;
 public class VectorDbContext(IConfiguration configuration) : DbContext
 {
     private readonly IConfiguration _configuration = configuration;
-    
+
     public DbSet<SpiderSchema> Schemas { get; set; }
-    
+
     public DbSet<SpiderEmbedding> Embeddings { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseNpgsql(
-            connectionString: _configuration.GetConnectionString("Vector"),
-            npgsqlOptionsAction: o => o.UseVector());
+            _configuration.GetConnectionString("Vector"),
+            o => o.UseVector());
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasPostgresExtension("vector");
-        
+
         modelBuilder.Entity<SpiderSchema>()
             .HasKey(s => s.DatabaseId);
 
@@ -47,7 +47,7 @@ public class VectorDbContext(IConfiguration configuration) : DbContext
             .HasMethod("ivfflat")
             .HasOperators("vector_l2_ops")
             .HasStorageParameter("lists", 7);
-        
+
         modelBuilder.Entity<SpiderEmbedding>()
             .Property(s => s.DatabaseId)
             .HasMaxLength(128);

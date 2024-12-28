@@ -1,4 +1,5 @@
 using DatabaseReportingSystem.Context;
+using DatabaseReportingSystem.Modules;
 using DatabaseReportingSystem.Vector.Context;
 using DatabaseReportingSystem.Vector.Features;
 
@@ -12,7 +13,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<SystemDbContext>();
 builder.Services.AddDbContext<VectorDbContext>();
 
-builder.Services.AddGetNearestQuestionsFeature();
+builder.Services
+    .AddGetNearestQuestionsFeature()
+    .AddCreateEmbeddingFeature();
 
 WebApplication app = builder.Build();
 
@@ -25,15 +28,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-RouteGroupBuilder methodGroup = app.MapGroup("methods");
-
-methodGroup.MapGet("nearest", async (GetNearestQuestions.Feature feature) =>
-{
-    var response = await feature.GetNearestQuestionsAsync(new GetNearestQuestions.Request(""));
-
-    return response.Count == 0
-        ? Results.NoContent()
-        : Results.Ok(response);
-});
+app.MapVectorModule();
 
 app.Run();

@@ -7,7 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Pgvector.EntityFrameworkCore" Version="0.2.1" />
+        <PackageReference Include="OpenAI" Version="2.1.0"/>
+        <PackageReference Include="Pgvector.EntityFrameworkCore" Version="0.2.1"/>
     </ItemGroup>
 
 </Project>
