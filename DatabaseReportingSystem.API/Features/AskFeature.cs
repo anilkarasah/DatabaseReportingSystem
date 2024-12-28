@@ -1,4 +1,5 @@
 using DatabaseReportingSystem.Agency.LanguageModels;
+using DatabaseReportingSystem.Agency.Shared;
 using DatabaseReportingSystem.Agency.Strategies;
 using DatabaseReportingSystem.Shared;
 using Microsoft.AspNetCore.Mvc;
@@ -6,38 +7,41 @@ using OpenAI.Chat;
 
 namespace DatabaseReportingSystem.Features;
 
-public static class AskGptWithRandomFewShotStrategyFeature
+public static class AskFeature
 {
-    public static async Task<IResult> ExecuteAsync(
+    public static async Task<IResult> AskAsync(
         [FromServices] IConfiguration configuration,
         [FromServices] IServiceProvider serviceProvider,
-        [FromBody] AskGptWithRandomFewShotStrategyRequest request)
+        [FromServices] ModelClientFactory modelClientFactory,
+        [FromQuery] string model,
+        [FromQuery] string strategy,
+        [FromBody] AskRequest request)
     {
-        var gptModel = new GptModel("gpt-4o-mini", configuration.GetConnectionString("GptApiKey")!);
-
-        var randomFewShotStrategy = new RandomFewShotStrategy(new RandomFewShotStrategy.Options
+        var clientOptions = new ClientOptions
         {
-            ServiceProvider = serviceProvider,
             NumberOfExamples = request.NumberOfExamples,
             UseSystemPrompt = request.UseSystemPrompt,
-        });
+            Question = request.Question,
+        };
 
-        var messages = await randomFewShotStrategy.GetMessagesAsync();
-        
+        ModelClient modelClient = modelClientFactory.GenerateModelClient(model, strategy, clientOptions);
+
+        var messages = await modelClient.Strategy.GetMessagesAsync();
+
         UserChatMessage userMessage = Utilities.CreateUserChatMessage(
             request.Question,
             request.Schema,
             "dbms");
-        
+
         messages.Add(userMessage);
 
-        string response = await gptModel.AskAsync(messages);
+        string response = await modelClient.LanguageModel.AskAsync(messages);
 
         return Results.Ok(response);
     }
 }
 
-public record AskGptWithRandomFewShotStrategyRequest(
+public sealed record AskRequest(
     string Question,
     string Schema,
     int NumberOfExamples = Constants.Strategy.DefaultNumberOfExamples,

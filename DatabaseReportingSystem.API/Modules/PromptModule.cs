@@ -6,13 +6,9 @@ public static class PromptModule
 {
     public static IEndpointRouteBuilder MapPromptModule(this IEndpointRouteBuilder builder)
     {
-        RouteGroupBuilder group = builder.MapGroup("prompts");
+        RouteGroupBuilder group = builder.MapGroup("ask");
 
-        group.MapPost("gpt/zero-shot", AskGptWithZeroShotStrategyFeature.ExecuteAsync);
-
-        group.MapPost("gpt/random-few-shot", AskGptWithRandomFewShotStrategyFeature.ExecuteAsync);
-
-        group.MapPost("gpt/nearest-few-shot", AskGptWithNearestFewShotStrategyFeature.ExecuteAsync);
+        group.MapPost("/", AskFeature.AskAsync);
 
         return builder;
     }

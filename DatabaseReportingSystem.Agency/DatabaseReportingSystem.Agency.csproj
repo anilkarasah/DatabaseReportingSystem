@@ -12,10 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Shared\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\DatabaseReportingSystem.Shared\DatabaseReportingSystem.Shared.csproj" />
       <ProjectReference Include="..\DatabaseReportingSystem.Vector\DatabaseReportingSystem.Vector.csproj" />
     </ItemGroup>

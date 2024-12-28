@@ -1,3 +1,4 @@
+using DatabaseReportingSystem.Agency.Shared;
 using DatabaseReportingSystem.Context;
 using DatabaseReportingSystem.Modules;
 using DatabaseReportingSystem.Vector.Context;
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<SystemDbContext>();
 builder.Services.AddDbContext<VectorDbContext>();
 
 builder.Services
+    .AddAgency()
     .AddVector();
 
 WebApplication app = builder.Build();
