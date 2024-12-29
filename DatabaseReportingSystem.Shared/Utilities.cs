@@ -1,4 +1,5 @@
-﻿using OpenAI.Chat;
+﻿using DatabaseReportingSystem.Shared.Models;
+using OpenAI.Chat;
 
 namespace DatabaseReportingSystem.Shared;
 
@@ -19,14 +20,67 @@ public static class Utilities
 
         return query.Trim();
     }
-    
-    public static UserChatMessage CreateUserChatMessage(string question, string schema, string dbms = "sqlite")
+
+    public static UserChatMessage CreateUserChatMessage(string question, string schema, DatabaseManagementSystem dbms)
     {
         string message = string.Format(Constants.Strategy.UserPromptFormat,
             question,
-            dbms,
+            dbms.ToString().ToLower(),
             schema);
-        
+
         return new UserChatMessage(message);
     }
+
+    public static DatabaseManagementSystem AsDatabaseManagementSystem(this string dbms)
+        => GetDatabaseManagementSystem(dbms);
+
+    public static DatabaseManagementSystem GetDatabaseManagementSystem(string dbms)
+    {
+        return dbms.ToLower() switch
+        {
+            "sqlite" => DatabaseManagementSystem.Sqlite,
+            "sqlserver" => DatabaseManagementSystem.SqlServer,
+            "mssql" => DatabaseManagementSystem.SqlServer,
+            "mysql" => DatabaseManagementSystem.MySql,
+            "pgsql" => DatabaseManagementSystem.PostgreSql,
+            "npgsql" => DatabaseManagementSystem.PostgreSql,
+            "postgresql" => DatabaseManagementSystem.PostgreSql,
+            _ => DatabaseManagementSystem.Other,
+        };
+    }
+
+    public static LargeLanguageModel AsLargeLanguageModel(this string modelName)
+        => GetLargeLanguageModel(modelName);
+
+    public static LargeLanguageModel GetLargeLanguageModel(string modelName)
+        => modelName switch
+        {
+            "gpt-4o-mini" => LargeLanguageModel.GPT,
+            "gpt-4o" => LargeLanguageModel.GPT,
+            "gpt" => LargeLanguageModel.GPT,
+            "grok-beta" => LargeLanguageModel.Grok,
+            "grok" => LargeLanguageModel.Grok,
+            "mistral" => LargeLanguageModel.Mistral,
+            "codellama" => LargeLanguageModel.CodeLLaMa,
+            "llama" => LargeLanguageModel.CodeLLaMa,
+            _ => throw new ArgumentException("Invalid model name.")
+        };
+
+    public static StrategyType AsStrategyType(this string strategyType)
+        => GetStrategyType(strategyType);
+
+    public static StrategyType GetStrategyType(string strategyName)
+        => strategyName switch
+        {
+            "basic" => StrategyType.ZeroShot,
+            "zero" => StrategyType.ZeroShot,
+            "zero-shot" => StrategyType.ZeroShot,
+            "random" => StrategyType.RandomFewShot,
+            "random-shot" => StrategyType.RandomFewShot,
+            "random-few-shot" => StrategyType.RandomFewShot,
+            "nearest" => StrategyType.NearestFewShot,
+            "nearest-shot" => StrategyType.NearestFewShot,
+            "nearest-few-shot" => StrategyType.NearestFewShot,
+            _ => throw new ArgumentException("Invalid strategy name.")
+        };
 }

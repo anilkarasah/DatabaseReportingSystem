@@ -20,7 +20,7 @@ public static class DependencyInjection
     {
         return endpoints
             .MapConnectionCredentialsModule()
-            .MapPromptModule()
+            .MapChatModule()
             .MapVectorModule();
     }
 }

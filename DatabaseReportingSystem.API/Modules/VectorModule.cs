@@ -38,9 +38,9 @@ public static class VectorModule
 
     private static async Task<IResult> GetRandomQuestionsAsync(
         [FromServices] GetRandomQuestions.Feature feature,
-        [FromBody] GetRandomQuestions.Request request)
+        [FromBody] GetRandomQuestions.GetRandomQuestionsRequest getRandomQuestionsRequest)
     {
-        var response = await feature.GetRandomQuestionsAsync(request);
+        var response = await feature.GetRandomQuestionsAsync(getRandomQuestionsRequest);
 
         return response.Count == 0
             ? Results.NoContent()

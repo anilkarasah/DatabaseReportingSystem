@@ -92,12 +92,6 @@ public class SystemDbContext(IConfiguration configuration) : DbContext
             .HasKey(message => message.MessageId);
 
         modelBuilder.Entity<ChatMessage>()
-            .HasOne(message => message.Sender)
-            .WithMany()
-            .HasForeignKey(message => message.SenderId)
-            .IsRequired(false);
-
-        modelBuilder.Entity<ChatMessage>()
             .HasMany(message => message.ModelResponses)
             .WithOne(response => response.Message)
             .HasForeignKey(response => response.MessageId);

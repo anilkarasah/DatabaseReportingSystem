@@ -6,8 +6,6 @@ public sealed class ChatMessage
 
     public Guid ChatId { get; set; }
 
-    public Guid? SenderId { get; set; }
-
     public int Index { get; set; } = 0;
 
     public string Content { get; set; } = string.Empty;
@@ -15,8 +13,6 @@ public sealed class ChatMessage
     public DateTimeOffset SentAtUtc { get; set; } = DateTimeOffset.UtcNow;
 
     public Chat Chat { get; set; } = null!;
-
-    public User? Sender { get; set; }
 
     public List<ModelResponse> ModelResponses { get; set; } = [];
 }

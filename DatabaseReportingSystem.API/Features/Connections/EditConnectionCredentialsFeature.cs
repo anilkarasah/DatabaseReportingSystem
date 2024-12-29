@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-namespace DatabaseReportingSystem.Features;
+namespace DatabaseReportingSystem.Features.Connections;
 
 public static class EditConnectionCredentialsFeature
 {
@@ -27,7 +27,7 @@ public static class EditConnectionCredentialsFeature
 
         user.ConnectionCredentials = new ConnectionCredentials
         {
-            DatabaseManagementSystem = request.Dbms,
+            DatabaseManagementSystem = request.Dbms.AsDatabaseManagementSystem(),
             ConnectionHash = connectionHash
         };
 

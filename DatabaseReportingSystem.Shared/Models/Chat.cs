@@ -6,7 +6,9 @@ public sealed class Chat
 
     public Guid UserId { get; set; }
 
-    public string DatabaseManagementSystem { get; set; } = string.Empty;
+    public DatabaseManagementSystem DatabaseManagementSystem { get; set; } = DatabaseManagementSystem.Other;
+
+    public string SchemaHash { get; set; } = string.Empty;
 
     public DateTimeOffset CreatedAtUtc { get; set; } = DateTimeOffset.UtcNow;
 

@@ -1,7 +1,9 @@
 using DatabaseReportingSystem.Shared;
+using DatabaseReportingSystem.Shared.Models;
 using DatabaseReportingSystem.Vector.Features;
 using Microsoft.Extensions.DependencyInjection;
 using OpenAI.Chat;
+using ChatMessage = OpenAI.Chat.ChatMessage;
 
 namespace DatabaseReportingSystem.Agency.Strategies;
 
@@ -23,18 +25,18 @@ public sealed class RandomFewShotStrategy(RandomFewShotStrategy.Options options)
         var randomQuestions = await QueryRandomQuestionsAsync();
 
         List<ChatMessage> result = [];
-        
+
         if (_options.UseSystemPrompt)
         {
             result.Add(new SystemChatMessage(Constants.Strategy.BaseSystemPromptMessage));
         }
 
-        foreach (GetRandomQuestions.Response randomQuestion in randomQuestions)
+        foreach (GetRandomQuestions.GetRandomQuestionsResponse randomQuestion in randomQuestions)
         {
             UserChatMessage userMessage = Utilities.CreateUserChatMessage(
                 randomQuestion.Question,
                 randomQuestion.Schema,
-                "dbms");
+                DatabaseManagementSystem.Sqlite);
 
             result.Add(userMessage);
 
@@ -44,11 +46,11 @@ public sealed class RandomFewShotStrategy(RandomFewShotStrategy.Options options)
         return result;
     }
 
-    private async Task<List<GetRandomQuestions.Response>> QueryRandomQuestionsAsync()
+    private async Task<List<GetRandomQuestions.GetRandomQuestionsResponse>> QueryRandomQuestionsAsync()
     {
         var feature = _options.ServiceProvider.GetRequiredService<GetRandomQuestions.Feature>();
 
-        var request = new GetRandomQuestions.Request(_options.NumberOfExamples);
+        var request = new GetRandomQuestions.GetRandomQuestionsRequest(_options.NumberOfExamples);
 
         return await feature.GetRandomQuestionsAsync(request);
     }

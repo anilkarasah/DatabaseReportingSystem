@@ -11,39 +11,10 @@ public sealed class ModelClientFactory(IConfiguration configuration, IServicePro
     private readonly IConfiguration _configuration = configuration;
     private readonly IServiceProvider _serviceProvider = serviceProvider;
 
-    public LargeLanguageModel GetLargeLanguageModel(string modelName)
-        => modelName switch
-        {
-            "gpt-4o-mini" => LargeLanguageModel.GPT,
-            "gpt-4o" => LargeLanguageModel.GPT,
-            "gpt" => LargeLanguageModel.GPT,
-            "grok-beta" => LargeLanguageModel.Grok,
-            "grok" => LargeLanguageModel.Grok,
-            "mistral" => LargeLanguageModel.Mistral,
-            "codellama" => LargeLanguageModel.CodeLLaMa,
-            "llama" => LargeLanguageModel.CodeLLaMa,
-            _ => throw new ArgumentException("Invalid model name.")
-        };
-
-    public StrategyType GetStrategyType(string strategyName)
-        => strategyName switch
-        {
-            "basic" => StrategyType.ZeroShot,
-            "zero" => StrategyType.ZeroShot,
-            "zero-shot" => StrategyType.ZeroShot,
-            "random" => StrategyType.RandomFewShot,
-            "random-shot" => StrategyType.RandomFewShot,
-            "random-few-shot" => StrategyType.RandomFewShot,
-            "nearest" => StrategyType.NearestFewShot,
-            "nearest-shot" => StrategyType.NearestFewShot,
-            "nearest-few-shot" => StrategyType.NearestFewShot,
-            _ => throw new ArgumentException("Invalid strategy name.")
-        };
-
     public ModelClient GenerateModelClient(string modelName, string strategyName, ClientOptions options)
     {
-        LargeLanguageModel languageModel = GetLargeLanguageModel(modelName);
-        StrategyType strategyType = GetStrategyType(strategyName);
+        LargeLanguageModel languageModel = Utilities.GetLargeLanguageModel(modelName);
+        StrategyType strategyType = Utilities.GetStrategyType(strategyName);
 
         return GenerateClient(languageModel, strategyType, options);
     }
@@ -97,9 +68,9 @@ public sealed class ModelClientFactory(IConfiguration configuration, IServicePro
 
 public sealed record ClientOptions
 {
-    public bool UseSystemPrompt { get; init; } = true;
+    public bool UseSystemPrompt { get; } = true;
 
-    public int NumberOfExamples { get; init; } = Constants.Strategy.DefaultNumberOfExamples;
+    public int NumberOfExamples { get; } = Constants.Strategy.DefaultNumberOfExamples;
 
     public string Question { get; init; } = string.Empty;
 }

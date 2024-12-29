@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-namespace DatabaseReportingSystem.Features;
+namespace DatabaseReportingSystem.Features.Connections;
 
 public static class GetConnectionCredentialsFeature
 {

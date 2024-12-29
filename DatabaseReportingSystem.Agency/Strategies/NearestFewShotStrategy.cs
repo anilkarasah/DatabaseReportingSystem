@@ -1,7 +1,9 @@
 using DatabaseReportingSystem.Shared;
+using DatabaseReportingSystem.Shared.Models;
 using DatabaseReportingSystem.Vector.Features;
 using Microsoft.Extensions.DependencyInjection;
 using OpenAI.Chat;
+using ChatMessage = OpenAI.Chat.ChatMessage;
 
 namespace DatabaseReportingSystem.Agency.Strategies;
 
@@ -36,7 +38,7 @@ public sealed class NearestFewShotStrategy(NearestFewShotStrategy.Options option
             UserChatMessage userMessage = Utilities.CreateUserChatMessage(
                 nearestQuestion.Question,
                 nearestQuestion.Schema,
-                "dbms");
+                DatabaseManagementSystem.Sqlite);
 
             result.Add(userMessage);
 

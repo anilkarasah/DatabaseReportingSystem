@@ -15,20 +15,21 @@ public static class GetRandomQuestions
     {
         private readonly VectorDbContext _vectorDbContext = vectorDbContext;
 
-        public async Task<List<Response>> GetRandomQuestionsAsync(Request request)
+        public async Task<List<GetRandomQuestionsResponse>> GetRandomQuestionsAsync(
+            GetRandomQuestionsRequest getRandomQuestionsRequest)
         {
             var randomQuestions = await _vectorDbContext.Embeddings
                 .Include(e => e.Schema)
                 .OrderBy(_ => Guid.NewGuid())
-                .Take(request.NumberOfQuestions)
-                .Select(e => new Response(e.Question, e.Schema.Schema, e.Query))
+                .Take(getRandomQuestionsRequest.NumberOfQuestions)
+                .Select(e => new GetRandomQuestionsResponse(e.Question, e.Schema.Schema, e.Query))
                 .ToListAsync();
 
             return randomQuestions;
         }
     }
 
-    public sealed record Request(int NumberOfQuestions);
+    public sealed record GetRandomQuestionsRequest(int NumberOfQuestions);
 
-    public sealed record Response(string Question, string Schema, string Query);
+    public sealed record GetRandomQuestionsResponse(string Question, string Schema, string Query);
 }
