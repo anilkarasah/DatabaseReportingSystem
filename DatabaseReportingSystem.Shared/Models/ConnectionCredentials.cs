@@ -1,6 +1,6 @@
-namespace DatabaseReportingSystem.Models;
+namespace DatabaseReportingSystem.Shared.Models;
 
-public record ConnectionCredentials
+public sealed record ConnectionCredentials
 {
     public string DatabaseManagementSystem { get; set; } = string.Empty;
 

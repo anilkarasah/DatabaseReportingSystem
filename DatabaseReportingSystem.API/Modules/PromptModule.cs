@@ -12,4 +12,15 @@ public static class PromptModule
 
         return builder;
     }
+
+    public static IEndpointRouteBuilder MapConnectionCredentialsModule(this IEndpointRouteBuilder builder)
+    {
+        RouteGroupBuilder group = builder.MapGroup("connection-credentials");
+
+        group.MapPost("/", EditConnectionCredentialsFeature.EditConnectionCredentialsAsync);
+
+        group.MapGet("/", GetConnectionCredentialsFeature.GetConnectionCredentialsAsync);
+
+        return builder;
+    }
 }

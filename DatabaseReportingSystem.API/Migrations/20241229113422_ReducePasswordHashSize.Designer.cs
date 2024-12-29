@@ -3,6 +3,7 @@ using System;
 using DatabaseReportingSystem.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DatabaseReportingSystem.Migrations
 {
     [DbContext(typeof(SystemDbContext))]
-    partial class SystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241229113422_ReducePasswordHashSize")]
+    partial class ReducePasswordHashSize
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace DatabaseReportingSystem.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("DatabaseReportingSystem.Shared.Models.Chat", b =>
+            modelBuilder.Entity("DatabaseReportingSystem.Models.Chat", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,10 +46,10 @@ namespace DatabaseReportingSystem.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Chats");
+                    b.ToTable("Chat");
                 });
 
-            modelBuilder.Entity("DatabaseReportingSystem.Shared.Models.ChatMessage", b =>
+            modelBuilder.Entity("DatabaseReportingSystem.Models.ChatMessage", b =>
                 {
                     b.Property<Guid>("MessageId")
                         .ValueGeneratedOnAdd()
@@ -74,10 +77,10 @@ namespace DatabaseReportingSystem.Migrations
 
                     b.HasIndex("SenderId");
 
-                    b.ToTable("ChatMessages");
+                    b.ToTable("ChatMessage");
                 });
 
-            modelBuilder.Entity("DatabaseReportingSystem.Shared.Models.ModelResponse", b =>
+            modelBuilder.Entity("DatabaseReportingSystem.Models.ModelResponse", b =>
                 {
                     b.Property<Guid>("MessageId")
                         .HasColumnType("uuid");
@@ -95,10 +98,10 @@ namespace DatabaseReportingSystem.Migrations
 
                     b.HasKey("MessageId", "ModelName");
 
-                    b.ToTable("ModelResponses");
+                    b.ToTable("ModelResponse");
                 });
 
-            modelBuilder.Entity("DatabaseReportingSystem.Shared.Models.User", b =>
+            modelBuilder.Entity("DatabaseReportingSystem.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -124,10 +127,10 @@ namespace DatabaseReportingSystem.Migrations
 
                     b.HasIndex("Email");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
-            modelBuilder.Entity("DatabaseReportingSystem.Shared.Models.UserLicense", b =>
+            modelBuilder.Entity("DatabaseReportingSystem.Models.UserLicense", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -154,12 +157,12 @@ namespace DatabaseReportingSystem.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLicenses");
+                    b.ToTable("UserLicense");
                 });
 
-            modelBuilder.Entity("DatabaseReportingSystem.Shared.Models.Chat", b =>
+            modelBuilder.Entity("DatabaseReportingSystem.Models.Chat", b =>
                 {
-                    b.HasOne("DatabaseReportingSystem.Shared.Models.User", "User")
+                    b.HasOne("DatabaseReportingSystem.Models.User", "User")
                         .WithMany("Chats")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -168,15 +171,15 @@ namespace DatabaseReportingSystem.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DatabaseReportingSystem.Shared.Models.ChatMessage", b =>
+            modelBuilder.Entity("DatabaseReportingSystem.Models.ChatMessage", b =>
                 {
-                    b.HasOne("DatabaseReportingSystem.Shared.Models.Chat", "Chat")
+                    b.HasOne("DatabaseReportingSystem.Models.Chat", "Chat")
                         .WithMany("Messages")
                         .HasForeignKey("ChatId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DatabaseReportingSystem.Shared.Models.User", "Sender")
+                    b.HasOne("DatabaseReportingSystem.Models.User", "Sender")
                         .WithMany()
                         .HasForeignKey("SenderId");
 
@@ -185,9 +188,9 @@ namespace DatabaseReportingSystem.Migrations
                     b.Navigation("Sender");
                 });
 
-            modelBuilder.Entity("DatabaseReportingSystem.Shared.Models.ModelResponse", b =>
+            modelBuilder.Entity("DatabaseReportingSystem.Models.ModelResponse", b =>
                 {
-                    b.HasOne("DatabaseReportingSystem.Shared.Models.ChatMessage", "Message")
+                    b.HasOne("DatabaseReportingSystem.Models.ChatMessage", "Message")
                         .WithMany("ModelResponses")
                         .HasForeignKey("MessageId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -196,9 +199,9 @@ namespace DatabaseReportingSystem.Migrations
                     b.Navigation("Message");
                 });
 
-            modelBuilder.Entity("DatabaseReportingSystem.Shared.Models.User", b =>
+            modelBuilder.Entity("DatabaseReportingSystem.Models.User", b =>
                 {
-                    b.OwnsOne("DatabaseReportingSystem.Shared.Models.ConnectionCredentials", "ConnectionCredentials", b1 =>
+                    b.OwnsOne("DatabaseReportingSystem.Models.ConnectionCredentials", "ConnectionCredentials", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uuid");
@@ -213,7 +216,7 @@ namespace DatabaseReportingSystem.Migrations
 
                             b1.HasKey("UserId");
 
-                            b1.ToTable("Users");
+                            b1.ToTable("User");
 
                             b1.WithOwner()
                                 .HasForeignKey("UserId");
@@ -223,9 +226,9 @@ namespace DatabaseReportingSystem.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DatabaseReportingSystem.Shared.Models.UserLicense", b =>
+            modelBuilder.Entity("DatabaseReportingSystem.Models.UserLicense", b =>
                 {
-                    b.HasOne("DatabaseReportingSystem.Shared.Models.User", "User")
+                    b.HasOne("DatabaseReportingSystem.Models.User", "User")
                         .WithMany("Licenses")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -234,17 +237,17 @@ namespace DatabaseReportingSystem.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DatabaseReportingSystem.Shared.Models.Chat", b =>
+            modelBuilder.Entity("DatabaseReportingSystem.Models.Chat", b =>
                 {
                     b.Navigation("Messages");
                 });
 
-            modelBuilder.Entity("DatabaseReportingSystem.Shared.Models.ChatMessage", b =>
+            modelBuilder.Entity("DatabaseReportingSystem.Models.ChatMessage", b =>
                 {
                     b.Navigation("ModelResponses");
                 });
 
-            modelBuilder.Entity("DatabaseReportingSystem.Shared.Models.User", b =>
+            modelBuilder.Entity("DatabaseReportingSystem.Models.User", b =>
                 {
                     b.Navigation("Chats");
 

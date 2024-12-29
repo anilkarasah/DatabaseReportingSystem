@@ -1,8 +1,7 @@
-using DatabaseReportingSystem.Vector.Context;
 using DatabaseReportingSystem.Vector.Features;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DatabaseReportingSystem.Vector.Shared;
+namespace DatabaseReportingSystem.Vector;
 
 public static class DependencyInjection
 {

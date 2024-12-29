@@ -1,4 +1,4 @@
-namespace DatabaseReportingSystem.Models;
+namespace DatabaseReportingSystem.Shared.Models;
 
 public enum Status : short
 {

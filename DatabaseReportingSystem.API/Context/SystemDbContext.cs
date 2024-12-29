@@ -1,4 +1,5 @@
-using DatabaseReportingSystem.Models;
+using DatabaseReportingSystem.Shared;
+using DatabaseReportingSystem.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseReportingSystem.Context;
@@ -6,6 +7,16 @@ namespace DatabaseReportingSystem.Context;
 public class SystemDbContext(IConfiguration configuration) : DbContext
 {
     private readonly IConfiguration _configuration = configuration;
+
+    public DbSet<User> Users { get; set; }
+
+    public DbSet<UserLicense> UserLicenses { get; set; }
+
+    public DbSet<Chat> Chats { get; set; }
+
+    public DbSet<ChatMessage> ChatMessages { get; set; }
+
+    public DbSet<ModelResponse> ModelResponses { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -37,11 +48,11 @@ public class SystemDbContext(IConfiguration configuration) : DbContext
 
         modelBuilder.Entity<User>()
             .Property(user => user.Email)
-            .HasMaxLength(64);
+            .HasMaxLength(Constants.Context.EmailSize);
 
         modelBuilder.Entity<User>()
             .Property(user => user.PasswordHash)
-            .HasMaxLength(161);
+            .HasMaxLength(Constants.Context.PasswordSize);
 
         #endregion
 
@@ -55,7 +66,7 @@ public class SystemDbContext(IConfiguration configuration) : DbContext
 
         modelBuilder.Entity<UserLicense>()
             .Property(license => license.LicenseCode)
-            .HasMaxLength(8);
+            .HasMaxLength(Constants.Context.LicenseCodeSize);
 
         #endregion
 
@@ -71,7 +82,7 @@ public class SystemDbContext(IConfiguration configuration) : DbContext
 
         modelBuilder.Entity<Chat>()
             .Property(chat => chat.DatabaseManagementSystem)
-            .HasMaxLength(16);
+            .HasMaxLength(Constants.Context.DatabaseManagementSystemSize);
 
         #endregion
 
@@ -100,7 +111,7 @@ public class SystemDbContext(IConfiguration configuration) : DbContext
 
         modelBuilder.Entity<ModelResponse>()
             .Property(response => response.ModelName)
-            .HasMaxLength(32);
+            .HasMaxLength(Constants.Context.ModelNameSize);
 
         #endregion
     }

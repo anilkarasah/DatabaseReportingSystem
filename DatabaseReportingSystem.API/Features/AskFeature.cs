@@ -1,6 +1,5 @@
-using DatabaseReportingSystem.Agency.LanguageModels;
 using DatabaseReportingSystem.Agency.Shared;
-using DatabaseReportingSystem.Agency.Strategies;
+using DatabaseReportingSystem.Context;
 using DatabaseReportingSystem.Shared;
 using Microsoft.AspNetCore.Mvc;
 using OpenAI.Chat;
@@ -13,6 +12,7 @@ public static class AskFeature
         [FromServices] IConfiguration configuration,
         [FromServices] IServiceProvider serviceProvider,
         [FromServices] ModelClientFactory modelClientFactory,
+        [FromServices] SystemDbContext systemDbContext,
         [FromQuery] string model,
         [FromQuery] string strategy,
         [FromBody] AskRequest request)

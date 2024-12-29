@@ -1,6 +1,7 @@
+using DatabaseReportingSystem.Agency.Shared;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DatabaseReportingSystem.Agency.Shared;
+namespace DatabaseReportingSystem.Agency;
 
 public static class DependencyInjection
 {

@@ -1,9 +1,6 @@
-using DatabaseReportingSystem.Agency.Shared;
+using DatabaseReportingSystem;
 using DatabaseReportingSystem.Context;
-using DatabaseReportingSystem.Modules;
 using DatabaseReportingSystem.Vector.Context;
-using DatabaseReportingSystem.Vector.Features;
-using DatabaseReportingSystem.Vector.Shared;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -15,9 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<SystemDbContext>();
 builder.Services.AddDbContext<VectorDbContext>();
 
-builder.Services
-    .AddAgency()
-    .AddVector();
+builder.Services.AddDatabaseReportingSystem();
 
 WebApplication app = builder.Build();
 
@@ -30,8 +25,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app
-    .MapVectorModule()
-    .MapPromptModule();
+app.MapDatabaseReportingSystem();
 
 app.Run();
