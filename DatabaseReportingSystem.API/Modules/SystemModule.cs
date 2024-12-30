@@ -14,6 +14,8 @@ public static class SystemModule
 
         group.MapPost("test", TestConnectionFeature.TestConnectionAsync);
 
+        group.MapPost("execute", QueryFeature.QueryAsync);
+
         return builder;
     }
 }

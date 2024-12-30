@@ -2,7 +2,6 @@ using System.Text.Json.Serialization;
 using DatabaseReportingSystem;
 using DatabaseReportingSystem.Context;
 using DatabaseReportingSystem.Vector.Context;
-using Newtonsoft.Json;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

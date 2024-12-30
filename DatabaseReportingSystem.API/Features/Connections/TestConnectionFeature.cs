@@ -51,7 +51,7 @@ public static class TestConnectionFeature
             databaseManagementSystem,
             credentials);
 
-        Result testResult = Utilities.TestDatabaseConnection(
+        Result testResult = await Utilities.TestDatabaseConnectionAsync(
             databaseManagementSystem,
             connectionString);
 

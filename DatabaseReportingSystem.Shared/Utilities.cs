@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using DatabaseReportingSystem.Shared.Helpers;
 using DatabaseReportingSystem.Shared.Models;
 using MySql.Data.MySqlClient;
@@ -128,22 +129,22 @@ public static class Utilities
         return connection;
     }
 
-    public static Result TestDatabaseConnection(
+    public static async Task<Result> TestDatabaseConnectionAsync(
         DatabaseManagementSystem databaseManagementSystem,
         string connectionString)
     {
         try
         {
-            using DbConnection connection = GetDatabaseConnection(databaseManagementSystem, connectionString);
+            await using DbConnection connection = GetDatabaseConnection(databaseManagementSystem, connectionString);
 
-            connection.Open();
+            await connection.OpenAsync();
 
-            using DbCommand command = connection.CreateCommand();
+            await using DbCommand command = connection.CreateCommand();
 
             command.CommandText = "SELECT 1";
             command.CommandType = CommandType.Text;
 
-            object? result = command.ExecuteScalar();
+            object? result = await command.ExecuteScalarAsync();
 
             if (result is 1)
             {
@@ -154,7 +155,66 @@ public static class Utilities
         {
             return Result.Fail(e.Message);
         }
-        
+
         return Result.Fail("Connection test failed.");
+    }
+
+    public static async Task<Result<DatabaseExecutionResult>> QueryOnUserDatabaseAsync(
+        DatabaseManagementSystem databaseManagementSystem,
+        string connectionString,
+        string query)
+    {
+        try
+        {
+            await using DbConnection connection = GetDatabaseConnection(databaseManagementSystem, connectionString);
+
+            await connection.OpenAsync();
+
+            await using DbCommand command = connection.CreateCommand();
+
+            command.CommandText = query;
+            command.CommandType = CommandType.Text;
+
+            var stopwatch = Stopwatch.StartNew();
+
+            DbDataReader dbDataReader = await command.ExecuteReaderAsync();
+
+            stopwatch.Stop();
+
+            DataTable dataTable = new();
+            dataTable.Load(dbDataReader);
+
+            DatabaseExecutionResult databaseExecutionResult = ConvertDataTableToResult(dataTable, stopwatch.Elapsed);
+
+            return Result<DatabaseExecutionResult>.Ok(databaseExecutionResult);
+        }
+        catch (Exception e)
+        {
+            return Result<DatabaseExecutionResult>.Fail(e.Message);
+        }
+    }
+
+    private static DatabaseExecutionResult ConvertDataTableToResult(
+        DataTable dataTable,
+        TimeSpan elapsedTime)
+    {
+        var columnNames = dataTable.Columns
+            .Cast<DataColumn>()
+            .Select(c => c.ColumnName)
+            .ToList();
+
+        List<Dictionary<string, object>> values = [];
+        foreach (DataRow row in dataTable.Rows)
+        {
+            Dictionary<string, object> rowDictionary = new();
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                rowDictionary[column.ColumnName] = row[column];
+            }
+
+            values.Add(rowDictionary);
+        }
+
+        return new DatabaseExecutionResult(dataTable.Rows.Count, elapsedTime.Milliseconds, columnNames, values);
     }
 }
