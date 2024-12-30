@@ -2,7 +2,7 @@ using DatabaseReportingSystem.Features.Connections;
 
 namespace DatabaseReportingSystem.Modules;
 
-public static class PromptModule
+public static class SystemModule
 {
     public static IEndpointRouteBuilder MapConnectionCredentialsModule(this IEndpointRouteBuilder builder)
     {
@@ -11,6 +11,8 @@ public static class PromptModule
         group.MapPost("/", EditConnectionCredentialsFeature.EditConnectionCredentialsAsync);
 
         group.MapGet("/", GetConnectionCredentialsFeature.GetConnectionCredentialsAsync);
+
+        group.MapPost("test", TestConnectionFeature.TestConnectionAsync);
 
         return builder;
     }

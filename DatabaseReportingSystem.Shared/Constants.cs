@@ -4,6 +4,8 @@ public static class Constants
 {
     public static readonly Guid DefaultUserId = new("d64df337-7bcc-417c-921d-7f1168e05802");
 
+    public const string DefaultDatabaseUsername = "drs_viewer";
+
     public static class Strategy
     {
         public const int DefaultRandomSeed = 27;
