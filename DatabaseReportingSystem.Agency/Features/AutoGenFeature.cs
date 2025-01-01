@@ -25,21 +25,26 @@ public class AutoGenFeature(IConfiguration configuration)
         IStrategy strategy,
         ConnectionCredentialsDto? credentials)
     {
-        string systemPrompt = await strategy.GetMessagesAsync() + "\nRespond with 'TERMINATE' when you're done.";
+        string queryWriterSystemPrompt =
+            await strategy.GetMessagesAsync();
 
-        var queryWriterAgent = languageModel.GetChatAgent("query-writer", systemPrompt)
-            .RegisterMessageConnector()
-            .RegisterPrintMessage();
-
-        List<IAgent> agents = [queryWriterAgent];
+        List<IAgent> agents = [];
 
         if (credentials is not null)
         {
+            queryWriterSystemPrompt +=
+                "\n" +
+                """
+                If the analyzer says 'INVALID', please regenerate the SQL query according to it. If it says 'VALID', you
+                should write 'TERMINATE' to end the conversation.
+                """;
+
             const string analyzerAgentSystemPrompt =
                 """
                 You are a query analyzer. Given an input question, run the function for querying database. You will make 
                 sure that requested condition is met. Otherwise, you should tell what is wrong with the result, and 
-                what could be done. You should say 'VALID' or 'INVALID: {reason}'.
+                what could be done. You should only say 'VALID' or 'INVALID: {reason}'. You should write 'TERMINATE', if
+                other agent has also written 'TERMINATE'.
                 """;
 
             var function = new AnalyzerFunction(databaseManagementSystem, credentials);
@@ -62,6 +67,17 @@ public class AutoGenFeature(IConfiguration configuration)
 
             agents.Add(analyzerAgent);
         }
+        else
+        {
+            queryWriterSystemPrompt += "\nYou should write 'TERMINATE' to end the conversation.";
+        }
+
+        var queryWriterAgent = languageModel.GetChatAgent("query-writer", queryWriterSystemPrompt)
+            .RegisterMessageConnector()
+            .RegisterPrintMessage();
+
+        agents.Add(queryWriterAgent);
+        agents.Reverse(); // Reverse the order of agents to make the query writer agent the first one
 
         var groupChat = new RoundRobinGroupChat(agents);
 
