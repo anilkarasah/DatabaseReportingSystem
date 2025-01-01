@@ -20,7 +20,7 @@ public class SystemDbContext(IConfiguration configuration) : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(connectionString: _configuration.GetConnectionString("System"));
+        optionsBuilder.UseNpgsql(_configuration.GetConnectionString("System"));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

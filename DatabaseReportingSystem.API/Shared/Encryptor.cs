@@ -28,10 +28,7 @@ public sealed class Encryptor(IConfiguration configuration) : IEncryptor
     {
         string[] parts = hashedPassword.Split('-');
 
-        if (parts.Length != 2)
-        {
-            return false;
-        }
+        if (parts.Length != 2) return false;
 
         byte[] hash = Convert.FromHexString(parts[0]);
         byte[] salt = Convert.FromHexString(parts[1]);
@@ -65,10 +62,7 @@ public sealed class Encryptor(IConfiguration configuration) : IEncryptor
         }
 
         byte[] encryptedBytes = memoryStream.ToArray();
-        if (encryptedBytes.Length == 0)
-        {
-            throw new InvalidOperationException("Encryption failed.");
-        }
+        if (encryptedBytes.Length == 0) throw new InvalidOperationException("Encryption failed.");
 
         return Convert.ToBase64String(encryptedBytes);
     }
@@ -77,7 +71,7 @@ public sealed class Encryptor(IConfiguration configuration) : IEncryptor
     {
         byte[] fullCipher = Convert.FromBase64String(cipherText);
 
-        using Aes aes = Aes.Create();
+        using var aes = Aes.Create();
 
         aes.Key = Encoding.UTF8.GetBytes(_encryptionKey);
 
@@ -108,10 +102,7 @@ public sealed class Encryptor(IConfiguration configuration) : IEncryptor
         {
             var dto = JsonConvert.DeserializeObject<ConnectionCredentialsDto>(decryptedConnectionHash);
 
-            if (dto != null)
-            {
-                return Result<ConnectionCredentialsDto>.Ok(dto);
-            }
+            if (dto != null) return Result<ConnectionCredentialsDto>.Ok(dto);
         }
         catch (Exception)
         {

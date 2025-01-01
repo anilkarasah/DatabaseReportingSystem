@@ -13,7 +13,7 @@ public class Result
         return new Result
         {
             IsFailure = true,
-            Error = error,
+            Error = error
         };
     }
 
@@ -21,7 +21,7 @@ public class Result
     {
         return new Result
         {
-            IsFailure = false,
+            IsFailure = false
         };
     }
 }
@@ -35,7 +35,7 @@ public class Result<T> : Result
         return new Result<T>
         {
             IsFailure = true,
-            Error = error,
+            Error = error
         };
     }
 
@@ -44,7 +44,7 @@ public class Result<T> : Result
         return new Result<T>
         {
             IsFailure = false,
-            Value = value,
+            Value = value
         };
     }
 }

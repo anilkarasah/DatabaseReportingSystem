@@ -16,10 +16,7 @@ public static class SendMessageFeature
             .Include(c => c.Messages)
             .FirstOrDefaultAsync(c => c.Id == chatId);
 
-        if (chat is null)
-        {
-            return Results.NotFound("Chat not found.");
-        }
+        if (chat is null) return Results.NotFound("Chat not found.");
 
         var message = new ChatMessage
         {
@@ -27,7 +24,7 @@ public static class SendMessageFeature
             ChatId = chat.Id,
             Content = request.Content,
             Index = chat.Messages.Count,
-            SentAtUtc = DateTime.UtcNow,
+            SentAtUtc = DateTime.UtcNow
         };
 
         systemDbContext.ChatMessages.Add(message);
