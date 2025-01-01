@@ -7,10 +7,8 @@ namespace DatabaseReportingSystem.Agency.LanguageModels;
 
 public sealed class GptModel(string modelName, string apiKey) : ILanguageModel
 {
-    private readonly string _modelName = modelName;
     private readonly ApiKeyCredential _apiKeyCredential = new(apiKey);
-
-    private ChatClient CreateClient() => new(_modelName, _apiKeyCredential);
+    private readonly string _modelName = modelName;
 
     public async Task<string> AskAsync(List<ChatMessage> chatMessages)
     {
@@ -18,17 +16,22 @@ public sealed class GptModel(string modelName, string apiKey) : ILanguageModel
 
         ChatCompletion completion = await client.CompleteChatAsync(chatMessages, new ChatCompletionOptions
         {
-            Temperature = 0,
+            Temperature = 0
         });
 
-        if (completion.Content.Count == 0)
-        {
-            throw new InvalidOperationException("No response from GPT.");
-        }
+        if (completion.Content.Count == 0) throw new InvalidOperationException("No response from GPT.");
 
         return Utilities.TrimSqlString(completion.Content[0].Text);
     }
 
     public OpenAIChatAgent GetChatAgent(string name, string systemMessage = "")
-        => new(name: name, systemMessage: systemMessage, chatClient: CreateClient(), temperature: 1, maxTokens: null);
+    {
+        return new OpenAIChatAgent(name: name, systemMessage: systemMessage, chatClient: CreateClient(), temperature: 1,
+            maxTokens: null);
+    }
+
+    private ChatClient CreateClient()
+    {
+        return new ChatClient(_modelName, _apiKeyCredential);
+    }
 }

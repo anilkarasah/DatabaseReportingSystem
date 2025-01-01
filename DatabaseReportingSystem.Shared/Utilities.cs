@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using DatabaseReportingSystem.Shared.Helpers;
 using DatabaseReportingSystem.Shared.Models;
@@ -16,10 +17,7 @@ public static class Utilities
     {
         string[] parts = query.Split(["```sql", "```"], StringSplitOptions.None);
 
-        if (parts.Length > 1)
-        {
-            query = parts[1];
-        }
+        if (parts.Length > 1) query = parts[1];
 
         query = query.Replace("\n", " ").Replace("\t", "");
 
@@ -29,10 +27,12 @@ public static class Utilities
     }
 
     public static string CreateUserMessage(UserPromptDto dto)
-        => string.Format(Constants.Strategy.UserPromptFormat,
+    {
+        return string.Format(Constants.Strategy.UserPromptFormat,
             dto.Question,
             dto.DatabaseManagementSystem.ToString().ToLower(),
             dto.Schema);
+    }
 
     public static UserChatMessage CreateUserChatMessage(UserPromptDto dto)
     {
@@ -41,7 +41,9 @@ public static class Utilities
     }
 
     public static DatabaseManagementSystem AsDatabaseManagementSystem(this string dbms)
-        => GetDatabaseManagementSystem(dbms);
+    {
+        return GetDatabaseManagementSystem(dbms);
+    }
 
     public static DatabaseManagementSystem GetDatabaseManagementSystem(string dbms)
     {
@@ -54,15 +56,18 @@ public static class Utilities
             "pgsql" => DatabaseManagementSystem.PostgreSql,
             "npgsql" => DatabaseManagementSystem.PostgreSql,
             "postgresql" => DatabaseManagementSystem.PostgreSql,
-            _ => DatabaseManagementSystem.Other,
+            _ => DatabaseManagementSystem.Other
         };
     }
 
     public static LargeLanguageModel AsLargeLanguageModel(this string modelName)
-        => GetLargeLanguageModel(modelName);
+    {
+        return GetLargeLanguageModel(modelName);
+    }
 
     public static LargeLanguageModel GetLargeLanguageModel(string modelName)
-        => modelName switch
+    {
+        return modelName switch
         {
             "gpt-4o-mini" => LargeLanguageModel.GPT,
             "gpt-4o" => LargeLanguageModel.GPT,
@@ -74,12 +79,16 @@ public static class Utilities
             "llama" => LargeLanguageModel.CodeLLaMa,
             _ => throw new ArgumentException("Invalid model name.")
         };
+    }
 
     public static StrategyType AsStrategyType(this string strategyType)
-        => GetStrategyType(strategyType);
+    {
+        return GetStrategyType(strategyType);
+    }
 
     public static StrategyType GetStrategyType(string strategyName)
-        => strategyName switch
+    {
+        return strategyName switch
         {
             "basic" => StrategyType.ZeroShot,
             "zero" => StrategyType.ZeroShot,
@@ -92,6 +101,7 @@ public static class Utilities
             "nearest-few-shot" => StrategyType.NearestFewShot,
             _ => throw new ArgumentException("Invalid strategy name.")
         };
+    }
 
     public static string GenerateConnectionString(
         DatabaseManagementSystem databaseManagementSystem,
@@ -124,8 +134,8 @@ public static class Utilities
             DatabaseManagementSystem.SqlServer => new SqlConnection(connectionString),
             DatabaseManagementSystem.MySql => new MySqlConnection(connectionString),
             DatabaseManagementSystem.PostgreSql => new NpgsqlConnection(connectionString),
-            DatabaseManagementSystem.Sqlite => new System.Data.SQLite.SQLiteConnection(connectionString),
-            _ => throw new ArgumentException("Database management system does not support connection tests."),
+            DatabaseManagementSystem.Sqlite => new SQLiteConnection(connectionString),
+            _ => throw new ArgumentException("Database management system does not support connection tests.")
         };
 
         return connection;
@@ -148,10 +158,7 @@ public static class Utilities
 
             object? result = await command.ExecuteScalarAsync();
 
-            if (result is 1)
-            {
-                return Result.Ok();
-            }
+            if (result is 1) return Result.Ok();
         }
         catch (Exception e)
         {
@@ -209,10 +216,7 @@ public static class Utilities
         foreach (DataRow row in dataTable.Rows)
         {
             Dictionary<string, object> rowDictionary = new();
-            foreach (DataColumn column in dataTable.Columns)
-            {
-                rowDictionary[column.ColumnName] = row[column];
-            }
+            foreach (DataColumn column in dataTable.Columns) rowDictionary[column.ColumnName] = row[column];
 
             values.Add(rowDictionary);
         }

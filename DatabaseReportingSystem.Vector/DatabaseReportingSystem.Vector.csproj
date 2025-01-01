@@ -12,11 +12,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DatabaseReportingSystem.Shared\DatabaseReportingSystem.Shared.csproj" />
+        <ProjectReference Include="..\DatabaseReportingSystem.Shared\DatabaseReportingSystem.Shared.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Shared\" />
+        <Folder Include="Shared\"/>
     </ItemGroup>
 
 </Project>

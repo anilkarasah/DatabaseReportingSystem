@@ -23,29 +23,21 @@ public static class AskFeature
         [FromBody] AskRequest request)
     {
         if (request.ReplyingToMessageId == Guid.Empty)
-        {
             return Results.BadRequest("Replying to message ID cannot be empty.");
-        }
 
         Chat? chat = await systemDbContext.Chats
             .Include(c => c.Messages)
             .FirstOrDefaultAsync(c => c.Id == chatId);
 
-        if (chat is null)
-        {
-            return Results.NotFound("Chat not found.");
-        }
+        if (chat is null) return Results.NotFound("Chat not found.");
 
         ChatMessage? relatedMessage = chat.Messages.FirstOrDefault(m => m.MessageId == request.ReplyingToMessageId);
 
-        if (relatedMessage is null)
-        {
-            return Results.NotFound("Message not found.");
-        }
+        if (relatedMessage is null) return Results.NotFound("Message not found.");
 
         var clientOptions = new ClientOptions
         {
-            Question = relatedMessage.Content,
+            Question = relatedMessage.Content
         };
 
         LargeLanguageModel largeLanguageModel = request.ModelName.AsLargeLanguageModel();
@@ -72,7 +64,7 @@ public static class AskFeature
             MessageId = relatedMessage.MessageId,
             ModelName = largeLanguageModel.ToString().ToLower(),
             Content = generatedQuery,
-            CompletedAtUtc = DateTimeOffset.UtcNow,
+            CompletedAtUtc = DateTimeOffset.UtcNow
         };
 
         systemDbContext.ModelResponses.Add(modelResponse);
@@ -91,32 +83,24 @@ public static class AskFeature
         [FromBody] AskRequest request)
     {
         if (request.ReplyingToMessageId == Guid.Empty)
-        {
             return Results.BadRequest("Replying to message ID cannot be empty.");
-        }
 
         Chat? chat = await systemDbContext.Chats
             .Include(c => c.Messages)
             .FirstOrDefaultAsync(c => c.Id == chatId);
 
-        if (chat is null)
-        {
-            return Results.NotFound("Chat not found.");
-        }
+        if (chat is null) return Results.NotFound("Chat not found.");
 
         ChatMessage? relatedMessage = chat.Messages.FirstOrDefault(m => m.MessageId == request.ReplyingToMessageId);
 
-        if (relatedMessage is null)
-        {
-            return Results.NotFound("Message not found.");
-        }
+        if (relatedMessage is null) return Results.NotFound("Message not found.");
 
         LargeLanguageModel largeLanguageModel = request.ModelName.AsLargeLanguageModel();
         StrategyType strategy = request.Strategy.AsStrategyType();
 
         var clientOptions = new ClientOptions
         {
-            Question = relatedMessage.Content,
+            Question = relatedMessage.Content
         };
 
         ModelClient modelClient = modelClientFactory
@@ -128,10 +112,7 @@ public static class AskFeature
 
         User? user = await systemDbContext.Users.FirstOrDefaultAsync(u => u.Id == Constants.DefaultUserId);
 
-        if (user is null)
-        {
-            return Results.BadRequest("User not found.");
-        }
+        if (user is null) return Results.BadRequest("User not found.");
 
         var credentialsResult = encryptor.DecryptConnectionCredentials(user);
 
@@ -153,7 +134,7 @@ public static class AskFeature
             MessageId = relatedMessage.MessageId,
             ModelName = largeLanguageModel.ToString().ToLower(),
             Content = autoGenResponsesJson,
-            CompletedAtUtc = DateTimeOffset.UtcNow,
+            CompletedAtUtc = DateTimeOffset.UtcNow
         };
 
         systemDbContext.ModelResponses.Add(modelResponse);

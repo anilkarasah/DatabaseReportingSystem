@@ -6,19 +6,19 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <RootNamespace>DatabaseReportingSystem</RootNamespace>
-      <UserSecretsId>943a3463-5ee8-4f13-aff3-d5b8b18d28dc</UserSecretsId>
-  </PropertyGroup>
+        <UserSecretsId>943a3463-5ee8-4f13-aff3-d5b8b18d28dc</UserSecretsId>
+    </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="8.0.5" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.5" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="8.0.5"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.5"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -28,9 +28,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\DatabaseReportingSystem.Agency\DatabaseReportingSystem.Agency.csproj" />
-        <ProjectReference Include="..\DatabaseReportingSystem.Shared\DatabaseReportingSystem.Shared.csproj" />
-        <ProjectReference Include="..\DatabaseReportingSystem.Vector\DatabaseReportingSystem.Vector.csproj" />
+        <ProjectReference Include="..\DatabaseReportingSystem.Agency\DatabaseReportingSystem.Agency.csproj"/>
+        <ProjectReference Include="..\DatabaseReportingSystem.Shared\DatabaseReportingSystem.Shared.csproj"/>
+        <ProjectReference Include="..\DatabaseReportingSystem.Vector\DatabaseReportingSystem.Vector.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Features\AutoGen\" />
     </ItemGroup>
 
 </Project>

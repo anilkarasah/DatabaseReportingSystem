@@ -1,5 +1,4 @@
 using DatabaseReportingSystem.Agency;
-using DatabaseReportingSystem.Features.AutoGen;
 using DatabaseReportingSystem.Modules;
 using DatabaseReportingSystem.Shared;
 using DatabaseReportingSystem.Vector;
@@ -12,7 +11,6 @@ public static class DependencyInjection
     {
         return services
             .AddSingleton<IEncryptor, Encryptor>()
-            .AddScoped<AnalyzeFeature>()
             .AddAgency()
             .AddVector();
     }

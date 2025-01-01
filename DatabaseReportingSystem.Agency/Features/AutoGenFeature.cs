@@ -45,17 +45,17 @@ public class AutoGenFeature(IConfiguration configuration)
             var function = new AnalyzerFunction(databaseManagementSystem, credentials);
 
             var functionMiddleware = new FunctionCallMiddleware(
-                functions: [function.RunQueryAsyncFunctionContract],
-                functionMap: new Dictionary<string, Func<string, Task<string>>>
+                [function.RunQueryAsyncFunctionContract],
+                new Dictionary<string, Func<string, Task<string>>>
                 {
-                    [function.RunQueryAsyncFunctionContract.Name] = function.RunQueryAsyncWrapper,
+                    [function.RunQueryAsyncFunctionContract.Name] = function.RunQueryAsyncWrapper
                 });
 
             var analyzerAgent = new OpenAIChatAgent(
-                    chatClient: new ChatClient(AnalyzerModelName, _apiKey),
-                    name: "query-analyzer",
-                    options: new ChatCompletionOptions { Temperature = 1 },
-                    systemMessage: analyzerAgentSystemPrompt)
+                    new ChatClient(AnalyzerModelName, _apiKey),
+                    "query-analyzer",
+                    new ChatCompletionOptions { Temperature = 1 },
+                    analyzerAgentSystemPrompt)
                 .RegisterMessageConnector()
                 .RegisterMiddleware(functionMiddleware)
                 .RegisterPrintMessage();
@@ -70,9 +70,9 @@ public class AutoGenFeature(IConfiguration configuration)
         string userMessage = Utilities.CreateUserMessage(userQuestion);
 
         var history = await queryWriterAgent.InitiateChatAsync(
-            receiver: groupChatAgent,
-            message: userMessage,
-            maxRound: 5);
+            groupChatAgent,
+            userMessage,
+            5);
 
         return history;
     }
@@ -82,11 +82,11 @@ public partial class AnalyzerFunction(
     DatabaseManagementSystem databaseManagementSystem,
     ConnectionCredentialsDto? credentials)
 {
-    private readonly DatabaseManagementSystem _databaseManagementSystem = databaseManagementSystem;
     private readonly ConnectionCredentialsDto? _credentials = credentials;
+    private readonly DatabaseManagementSystem _databaseManagementSystem = databaseManagementSystem;
 
     /// <summary>
-    /// Run a query on the user database.
+    ///     Run a query on the user database.
     /// </summary>
     /// <param name="query">SQL query</param>
     /// <returns>Database execution result in JSON format</returns>
@@ -95,28 +95,19 @@ public partial class AnalyzerFunction(
         "Runs a query on the user database, and returns the execution result in JSON format.")]
     public async Task<string> RunQueryAsync(string query)
     {
-        if (_credentials is null)
-        {
-            throw new InvalidOperationException("Connection credentials are not provided.");
-        }
+        if (_credentials is null) throw new InvalidOperationException("Connection credentials are not provided.");
 
         string connectionString = Utilities.GenerateConnectionString(_databaseManagementSystem, _credentials);
 
         Result connectionResult = await Utilities
             .TestDatabaseConnectionAsync(_databaseManagementSystem, connectionString);
 
-        if (connectionResult.IsFailure)
-        {
-            throw new InvalidOperationException(connectionResult.Error);
-        }
+        if (connectionResult.IsFailure) throw new InvalidOperationException(connectionResult.Error);
 
         var queryResult =
             await Utilities.QueryOnUserDatabaseAsync(_databaseManagementSystem, connectionString, query);
 
-        if (queryResult.IsFailure)
-        {
-            throw new InvalidOperationException(queryResult.Error);
-        }
+        if (queryResult.IsFailure) throw new InvalidOperationException(queryResult.Error);
 
         return JsonConvert.SerializeObject(queryResult.Value.Values);
     }

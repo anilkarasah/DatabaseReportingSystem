@@ -8,14 +8,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="AutoGen" Version="0.2.2-dev.20241209.1" />
-      <PackageReference Include="AutoGen.SourceGenerator" Version="0.2.1" />
-      <PackageReference Include="OpenAI" Version="2.1.0" />
+        <PackageReference Include="AutoGen" Version="0.2.2-dev.20241209.1"/>
+        <PackageReference Include="AutoGen.SourceGenerator" Version="0.2.1"/>
+        <PackageReference Include="OpenAI" Version="2.1.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DatabaseReportingSystem.Shared\DatabaseReportingSystem.Shared.csproj" />
-      <ProjectReference Include="..\DatabaseReportingSystem.Vector\DatabaseReportingSystem.Vector.csproj" />
+        <ProjectReference Include="..\DatabaseReportingSystem.Shared\DatabaseReportingSystem.Shared.csproj"/>
+        <ProjectReference Include="..\DatabaseReportingSystem.Vector\DatabaseReportingSystem.Vector.csproj"/>
     </ItemGroup>
 
 </Project>
