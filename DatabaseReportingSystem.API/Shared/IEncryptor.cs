@@ -1,3 +1,5 @@
+using DatabaseReportingSystem.Shared.Models;
+
 namespace DatabaseReportingSystem.Shared;
 
 public interface IEncryptor
@@ -9,4 +11,6 @@ public interface IEncryptor
     string Encrypt(string text);
     
     string Decrypt(string text);
+
+    Result<ConnectionCredentialsDto> DecryptConnectionCredentials(User user);
 }

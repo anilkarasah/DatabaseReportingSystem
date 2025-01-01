@@ -15,35 +15,27 @@ public static class QueryFeature
         [FromBody] QueryRequest request)
     {
         User? user = await systemDbContext.Users.FirstOrDefaultAsync(u => u.Id == Constants.DefaultUserId);
-        
+
         if (user is null)
         {
             return Results.NotFound("User not found.");
         }
-        
+
         ConnectionCredentials connectionCredentials = user.ConnectionCredentials;
-        
-        string decryptedConnectionHash = encryptor.Decrypt(connectionCredentials.ConnectionHash);
-        
-        ConnectionCredentialsDto? credentials = null;
-        try
+
+        var credentialsResult = encryptor.DecryptConnectionCredentials(user);
+
+        if (credentialsResult.IsFailure)
         {
-            credentials = JsonConvert.DeserializeObject<ConnectionCredentialsDto>(decryptedConnectionHash);
+            return Results.BadRequest(credentialsResult.Error);
         }
-        catch (Exception)
-        {
-            return Results.BadRequest("Could not deserialize current connection credentials.");
-        }
-        
-        if (credentials is null)
-        {
-            return Results.BadRequest("Could not access connection credentials.");
-        }
-        
+
+        ConnectionCredentialsDto credentials = credentialsResult.Value;
+
         string connectionString = Utilities.GenerateConnectionString(
             connectionCredentials.DatabaseManagementSystem,
             credentials);
-        
+
         var queryResult = await Utilities.QueryOnUserDatabaseAsync(
             connectionCredentials.DatabaseManagementSystem,
             connectionString,

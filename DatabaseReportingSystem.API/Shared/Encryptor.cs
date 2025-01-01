@@ -1,8 +1,9 @@
 using System.Security.Cryptography;
 using System.Text;
-using DatabaseReportingSystem.Shared;
+using DatabaseReportingSystem.Shared.Models;
+using Newtonsoft.Json;
 
-namespace DatabaseReportingSystem.Features;
+namespace DatabaseReportingSystem.Shared;
 
 public sealed class Encryptor(IConfiguration configuration) : IEncryptor
 {
@@ -95,5 +96,28 @@ public sealed class Encryptor(IConfiguration configuration) : IEncryptor
         using var streamReader = new StreamReader(cryptoStream);
 
         return streamReader.ReadToEnd();
+    }
+
+    public Result<ConnectionCredentialsDto> DecryptConnectionCredentials(User user)
+    {
+        ConnectionCredentials connectionCredentials = user.ConnectionCredentials;
+
+        string decryptedConnectionHash = Decrypt(connectionCredentials.ConnectionHash);
+
+        try
+        {
+            var dto = JsonConvert.DeserializeObject<ConnectionCredentialsDto>(decryptedConnectionHash);
+
+            if (dto != null)
+            {
+                return Result<ConnectionCredentialsDto>.Ok(dto);
+            }
+        }
+        catch (Exception)
+        {
+            return Result<ConnectionCredentialsDto>.Fail("Could not deserialize current connection credentials.");
+        }
+
+        return Result<ConnectionCredentialsDto>.Fail("Could not access connection credentials.");
     }
 }

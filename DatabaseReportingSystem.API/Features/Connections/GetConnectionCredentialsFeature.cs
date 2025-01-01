@@ -20,20 +20,10 @@ public static class GetConnectionCredentialsFeature
             return Results.NotFound("User not found.");
         }
 
-        string credentialsHash = encryptor.Decrypt(user.ConnectionCredentials.ConnectionHash);
+        var credentialsResult = encryptor.DecryptConnectionCredentials(user);
 
-        ConnectionCredentialsDto? credentials = null;
-        try
-        {
-            credentials = JsonConvert.DeserializeObject<ConnectionCredentialsDto>(credentialsHash);
-        }
-        catch (Exception e)
-        {
-            return Results.BadRequest("Could not deserialize connection credentials.");
-        }
-
-        return credentials is null
-            ? Results.BadRequest("Could not get connection credentials.")
-            : Results.Ok(credentials);
+        return credentialsResult.IsFailure
+            ? Results.BadRequest(credentialsResult.Error)
+            : Results.Ok(credentialsResult.Value);
     }
 }

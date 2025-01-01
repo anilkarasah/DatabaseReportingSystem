@@ -3,7 +3,6 @@ using DatabaseReportingSystem.Shared;
 using DatabaseReportingSystem.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace DatabaseReportingSystem.Features.Connections;
 
@@ -26,20 +25,16 @@ public static class TestConnectionFeature
                 return Results.NotFound("User not found.");
             }
 
-            ConnectionCredentials connectionCredentials = user.ConnectionCredentials;
+            databaseManagementSystem = user.ConnectionCredentials.DatabaseManagementSystem;
 
-            databaseManagementSystem = connectionCredentials.DatabaseManagementSystem;
+            var credentialsResult = encryptor.DecryptConnectionCredentials(user);
 
-            string decryptedConnectionHash = encryptor.Decrypt(connectionCredentials.ConnectionHash);
-
-            try
+            if (credentialsResult.IsFailure)
             {
-                credentials = JsonConvert.DeserializeObject<ConnectionCredentialsDto>(decryptedConnectionHash);
+                return Results.BadRequest(credentialsResult.Error);
             }
-            catch (Exception)
-            {
-                return Results.BadRequest("Could not deserialize current connection credentials.");
-            }
+
+            credentials = credentialsResult.Value;
         }
 
         if (credentials is null)
