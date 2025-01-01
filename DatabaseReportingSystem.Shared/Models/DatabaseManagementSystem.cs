@@ -6,5 +6,5 @@ public enum DatabaseManagementSystem
     SqlServer = 2,
     MySql = 3,
     PostgreSql = 4,
-    Other = 5,
+    Other = 5
 }

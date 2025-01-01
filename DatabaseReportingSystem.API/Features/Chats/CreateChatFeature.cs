@@ -22,7 +22,7 @@ public static class CreateChatFeature
             UserId = Constants.DefaultUserId,
             DatabaseManagementSystem = relatedDbms,
             SchemaHash = encryptedContent,
-            CreatedAtUtc = DateTimeOffset.UtcNow,
+            CreatedAtUtc = DateTimeOffset.UtcNow
         };
 
         systemDbContext.Chats.Add(chat);

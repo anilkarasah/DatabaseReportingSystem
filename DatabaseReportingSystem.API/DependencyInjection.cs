@@ -1,5 +1,5 @@
 using DatabaseReportingSystem.Agency;
-using DatabaseReportingSystem.Features;
+using DatabaseReportingSystem.Features.AutoGen;
 using DatabaseReportingSystem.Modules;
 using DatabaseReportingSystem.Shared;
 using DatabaseReportingSystem.Vector;
@@ -12,6 +12,7 @@ public static class DependencyInjection
     {
         return services
             .AddSingleton<IEncryptor, Encryptor>()
+            .AddScoped<AnalyzeFeature>()
             .AddAgency()
             .AddVector();
     }
@@ -21,6 +22,7 @@ public static class DependencyInjection
         return endpoints
             .MapConnectionCredentialsModule()
             .MapChatModule()
+            .MapAutoGenModule()
             .MapVectorModule();
     }
 }

@@ -20,27 +20,18 @@ public static class TestConnectionFeature
         {
             User? user = await systemDbContext.Users.FirstOrDefaultAsync(u => u.Id == Constants.DefaultUserId);
 
-            if (user is null)
-            {
-                return Results.NotFound("User not found.");
-            }
+            if (user is null) return Results.NotFound("User not found.");
 
             databaseManagementSystem = user.ConnectionCredentials.DatabaseManagementSystem;
 
             var credentialsResult = encryptor.DecryptConnectionCredentials(user);
 
-            if (credentialsResult.IsFailure)
-            {
-                return Results.BadRequest(credentialsResult.Error);
-            }
+            if (credentialsResult.IsFailure) return Results.BadRequest(credentialsResult.Error);
 
             credentials = credentialsResult.Value;
         }
 
-        if (credentials is null)
-        {
-            return Results.BadRequest("Could not access connection credentials.");
-        }
+        if (credentials is null) return Results.BadRequest("Could not access connection credentials.");
 
         string connectionString = Utilities.GenerateConnectionString(
             databaseManagementSystem,

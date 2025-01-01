@@ -28,13 +28,15 @@ public static class Utilities
         return query.Trim();
     }
 
-    public static UserChatMessage CreateUserChatMessage(string question, string schema, DatabaseManagementSystem dbms)
-    {
-        string message = string.Format(Constants.Strategy.UserPromptFormat,
-            question,
-            dbms.ToString().ToLower(),
-            schema);
+    public static string CreateUserMessage(UserPromptDto dto)
+        => string.Format(Constants.Strategy.UserPromptFormat,
+            dto.Question,
+            dto.DatabaseManagementSystem.ToString().ToLower(),
+            dto.Schema);
 
+    public static UserChatMessage CreateUserChatMessage(UserPromptDto dto)
+    {
+        string message = CreateUserMessage(dto);
         return new UserChatMessage(message);
     }
 

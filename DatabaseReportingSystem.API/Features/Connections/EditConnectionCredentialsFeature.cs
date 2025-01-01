@@ -16,10 +16,7 @@ public static class EditConnectionCredentialsFeature
     {
         User? user = await systemDbContext.Users.SingleOrDefaultAsync(u => u.Id == Constants.DefaultUserId);
 
-        if (user is null)
-        {
-            return Results.NotFound("User not found.");
-        }
+        if (user is null) return Results.NotFound("User not found.");
 
         string requestJson = JsonConvert.SerializeObject(request, Formatting.None);
 

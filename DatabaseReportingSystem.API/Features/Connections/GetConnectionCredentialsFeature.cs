@@ -3,7 +3,6 @@ using DatabaseReportingSystem.Shared;
 using DatabaseReportingSystem.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace DatabaseReportingSystem.Features.Connections;
 
@@ -15,10 +14,7 @@ public static class GetConnectionCredentialsFeature
     {
         User? user = await systemDbContext.Users.SingleOrDefaultAsync(u => u.Id == Constants.DefaultUserId);
 
-        if (user is null)
-        {
-            return Results.NotFound("User not found.");
-        }
+        if (user is null) return Results.NotFound("User not found.");
 
         var credentialsResult = encryptor.DecryptConnectionCredentials(user);
 

@@ -3,7 +3,6 @@ using DatabaseReportingSystem.Shared;
 using DatabaseReportingSystem.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace DatabaseReportingSystem.Features.Connections;
 
@@ -16,19 +15,13 @@ public static class QueryFeature
     {
         User? user = await systemDbContext.Users.FirstOrDefaultAsync(u => u.Id == Constants.DefaultUserId);
 
-        if (user is null)
-        {
-            return Results.NotFound("User not found.");
-        }
+        if (user is null) return Results.NotFound("User not found.");
 
         ConnectionCredentials connectionCredentials = user.ConnectionCredentials;
 
         var credentialsResult = encryptor.DecryptConnectionCredentials(user);
 
-        if (credentialsResult.IsFailure)
-        {
-            return Results.BadRequest(credentialsResult.Error);
-        }
+        if (credentialsResult.IsFailure) return Results.BadRequest(credentialsResult.Error);
 
         ConnectionCredentialsDto credentials = credentialsResult.Value;
 

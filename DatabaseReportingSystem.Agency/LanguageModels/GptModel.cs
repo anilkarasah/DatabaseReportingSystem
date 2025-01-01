@@ -1,4 +1,5 @@
 using System.ClientModel;
+using AutoGen.OpenAI;
 using OpenAI.Chat;
 using Utilities = DatabaseReportingSystem.Shared.Utilities;
 
@@ -7,16 +8,18 @@ namespace DatabaseReportingSystem.Agency.LanguageModels;
 public sealed class GptModel(string modelName, string apiKey) : ILanguageModel
 {
     private readonly string _modelName = modelName;
-    private readonly ChatClient _client = new(modelName, new ApiKeyCredential(apiKey));
+    private readonly ApiKeyCredential _apiKeyCredential = new(apiKey);
 
-    private static readonly ChatCompletionOptions ChatCompletionOptions = new()
-    {
-        Temperature = 0,
-    };
+    private ChatClient CreateClient() => new(_modelName, _apiKeyCredential);
 
     public async Task<string> AskAsync(List<ChatMessage> chatMessages)
     {
-        ChatCompletion completion = await _client.CompleteChatAsync(chatMessages, ChatCompletionOptions);
+        ChatClient client = CreateClient();
+
+        ChatCompletion completion = await client.CompleteChatAsync(chatMessages, new ChatCompletionOptions
+        {
+            Temperature = 0,
+        });
 
         if (completion.Content.Count == 0)
         {
@@ -25,4 +28,7 @@ public sealed class GptModel(string modelName, string apiKey) : ILanguageModel
 
         return Utilities.TrimSqlString(completion.Content[0].Text);
     }
+
+    public OpenAIChatAgent GetChatAgent(string name, string systemMessage = "")
+        => new(name: name, systemMessage: systemMessage, chatClient: CreateClient(), temperature: 1, maxTokens: null);
 }

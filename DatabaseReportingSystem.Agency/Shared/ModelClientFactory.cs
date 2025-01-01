@@ -23,7 +23,9 @@ public sealed class ModelClientFactory(IConfiguration configuration, IServicePro
         LargeLanguageModel largeLanguageModel,
         StrategyType strategyType,
         ClientOptions options)
-        => GenerateClient(largeLanguageModel, strategyType, options);
+    {
+        return GenerateClient(largeLanguageModel, strategyType, options);
+    }
 
     private ModelClient GenerateClient(
         LargeLanguageModel largeLanguageModel,
@@ -43,20 +45,20 @@ public sealed class ModelClientFactory(IConfiguration configuration, IServicePro
         {
             StrategyType.ZeroShot => new ZeroShotStrategy(new ZeroShotStrategy.Options
             {
-                UseSystemPrompt = options.UseSystemPrompt,
+                UseSystemPrompt = options.UseSystemPrompt
             }),
             StrategyType.RandomFewShot => new RandomFewShotStrategy(new RandomFewShotStrategy.Options
             {
                 ServiceProvider = _serviceProvider,
                 NumberOfExamples = options.NumberOfExamples,
-                UseSystemPrompt = options.UseSystemPrompt,
+                UseSystemPrompt = options.UseSystemPrompt
             }),
             StrategyType.NearestFewShot => new NearestFewShotStrategy(new NearestFewShotStrategy.Options
             {
                 ServiceProvider = _serviceProvider,
                 Question = options.Question ?? throw new ArgumentNullException(nameof(options.Question)),
                 NumberOfExamples = options.NumberOfExamples,
-                UseSystemPrompt = options.UseSystemPrompt,
+                UseSystemPrompt = options.UseSystemPrompt
             }),
             StrategyType.DailSql => throw new NotImplementedException("DAIL-SQL method is not yet implemented."),
             _ => throw new ArgumentException("Invalid strategy.")

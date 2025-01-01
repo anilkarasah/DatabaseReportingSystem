@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using DatabaseReportingSystem;
 using DatabaseReportingSystem.Context;
 using DatabaseReportingSystem.Vector.Context;
+using Microsoft.AspNetCore.Http.Json;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -15,10 +16,7 @@ builder.Services.AddDbContext<VectorDbContext>();
 
 builder.Services.AddDatabaseReportingSystem();
 
-builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(o =>
-{
-    o.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-});
+builder.Services.Configure<JsonOptions>(o => { o.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
 
 WebApplication app = builder.Build();
 

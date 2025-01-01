@@ -6,5 +6,5 @@ public enum StrategyType
     ZeroShot = 1 << 0,
     RandomFewShot = 1 << 1,
     NearestFewShot = 1 << 2,
-    DailSql = 1 << 3,
+    DailSql = 1 << 3
 }
