@@ -4,6 +4,7 @@ services:
       - systemdb.env
     image: postgres:17-alpine
     container_name: system_db
+    restart: always
     ports:
       - '5436:5432'
     volumes:
@@ -17,6 +18,7 @@ services:
       - vectordb.env
     image: pgvector/pgvector:pg17
     container_name: vector_db
+    restart: always
     ports:
       - '5437:5432'
     volumes:
@@ -24,7 +26,21 @@ services:
       # - ./data/vectordb_init.sql:/docker-entrypoint-initdb.d/0-vectordb_init.sql
     networks:
       - default
+  
+  northwind:
+    env_file:
+      - northwind.env
+    image: manchestercodes/northwind
+    container_name: northwind_db
+    restart: always
+    ports:
+      - '3307:3306'
+    volumes:
+      - northwind_data:/var/lib/mysql
+    networks:
+      - default
 
 volumes:
   vector_db_data:
   system_db_data:
+  northwind_data:

@@ -6,50 +6,51 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DatabaseReportingSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Email = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
-                    PasswordHash = table.Column<string>(type: "character varying(161)", maxLength: 161, nullable: false),
+                    PasswordHash = table.Column<string>(type: "character varying(97)", maxLength: 97, nullable: false),
                     CreatedAtUtc = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     Status = table.Column<short>(type: "smallint", nullable: false),
-                    ConnectionCredentials_DatabaseManagementSystem = table.Column<string>(type: "text", nullable: false),
+                    ConnectionCredentials_DatabaseManagementSystem = table.Column<int>(type: "integer", nullable: false),
                     ConnectionCredentials_ConnectionHash = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Chat",
+                name: "Chats",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    DatabaseManagementSystem = table.Column<string>(type: "character varying(16)", maxLength: 16, nullable: false),
+                    DatabaseManagementSystem = table.Column<int>(type: "integer", maxLength: 16, nullable: false),
+                    SchemaHash = table.Column<string>(type: "text", nullable: false),
                     CreatedAtUtc = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Chat", x => x.Id);
+                    table.PrimaryKey("PK_Chats", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Chat_User_UserId",
+                        name: "FK_Chats_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserLicense",
+                name: "UserLicenses",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -61,44 +62,38 @@ namespace DatabaseReportingSystem.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserLicense", x => x.Id);
+                    table.PrimaryKey("PK_UserLicenses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserLicense_User_UserId",
+                        name: "FK_UserLicenses_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ChatMessage",
+                name: "ChatMessages",
                 columns: table => new
                 {
                     MessageId = table.Column<Guid>(type: "uuid", nullable: false),
                     ChatId = table.Column<Guid>(type: "uuid", nullable: false),
-                    SenderId = table.Column<Guid>(type: "uuid", nullable: true),
                     Index = table.Column<int>(type: "integer", nullable: false),
                     Content = table.Column<string>(type: "text", nullable: false),
                     SentAtUtc = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ChatMessage", x => x.MessageId);
+                    table.PrimaryKey("PK_ChatMessages", x => x.MessageId);
                     table.ForeignKey(
-                        name: "FK_ChatMessage_Chat_ChatId",
+                        name: "FK_ChatMessages_Chats_ChatId",
                         column: x => x.ChatId,
-                        principalTable: "Chat",
+                        principalTable: "Chats",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ChatMessage_User_SenderId",
-                        column: x => x.SenderId,
-                        principalTable: "User",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "ModelResponse",
+                name: "ModelResponses",
                 columns: table => new
                 {
                     MessageId = table.Column<Guid>(type: "uuid", nullable: false),
@@ -108,58 +103,53 @@ namespace DatabaseReportingSystem.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ModelResponse", x => new { x.MessageId, x.ModelName });
+                    table.PrimaryKey("PK_ModelResponses", x => new { x.MessageId, x.ModelName });
                     table.ForeignKey(
-                        name: "FK_ModelResponse_ChatMessage_MessageId",
+                        name: "FK_ModelResponses_ChatMessages_MessageId",
                         column: x => x.MessageId,
-                        principalTable: "ChatMessage",
+                        principalTable: "ChatMessages",
                         principalColumn: "MessageId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Chat_UserId",
-                table: "Chat",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ChatMessage_ChatId",
-                table: "ChatMessage",
+                name: "IX_ChatMessages_ChatId",
+                table: "ChatMessages",
                 column: "ChatId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChatMessage_SenderId",
-                table: "ChatMessage",
-                column: "SenderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_User_Email",
-                table: "User",
-                column: "Email");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserLicense_UserId",
-                table: "UserLicense",
+                name: "IX_Chats_UserId",
+                table: "Chats",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserLicenses_UserId",
+                table: "UserLicenses",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Email",
+                table: "Users",
+                column: "Email");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ModelResponse");
+                name: "ModelResponses");
 
             migrationBuilder.DropTable(
-                name: "UserLicense");
+                name: "UserLicenses");
 
             migrationBuilder.DropTable(
-                name: "ChatMessage");
+                name: "ChatMessages");
 
             migrationBuilder.DropTable(
-                name: "Chat");
+                name: "Chats");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
         }
     }
 }

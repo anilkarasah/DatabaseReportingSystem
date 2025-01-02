@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DatabaseReportingSystem.Migrations
 {
     [DbContext(typeof(SystemDbContext))]
-    [Migration("20241229122121_AddDbSets")]
-    partial class AddDbSets
+    [Migration("20250102215257_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,10 +34,13 @@ namespace DatabaseReportingSystem.Migrations
                     b.Property<DateTimeOffset>("CreatedAtUtc")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("DatabaseManagementSystem")
-                        .IsRequired()
+                    b.Property<int>("DatabaseManagementSystem")
                         .HasMaxLength(16)
-                        .HasColumnType("character varying(16)");
+                        .HasColumnType("integer");
+
+                    b.Property<string>("SchemaHash")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -65,17 +68,12 @@ namespace DatabaseReportingSystem.Migrations
                     b.Property<int>("Index")
                         .HasColumnType("integer");
 
-                    b.Property<Guid?>("SenderId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTimeOffset>("SentAtUtc")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("MessageId");
 
                     b.HasIndex("ChatId");
-
-                    b.HasIndex("SenderId");
 
                     b.ToTable("ChatMessages");
                 });
@@ -179,13 +177,7 @@ namespace DatabaseReportingSystem.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DatabaseReportingSystem.Shared.Models.User", "Sender")
-                        .WithMany()
-                        .HasForeignKey("SenderId");
-
                     b.Navigation("Chat");
-
-                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("DatabaseReportingSystem.Shared.Models.ModelResponse", b =>
@@ -210,9 +202,8 @@ namespace DatabaseReportingSystem.Migrations
                                 .IsRequired()
                                 .HasColumnType("text");
 
-                            b1.Property<string>("DatabaseManagementSystem")
-                                .IsRequired()
-                                .HasColumnType("text");
+                            b1.Property<int>("DatabaseManagementSystem")
+                                .HasColumnType("integer");
 
                             b1.HasKey("UserId");
 
