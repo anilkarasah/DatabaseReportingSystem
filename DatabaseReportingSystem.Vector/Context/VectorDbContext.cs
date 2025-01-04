@@ -1,12 +1,13 @@
+using DatabaseReportingSystem.Shared.Settings;
 using DatabaseReportingSystem.Vector.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace DatabaseReportingSystem.Vector.Context;
 
-public class VectorDbContext(IConfiguration configuration) : DbContext
+public class VectorDbContext(IOptions<ConnectionStrings> connectionStrings) : DbContext
 {
-    private readonly IConfiguration _configuration = configuration;
+    private readonly ConnectionStrings _connectionStrings = connectionStrings.Value;
 
     public DbSet<SpiderSchema> Schemas { get; set; }
 
@@ -14,9 +15,7 @@ public class VectorDbContext(IConfiguration configuration) : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(
-            _configuration.GetConnectionString("Vector"),
-            o => o.UseVector());
+        optionsBuilder.UseNpgsql(_connectionStrings.Vector, o => o.UseVector());
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

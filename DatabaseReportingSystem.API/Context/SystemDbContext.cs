@@ -1,12 +1,14 @@
 using DatabaseReportingSystem.Shared;
 using DatabaseReportingSystem.Shared.Models;
+using DatabaseReportingSystem.Shared.Settings;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace DatabaseReportingSystem.Context;
 
-public class SystemDbContext(IConfiguration configuration) : DbContext
+public class SystemDbContext(IOptions<ConnectionStrings> connectionStrings) : DbContext
 {
-    private readonly IConfiguration _configuration = configuration;
+    private readonly ConnectionStrings _connectionStrings = connectionStrings.Value;
 
     public DbSet<User> Users { get; set; }
 
@@ -20,7 +22,7 @@ public class SystemDbContext(IConfiguration configuration) : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(_configuration.GetConnectionString("System"));
+        optionsBuilder.UseNpgsql(_connectionStrings.System);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

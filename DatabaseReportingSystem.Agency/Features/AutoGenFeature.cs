@@ -5,7 +5,8 @@ using DatabaseReportingSystem.Agency.LanguageModels;
 using DatabaseReportingSystem.Agency.Strategies;
 using DatabaseReportingSystem.Shared;
 using DatabaseReportingSystem.Shared.Models;
-using Microsoft.Extensions.Configuration;
+using DatabaseReportingSystem.Shared.Settings;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using OpenAI.Chat;
 
@@ -13,10 +14,10 @@ using OpenAI.Chat;
 
 namespace DatabaseReportingSystem.Agency.Features;
 
-public class AutoGenFeature(IConfiguration configuration)
+public class AutoGenFeature(IOptions<ApiKeys> apiKeys)
 {
     private const string AnalyzerModelName = "gpt-4o-mini";
-    private readonly string _apiKey = configuration.GetConnectionString("GptApiKey")!;
+    private readonly ApiKeys _apiKeys = apiKeys.Value;
 
     public async Task<IEnumerable<IMessage>> RunGroupChatAsync(
         UserPromptDto userQuestion,
@@ -57,7 +58,7 @@ public class AutoGenFeature(IConfiguration configuration)
                 });
 
             var analyzerAgent = new OpenAIChatAgent(
-                    new ChatClient(AnalyzerModelName, _apiKey),
+                    new ChatClient(AnalyzerModelName, _apiKeys.GptApiKey),
                     "query-analyzer",
                     new ChatCompletionOptions { Temperature = 1 },
                     analyzerAgentSystemPrompt)

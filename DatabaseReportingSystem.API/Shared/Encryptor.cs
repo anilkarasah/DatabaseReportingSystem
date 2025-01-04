@@ -1,15 +1,17 @@
 using System.Security.Cryptography;
 using System.Text;
 using DatabaseReportingSystem.Shared.Models;
+using DatabaseReportingSystem.Shared.Settings;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace DatabaseReportingSystem.Shared;
 
-public sealed class Encryptor(IConfiguration configuration) : IEncryptor
+public sealed class Encryptor(IOptions<AppSettings> appSettings) : IEncryptor
 {
     private static readonly HashAlgorithmName Algorithm = HashAlgorithmName.SHA512;
 
-    private readonly string _encryptionKey = configuration["EncryptionKey"]!;
+    private readonly string _encryptionKey = appSettings.Value.EncryptionKey;
 
     public string HashPassword(string password)
     {

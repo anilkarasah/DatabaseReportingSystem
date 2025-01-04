@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using DatabaseReportingSystem;
 using DatabaseReportingSystem.Context;
+using DatabaseReportingSystem.Shared.Settings;
 using DatabaseReportingSystem.Vector.Context;
 using Microsoft.AspNetCore.Http.Json;
 
@@ -17,6 +18,16 @@ builder.Services.AddDbContext<VectorDbContext>();
 builder.Services.AddDatabaseReportingSystem();
 
 builder.Services.Configure<JsonOptions>(o => { o.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
+
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddEnvironmentVariables();
+
+builder.Services.Configure<ConnectionStrings>(builder.Configuration.GetSection("ConnectionStrings"));
+builder.Services.Configure<ApiKeys>(builder.Configuration.GetSection("ApiKeys"));
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("Settings"));
 
 WebApplication app = builder.Build();
 

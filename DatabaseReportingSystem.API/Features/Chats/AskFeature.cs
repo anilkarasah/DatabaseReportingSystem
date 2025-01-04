@@ -14,7 +14,6 @@ namespace DatabaseReportingSystem.Features.Chats;
 public static class AskFeature
 {
     public static async Task<IResult> AskAsync(
-        [FromServices] IConfiguration configuration,
         [FromServices] IServiceProvider serviceProvider,
         [FromServices] ModelClientFactory modelClientFactory,
         [FromServices] SystemDbContext systemDbContext,

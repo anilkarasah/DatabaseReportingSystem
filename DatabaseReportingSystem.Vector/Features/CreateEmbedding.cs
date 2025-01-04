@@ -1,6 +1,7 @@
 using System.ClientModel;
-using Microsoft.Extensions.Configuration;
+using DatabaseReportingSystem.Shared.Settings;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using OpenAI.Embeddings;
 
 namespace DatabaseReportingSystem.Vector.Features;
@@ -12,9 +13,9 @@ public static class CreateEmbedding
         return services.AddScoped<Feature>();
     }
 
-    public sealed class Feature(IConfiguration configuration)
+    public sealed class Feature(IOptions<ApiKeys> apiKeys)
     {
-        private readonly ApiKeyCredential _credentials = new(configuration.GetConnectionString("GptApiKey")!);
+        private readonly ApiKeyCredential _credentials = new(apiKeys.Value.GptApiKey);
 
         public async Task<ReadOnlyMemory<float>> GetEmbeddingVectorAsync(string question)
         {

@@ -2,13 +2,14 @@ using DatabaseReportingSystem.Agency.LanguageModels;
 using DatabaseReportingSystem.Agency.Strategies;
 using DatabaseReportingSystem.Shared;
 using DatabaseReportingSystem.Shared.Models;
-using Microsoft.Extensions.Configuration;
+using DatabaseReportingSystem.Shared.Settings;
+using Microsoft.Extensions.Options;
 
 namespace DatabaseReportingSystem.Agency.Shared;
 
-public sealed class ModelClientFactory(IConfiguration configuration, IServiceProvider serviceProvider)
+public sealed class ModelClientFactory(IOptions<ApiKeys> apiKeys, IServiceProvider serviceProvider)
 {
-    private readonly IConfiguration _configuration = configuration;
+    private readonly ApiKeys _apiKeys = apiKeys.Value;
     private readonly IServiceProvider _serviceProvider = serviceProvider;
 
     public ModelClient GenerateModelClient(string modelName, string strategyName, ClientOptions options)
@@ -34,8 +35,8 @@ public sealed class ModelClientFactory(IConfiguration configuration, IServicePro
     {
         ILanguageModel languageModel = largeLanguageModel switch
         {
-            LargeLanguageModel.GPT => new GptModel("gpt-4o-mini", _configuration.GetConnectionString("GptApiKey")!),
-            LargeLanguageModel.Grok => new GrokModel("grok-beta", _configuration.GetConnectionString("GrokApiKey")!),
+            LargeLanguageModel.GPT => new GptModel("gpt-4o-mini", _apiKeys.GptApiKey),
+            LargeLanguageModel.Grok => new GrokModel("grok-beta", _apiKeys.GrokApiKey),
             LargeLanguageModel.Mistral => new MistralModel(),
             LargeLanguageModel.CodeLLaMa => new CodeLlamaModel(),
             _ => throw new ArgumentException("Invalid language model.")
