@@ -24,7 +24,7 @@ jobs:
     # Step 3: Build Docker image
     - name: Build Docker Image
       run: |
-        docker build -t ${{ vars.DOCKER_CONTAINER_NAME }}:latest .
+        docker build -t ${{ vars.DOCKER_CONTAINER_NAME }}:latest ./DatabaseReportingSystem.API
 
     # Step 4: Push Docker image to DockerHub
     - name: Push Docker Image to DockerHub
