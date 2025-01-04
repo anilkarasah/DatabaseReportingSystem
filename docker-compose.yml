@@ -1,16 +1,4 @@
 services:
-  api:
-    image: anilkarasah/database-reporting-system:latest
-    container_name: api
-    restart: always
-    env_file:
-      - api.env
-    ports:
-      - '80:80'
-    networks:
-      - default
-      - drs
-  
   system_db:
     env_file:
       - systemdb.env
@@ -24,7 +12,6 @@ services:
       # - ./data/systemdb_init.sql:/docker-entrypoint-initdb.d/0-systemdb_init.sql
     networks:
       - default
-      - drs
 
   vector_db:
     env_file:
@@ -39,7 +26,6 @@ services:
       # - ./data/vectordb_init.sql:/docker-entrypoint-initdb.d/0-vectordb_init.sql
     networks:
       - default
-      - drs
   
   northwind:
     env_file:
@@ -53,12 +39,6 @@ services:
       - northwind_data:/var/lib/mysql
     networks:
       - default
-
-networks:
-  default:
-    driver: bridge
-  drs:
-    driver: bridge
 
 volumes:
   vector_db_data:
