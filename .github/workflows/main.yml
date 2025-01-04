@@ -41,13 +41,9 @@ jobs:
           password: ${{ secrets.VDS_PASSWORD }}
           script: |
             docker pull ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_CONTAINER_NAME }}:latest
-            docker stop ${{ vars.DOCKER_CONTAINER_NAME }} || true
-            docker rm ${{ vars.DOCKER_CONTAINER_NAME }} || true
-            docker run -d --name ${{ vars.DOCKER_CONTAINER_NAME }} \
+            docker compose up -d \
               -e ConnectionStrings__System="${{ secrets.SYSTEM_CONNECTION_STRING }}" \
               -e ConnectionStrings__Vector="${{ secrets.VECTOR_CONNECTION_STRING }}" \
               -e ApiKeys__GptApiKey="${{ secrets.GPT_API_KEY }}" \
               -e ApiKeys__GrokApiKey="${{ secrets.GROK_API_KEY }}" \
-              -e Settings__EncryptionKey="${{ secrets.ENCRYPTION_KEY }}" \
-              -e ASPNETCORE_HTTP_PORTS=80 \
-              -p 80:80 ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_CONTAINER_NAME }}:latest
+              -e Settings__EncryptionKey="${{ secrets.ENCRYPTION_KEY }}" /
