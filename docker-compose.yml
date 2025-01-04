@@ -3,13 +3,8 @@ services:
     image: anilkarasah/database-reporting-system:latest
     container_name: api
     restart: always
-    environment:
-      - ConnectionStrings__System
-      - ConnectionStrings__Vector
-      - ApiKeys__GptApiKey
-      - ApiKeys__GrokApiKey
-      - Settings__EncryptionKey
-      - ASPNETCORE_HTTP_PORTS=80
+    env_file:
+      - api.env
     ports:
       - '80:80'
     networks:
