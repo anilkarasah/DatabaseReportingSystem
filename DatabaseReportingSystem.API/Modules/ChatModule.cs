@@ -16,9 +16,9 @@ public static class ChatModule
 
         group.MapPost("{chatId:guid}/messages", SendMessageFeature.SendMessageAsync);
 
-        group.MapPost("{chatId:guid}/messages/ask", AskFeature.AskAsync);
+        group.MapPost("{chatId:guid}/messages/{messageId:guid}/ask", AskFeature.AskAsync);
 
-        group.MapPost("{chatId:guid}/messages/ask-autogen", AskFeature.AskUsingAutoGenAsync);
+        group.MapPost("{chatId:guid}/messages/{messageId:guid}/ask-autogen", AskFeature.AskUsingAutoGenAsync);
 
         return builder;
     }

@@ -19,18 +19,16 @@ public static class AskFeature
         [FromServices] SystemDbContext systemDbContext,
         [FromServices] IEncryptor encryptor,
         [FromRoute] Guid chatId,
+        [FromRoute] Guid messageId,
         [FromBody] AskRequest request)
     {
-        if (request.ReplyingToMessageId == Guid.Empty)
-            return Results.BadRequest("Replying to message ID cannot be empty.");
-
         Chat? chat = await systemDbContext.Chats
             .Include(c => c.Messages)
             .FirstOrDefaultAsync(c => c.Id == chatId);
 
         if (chat is null) return Results.NotFound("Chat not found.");
 
-        ChatMessage? relatedMessage = chat.Messages.FirstOrDefault(m => m.MessageId == request.ReplyingToMessageId);
+        ChatMessage? relatedMessage = chat.Messages.FirstOrDefault(m => m.MessageId == messageId);
 
         if (relatedMessage is null) return Results.NotFound("Message not found.");
 
@@ -79,18 +77,16 @@ public static class AskFeature
         [FromServices] ModelClientFactory modelClientFactory,
         [FromServices] IEncryptor encryptor,
         [FromRoute] Guid chatId,
+        [FromRoute] Guid messageId,
         [FromBody] AskRequest request)
     {
-        if (request.ReplyingToMessageId == Guid.Empty)
-            return Results.BadRequest("Replying to message ID cannot be empty.");
-
         Chat? chat = await systemDbContext.Chats
             .Include(c => c.Messages)
             .FirstOrDefaultAsync(c => c.Id == chatId);
 
         if (chat is null) return Results.NotFound("Chat not found.");
 
-        ChatMessage? relatedMessage = chat.Messages.FirstOrDefault(m => m.MessageId == request.ReplyingToMessageId);
+        ChatMessage? relatedMessage = chat.Messages.FirstOrDefault(m => m.MessageId == messageId);
 
         if (relatedMessage is null) return Results.NotFound("Message not found.");
 
@@ -144,4 +140,4 @@ public static class AskFeature
     }
 }
 
-public sealed record AskRequest(Guid ReplyingToMessageId, string ModelName, string Strategy);
+public sealed record AskRequest(string ModelName, string Strategy);
