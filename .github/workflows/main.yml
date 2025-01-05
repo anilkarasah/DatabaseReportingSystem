@@ -1,4 +1,4 @@
-name: Build and Deploy to VDS
+name: Build and Push to DockerHub
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
