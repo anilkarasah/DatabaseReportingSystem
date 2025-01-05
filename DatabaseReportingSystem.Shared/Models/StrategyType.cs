@@ -1,10 +1,9 @@
 namespace DatabaseReportingSystem.Shared.Models;
 
-[Flags]
 public enum StrategyType
 {
-    ZeroShot = 1 << 0,
-    RandomFewShot = 1 << 1,
-    NearestFewShot = 1 << 2,
-    DailSql = 1 << 3
+    ZeroShot = 1,
+    RandomFewShot = 2,
+    NearestFewShot = 3,
+    DailSql = 4
 }
