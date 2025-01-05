@@ -114,15 +114,14 @@ public partial class AnalyzerFunction(
     {
         if (_credentials is null) throw new InvalidOperationException("Connection credentials are not provided.");
 
-        string connectionString = Utilities.GenerateConnectionString(_databaseManagementSystem, _credentials);
+        string connectionString = Utilities.GenerateConnectionString(_credentials);
 
         Result connectionResult = await Utilities
-            .TestDatabaseConnectionAsync(_databaseManagementSystem, connectionString);
+            .TestDatabaseConnectionAsync(_credentials.Dbms, connectionString);
 
         if (connectionResult.IsFailure) throw new InvalidOperationException(connectionResult.Error);
 
-        var queryResult =
-            await Utilities.QueryOnUserDatabaseAsync(_databaseManagementSystem, connectionString, query);
+        var queryResult = await Utilities.QueryOnUserDatabaseAsync(_databaseManagementSystem, connectionString, query);
 
         if (queryResult.IsFailure) throw new InvalidOperationException(queryResult.Error);
 

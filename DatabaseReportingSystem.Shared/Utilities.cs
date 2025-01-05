@@ -45,6 +45,11 @@ public static class Utilities
         return GetDatabaseManagementSystem(dbms);
     }
 
+    public static DatabaseManagementSystem AsDatabaseManagementSystem(this DatabaseManagementSystem dbms)
+    {
+        return dbms;
+    }
+
     public static DatabaseManagementSystem GetDatabaseManagementSystem(string dbms)
     {
         return dbms.ToLower() switch
@@ -103,11 +108,9 @@ public static class Utilities
         };
     }
 
-    public static string GenerateConnectionString(
-        DatabaseManagementSystem databaseManagementSystem,
-        ConnectionCredentialsDto connectionCredentials)
+    public static string GenerateConnectionString(ConnectionCredentialsDto connectionCredentials)
     {
-        IConnectionStringConstructor connectionStringConstructor = databaseManagementSystem switch
+        IConnectionStringConstructor connectionStringConstructor = connectionCredentials.Dbms switch
         {
             DatabaseManagementSystem.SqlServer => new SqlServerConnectionStringConstructor(),
             DatabaseManagementSystem.MySql => new MySqlConnectionStringConstructor(),

@@ -33,9 +33,7 @@ public static class TestConnectionFeature
 
         if (credentials is null) return Results.BadRequest("Could not access connection credentials.");
 
-        string connectionString = Utilities.GenerateConnectionString(
-            databaseManagementSystem,
-            credentials);
+        string connectionString = Utilities.GenerateConnectionString(credentials);
 
         Result testResult = await Utilities.TestDatabaseConnectionAsync(
             databaseManagementSystem,

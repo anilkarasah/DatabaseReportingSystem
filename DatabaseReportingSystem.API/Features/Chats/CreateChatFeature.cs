@@ -12,7 +12,7 @@ public static class CreateChatFeature
         [FromServices] IEncryptor encryptor,
         [FromBody] Request request)
     {
-        DatabaseManagementSystem relatedDbms = request.Dbms.AsDatabaseManagementSystem();
+        DatabaseManagementSystem relatedDbms = request.Dbms;
 
         string encryptedContent = encryptor.Encrypt(request.Schema);
 
@@ -34,5 +34,5 @@ public static class CreateChatFeature
             : Results.BadRequest("Could not create chat.");
     }
 
-    public sealed record Request(string Dbms, string Schema);
+    public sealed record Request(DatabaseManagementSystem Dbms, string Schema);
 }

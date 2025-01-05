@@ -24,7 +24,7 @@ public static class EditConnectionCredentialsFeature
 
         user.ConnectionCredentials = new ConnectionCredentials
         {
-            DatabaseManagementSystem = request.Dbms.AsDatabaseManagementSystem(),
+            DatabaseManagementSystem = request.Dbms,
             ConnectionHash = connectionHash
         };
 

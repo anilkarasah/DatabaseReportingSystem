@@ -25,9 +25,7 @@ public static class QueryFeature
 
         ConnectionCredentialsDto credentials = credentialsResult.Value;
 
-        string connectionString = Utilities.GenerateConnectionString(
-            connectionCredentials.DatabaseManagementSystem,
-            credentials);
+        string connectionString = Utilities.GenerateConnectionString(credentials);
 
         var queryResult = await Utilities.QueryOnUserDatabaseAsync(
             connectionCredentials.DatabaseManagementSystem,

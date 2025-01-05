@@ -1,7 +1,9 @@
+using DatabaseReportingSystem.Shared.Models;
+
 namespace DatabaseReportingSystem.Shared;
 
 public sealed record ConnectionCredentialsDto(
-    string Dbms,
+    DatabaseManagementSystem Dbms,
     string Host,
     string Port,
     string Database,
