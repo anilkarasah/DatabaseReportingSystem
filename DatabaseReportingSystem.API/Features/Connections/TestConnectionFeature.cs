@@ -13,7 +13,7 @@ public static class TestConnectionFeature
         [FromServices] IEncryptor encryptor,
         [FromBody] TestConnectionRequest request)
     {
-        DatabaseManagementSystem databaseManagementSystem = request.DatabaseManagementSystem;
+        DatabaseManagementSystem databaseManagementSystem;
         ConnectionCredentialsDto? credentials = request.Credentials;
 
         if (request.Credentials is null)
@@ -30,6 +30,10 @@ public static class TestConnectionFeature
 
             credentials = credentialsResult.Value;
         }
+        else
+        {
+            databaseManagementSystem = request.Credentials.Dbms;
+        }
 
         if (credentials is null) return Results.BadRequest("Could not access connection credentials.");
 
@@ -45,6 +49,4 @@ public static class TestConnectionFeature
     }
 }
 
-public sealed record TestConnectionRequest(
-    DatabaseManagementSystem DatabaseManagementSystem = DatabaseManagementSystem.Other,
-    ConnectionCredentialsDto? Credentials = null);
+public sealed record TestConnectionRequest(ConnectionCredentialsDto? Credentials = null);
