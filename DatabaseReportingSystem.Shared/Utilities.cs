@@ -161,7 +161,7 @@ public static class Utilities
 
             object? result = await command.ExecuteScalarAsync();
 
-            if (result is 1) return Result.Ok();
+            if (result is long and 1) return Result.Ok();
         }
         catch (Exception e)
         {
