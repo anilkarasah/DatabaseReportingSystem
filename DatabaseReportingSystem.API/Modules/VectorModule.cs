@@ -26,9 +26,7 @@ public static class VectorModule
         {
             var response = await feature.GetNearestQuestionsAsync(request);
 
-            return response.Count == 0
-                ? Results.NoContent()
-                : Results.Ok(response);
+            return Results.Ok(response);
         }
         catch (ArgumentException e)
         {
@@ -42,9 +40,7 @@ public static class VectorModule
     {
         var response = await feature.GetRandomQuestionsAsync(getRandomQuestionsRequest);
 
-        return response.Count == 0
-            ? Results.NoContent()
-            : Results.Ok(response);
+        return Results.Ok(response);
     }
 
     private static async Task<IResult> GetEmbeddingVectorAsync(
