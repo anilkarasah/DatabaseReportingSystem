@@ -1,5 +1,6 @@
 using DatabaseReportingSystem.Shared.Settings;
 using DatabaseReportingSystem.Vector.Models;
+using EntityFramework.Exceptions.PostgreSQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -15,7 +16,9 @@ public class VectorDbContext(IOptions<ConnectionStrings> connectionStrings) : Db
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(_connectionStrings.Vector, o => o.UseVector());
+        optionsBuilder
+            .UseNpgsql(_connectionStrings.Vector, o => o.UseVector())
+            .UseExceptionProcessor();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -12,6 +12,9 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 builder.Services.AddDbContext<SystemDbContext>();
 builder.Services.AddDbContext<VectorDbContext>();
 
@@ -31,6 +34,8 @@ builder.Services.Configure<ApiKeys>(builder.Configuration.GetSection("ApiKeys"))
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("Settings"));
 
 WebApplication app = builder.Build();
+
+app.UseExceptionHandler();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

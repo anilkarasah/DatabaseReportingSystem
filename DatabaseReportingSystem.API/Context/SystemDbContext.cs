@@ -1,6 +1,7 @@
 using DatabaseReportingSystem.Shared;
 using DatabaseReportingSystem.Shared.Models;
 using DatabaseReportingSystem.Shared.Settings;
+using EntityFramework.Exceptions.PostgreSQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -22,7 +23,9 @@ public class SystemDbContext(IOptions<ConnectionStrings> connectionStrings) : Db
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(_connectionStrings.System);
+        optionsBuilder
+            .UseNpgsql(_connectionStrings.System)
+            .UseExceptionProcessor();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
