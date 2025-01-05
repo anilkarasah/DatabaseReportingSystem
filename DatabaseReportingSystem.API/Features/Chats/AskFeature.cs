@@ -68,7 +68,7 @@ public static class AskFeature
 
         await systemDbContext.SaveChangesAsync();
 
-        return Results.Ok(modelResponse);
+        return Results.Ok(Shared.ModelResponseDto.FromModelResponse(modelResponse));
     }
 
     public static async Task<IResult> AskUsingAutoGenAsync(
@@ -134,9 +134,9 @@ public static class AskFeature
 
         systemDbContext.ModelResponses.Add(modelResponse);
 
-        //await systemDbContext.SaveChangesAsync();
+        await systemDbContext.SaveChangesAsync();
 
-        return Results.Ok(modelResponse);
+        return Results.Ok(Shared.ModelResponseDto.FromModelResponse(modelResponse));
     }
 }
 
