@@ -1,3 +1,4 @@
+using DatabaseReportingSystem.Shared;
 using DatabaseReportingSystem.Vector.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,7 +30,7 @@ public static class GetRandomQuestions
         }
     }
 
-    public sealed record GetRandomQuestionsRequest(int NumberOfQuestions);
+    public sealed record GetRandomQuestionsRequest(int NumberOfQuestions = Constants.Strategy.DefaultNumberOfExamples);
 
     public sealed record GetRandomQuestionsResponse(string Question, string Schema, string Query);
 }
