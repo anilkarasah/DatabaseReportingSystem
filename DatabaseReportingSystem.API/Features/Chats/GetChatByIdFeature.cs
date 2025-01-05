@@ -12,12 +12,14 @@ public static class GetChatByIdFeature
         [FromRoute] Guid chatId)
     {
         Chat? chat = await systemDbContext.Chats
-            .Include(c => c.Messages)
-            .ThenInclude(m => m.ModelResponses)
+            .Include(c => c.Messages.OrderBy(m => m.Index))
+            .ThenInclude(m => m.ModelResponses.OrderBy(r => r.ModelName))
             .FirstOrDefaultAsync(c => c.Id == chatId);
 
         return chat is null
             ? Results.NotFound("Chat not found.")
-            : Results.Ok(chat);
+            : Results.Ok(Shared.ChatResponse.FromChat(chat));
     }
+
+    
 }
