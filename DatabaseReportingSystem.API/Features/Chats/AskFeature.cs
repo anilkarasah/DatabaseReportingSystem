@@ -39,6 +39,15 @@ public static class AskFeature
 
         LargeLanguageModel largeLanguageModel = request.LargeLanguageModel.AsLargeLanguageModel();
         StrategyType strategy = request.StrategyType.AsStrategyType();
+        string modelName = largeLanguageModel.ToString().ToLower();
+
+        ModelResponse? currentModelResponse = await systemDbContext.ModelResponses
+            .FirstOrDefaultAsync(r => r.MessageId == messageId && r.ModelName == modelName);
+
+        if (currentModelResponse is not null)
+        {
+            return Results.BadRequest("This message has already been processed by the LLM.");
+        }
 
         ModelClient modelClient = modelClientFactory
             .GenerateModelClient(largeLanguageModel, strategy, clientOptions);
@@ -59,7 +68,7 @@ public static class AskFeature
         var modelResponse = new ModelResponse
         {
             MessageId = relatedMessage.MessageId,
-            ModelName = largeLanguageModel.ToString().ToLower(),
+            ModelName = modelName,
             Content = generatedQuery,
             CompletedAtUtc = DateTimeOffset.UtcNow
         };
@@ -92,6 +101,15 @@ public static class AskFeature
 
         LargeLanguageModel largeLanguageModel = request.LargeLanguageModel.AsLargeLanguageModel();
         StrategyType strategy = request.StrategyType.AsStrategyType();
+        string modelName = largeLanguageModel.ToString().ToLower();
+
+        ModelResponse? currentModelResponse = await systemDbContext.ModelResponses
+            .FirstOrDefaultAsync(r => r.MessageId == messageId && r.ModelName == modelName);
+
+        if (currentModelResponse is not null)
+        {
+            return Results.BadRequest("This message has already been processed by the LLM.");
+        }
 
         var clientOptions = new ClientOptions
         {
@@ -127,7 +145,7 @@ public static class AskFeature
         var modelResponse = new ModelResponse
         {
             MessageId = relatedMessage.MessageId,
-            ModelName = largeLanguageModel.ToString().ToLower(),
+            ModelName = modelName,
             Content = autoGenResponsesJson,
             CompletedAtUtc = DateTimeOffset.UtcNow
         };
