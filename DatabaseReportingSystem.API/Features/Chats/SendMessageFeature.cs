@@ -31,7 +31,7 @@ public static class SendMessageFeature
 
         await systemDbContext.SaveChangesAsync();
 
-        return Results.Ok(message.MessageId);
+        return Results.Ok(Shared.ChatMessageResponse.FromChatMessage(message));
     }
 }
 

@@ -116,11 +116,6 @@ public partial class AnalyzerFunction(
 
         string connectionString = Utilities.GenerateConnectionString(_credentials);
 
-        Result connectionResult = await Utilities
-            .TestDatabaseConnectionAsync(_credentials.Dbms, connectionString);
-
-        if (connectionResult.IsFailure) throw new InvalidOperationException(connectionResult.Error);
-
         var queryResult = await Utilities.QueryOnUserDatabaseAsync(_databaseManagementSystem, connectionString, query);
 
         if (queryResult.IsFailure) throw new InvalidOperationException(queryResult.Error);

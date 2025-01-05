@@ -12,15 +12,13 @@ public static class CreateChatFeature
         [FromServices] IEncryptor encryptor,
         [FromBody] Request request)
     {
-        DatabaseManagementSystem relatedDbms = request.Dbms;
-
         string encryptedContent = encryptor.Encrypt(request.Schema);
 
         var chat = new Chat
         {
             Id = Guid.NewGuid(),
             UserId = Constants.DefaultUserId,
-            DatabaseManagementSystem = relatedDbms,
+            DatabaseManagementSystem = request.DatabaseManagementSystem,
             SchemaHash = encryptedContent,
             CreatedAtUtc = DateTimeOffset.UtcNow
         };
@@ -30,9 +28,9 @@ public static class CreateChatFeature
         int savedItemCount = await systemDbContext.SaveChangesAsync();
 
         return savedItemCount > 0
-            ? Results.Ok(chat.Id)
+            ? Results.Ok(Shared.ChatResponse.FromChat(chat))
             : Results.BadRequest("Could not create chat.");
     }
 
-    public sealed record Request(DatabaseManagementSystem Dbms, string Schema);
+    public sealed record Request(DatabaseManagementSystem DatabaseManagementSystem, string Schema);
 }
