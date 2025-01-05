@@ -8,7 +8,7 @@ public static class SystemModule
     {
         RouteGroupBuilder group = builder.MapGroup("connection-credentials");
 
-        group.MapPost("/", EditConnectionCredentialsFeature.EditConnectionCredentialsAsync);
+        group.MapPut("/", EditConnectionCredentialsFeature.EditConnectionCredentialsAsync);
 
         group.MapGet("/", GetConnectionCredentialsFeature.GetConnectionCredentialsAsync);
 
