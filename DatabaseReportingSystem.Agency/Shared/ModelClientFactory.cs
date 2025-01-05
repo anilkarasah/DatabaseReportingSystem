@@ -12,14 +12,6 @@ public sealed class ModelClientFactory(IOptions<ApiKeys> apiKeys, IServiceProvid
     private readonly ApiKeys _apiKeys = apiKeys.Value;
     private readonly IServiceProvider _serviceProvider = serviceProvider;
 
-    public ModelClient GenerateModelClient(string modelName, string strategyName, ClientOptions options)
-    {
-        LargeLanguageModel languageModel = Utilities.GetLargeLanguageModel(modelName);
-        StrategyType strategyType = Utilities.GetStrategyType(strategyName);
-
-        return GenerateClient(languageModel, strategyType, options);
-    }
-
     public ModelClient GenerateModelClient(
         LargeLanguageModel largeLanguageModel,
         StrategyType strategyType,

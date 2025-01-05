@@ -34,7 +34,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Features\AutoGen\" />
+        <Folder Include="Features\AutoGen\"/>
     </ItemGroup>
 
 </Project>

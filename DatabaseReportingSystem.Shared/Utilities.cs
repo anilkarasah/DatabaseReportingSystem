@@ -40,42 +40,13 @@ public static class Utilities
         return new UserChatMessage(message);
     }
 
-    public static DatabaseManagementSystem AsDatabaseManagementSystem(this string dbms)
-    {
-        return GetDatabaseManagementSystem(dbms);
-    }
-
-    public static DatabaseManagementSystem AsDatabaseManagementSystem(this DatabaseManagementSystem dbms)
-    {
-        return dbms;
-    }
-
-    public static DatabaseManagementSystem GetDatabaseManagementSystem(string dbms)
-    {
-        return dbms.ToLower() switch
-        {
-            "sqlite" => DatabaseManagementSystem.Sqlite,
-            "sqlserver" => DatabaseManagementSystem.SqlServer,
-            "mssql" => DatabaseManagementSystem.SqlServer,
-            "mysql" => DatabaseManagementSystem.MySql,
-            "pgsql" => DatabaseManagementSystem.PostgreSql,
-            "npgsql" => DatabaseManagementSystem.PostgreSql,
-            "postgresql" => DatabaseManagementSystem.PostgreSql,
-            _ => DatabaseManagementSystem.Other
-        };
-    }
-
     public static LargeLanguageModel AsLargeLanguageModel(this string modelName)
     {
-        return GetLargeLanguageModel(modelName);
-    }
+        if (Enum.TryParse(modelName, out LargeLanguageModel model)) return model;
 
-    public static LargeLanguageModel GetLargeLanguageModel(string modelName)
-    {
         return modelName switch
         {
             "gpt-4o-mini" => LargeLanguageModel.GPT,
-            "gpt-4o" => LargeLanguageModel.GPT,
             "gpt" => LargeLanguageModel.GPT,
             "grok-beta" => LargeLanguageModel.Grok,
             "grok" => LargeLanguageModel.Grok,
@@ -88,12 +59,9 @@ public static class Utilities
 
     public static StrategyType AsStrategyType(this string strategyType)
     {
-        return GetStrategyType(strategyType);
-    }
+        if (Enum.TryParse(strategyType, out StrategyType model)) return model;
 
-    public static StrategyType GetStrategyType(string strategyName)
-    {
-        return strategyName switch
+        return strategyType switch
         {
             "basic" => StrategyType.ZeroShot,
             "zero" => StrategyType.ZeroShot,

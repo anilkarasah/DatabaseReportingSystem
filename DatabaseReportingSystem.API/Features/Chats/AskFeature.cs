@@ -37,8 +37,8 @@ public static class AskFeature
             Question = relatedMessage.Content
         };
 
-        LargeLanguageModel largeLanguageModel = request.ModelName.AsLargeLanguageModel();
-        StrategyType strategy = request.Strategy.AsStrategyType();
+        LargeLanguageModel largeLanguageModel = request.LargeLanguageModel.AsLargeLanguageModel();
+        StrategyType strategy = request.StrategyType.AsStrategyType();
 
         ModelClient modelClient = modelClientFactory
             .GenerateModelClient(largeLanguageModel, strategy, clientOptions);
@@ -90,8 +90,8 @@ public static class AskFeature
 
         if (relatedMessage is null) return Results.NotFound("Message not found.");
 
-        LargeLanguageModel largeLanguageModel = request.ModelName.AsLargeLanguageModel();
-        StrategyType strategy = request.Strategy.AsStrategyType();
+        LargeLanguageModel largeLanguageModel = request.LargeLanguageModel.AsLargeLanguageModel();
+        StrategyType strategy = request.StrategyType.AsStrategyType();
 
         var clientOptions = new ClientOptions
         {
@@ -140,4 +140,4 @@ public static class AskFeature
     }
 }
 
-public sealed record AskRequest(string ModelName, string Strategy);
+public sealed record AskRequest(string LargeLanguageModel, string StrategyType);

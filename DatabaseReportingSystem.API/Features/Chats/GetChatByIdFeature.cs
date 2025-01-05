@@ -20,6 +20,4 @@ public static class GetChatByIdFeature
             ? Results.NotFound("Chat not found.")
             : Results.Ok(Shared.ChatResponse.FromChat(chat));
     }
-
-    
 }
