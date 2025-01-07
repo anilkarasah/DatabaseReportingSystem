@@ -14,6 +14,8 @@ public static class ChatModule
 
         group.MapPost("/", CreateChatFeature.CreateChatAsync);
 
+        group.MapDelete("{chatId:guid}", DeleteChatFeature.DeleteChatAsync);
+
         group.MapPost("{chatId:guid}/messages", SendMessageFeature.SendMessageAsync);
 
         group.MapPost("{chatId:guid}/messages/{messageId:guid}/ask", AskFeature.AskAsync);
