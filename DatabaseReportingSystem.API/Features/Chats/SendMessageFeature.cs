@@ -12,6 +12,11 @@ public static class SendMessageFeature
         [FromRoute] Guid chatId,
         [FromBody] SendMessageRequest request)
     {
+        if (string.IsNullOrWhiteSpace(request.Content.Trim()))
+        {
+            return Results.BadRequest("Content cannot be empty.");
+        }
+
         Chat? chat = await systemDbContext.Chats
             .Include(c => c.Messages)
             .FirstOrDefaultAsync(c => c.Id == chatId);
