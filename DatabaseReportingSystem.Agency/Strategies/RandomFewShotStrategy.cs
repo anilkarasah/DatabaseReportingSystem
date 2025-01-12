@@ -27,8 +27,9 @@ public sealed class RandomFewShotStrategy(RandomFewShotStrategy.Options options)
                     randomQuestion.Schema,
                     DatabaseManagementSystem.Sqlite));
 
-            stringBuilder.AppendLine($"Example {exampleCount}: {userMessage}");
-            stringBuilder.AppendLine($"Result {exampleCount}: {randomQuestion.Query}");
+            stringBuilder.AppendLine($"Example {exampleCount}:");
+            stringBuilder.AppendLine(userMessage);
+            stringBuilder.AppendLine(randomQuestion.Query);
 
             exampleCount++;
         }

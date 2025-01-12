@@ -28,8 +28,9 @@ public sealed class NearestFewShotStrategy(NearestFewShotStrategy.Options option
                     DatabaseManagementSystem.Sqlite))
                 .ReplaceLineEndings(" ");
 
-            stringBuilder.AppendLine($"Example {exampleCount}: {userMessage}");
-            stringBuilder.AppendLine($"Result {exampleCount}: {nearestQuestion.Query}");
+            stringBuilder.AppendLine($"Example {exampleCount}:");
+            stringBuilder.AppendLine(userMessage);
+            stringBuilder.AppendLine(nearestQuestion.Query);
 
             exampleCount++;
         }
