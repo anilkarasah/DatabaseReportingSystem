@@ -20,19 +20,27 @@ jobs:
         with:
           username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Step 3: Add certificates
+      - name: Add certificates
+        run: |
+          echo "${{FULLCHAIN}}" | base64 -d > fullchain.pem
+          echo "${{PRIVKEY}}" | base64 -d > privkey.pem
+          mkdir -p /etc/ssl/drs
+          mv fullchain.pem privkey.pem /etc/ssl/drs
       
-      # Step 3: Build Docker image
+      # Step 4: Build Docker image
       - name: Build Docker Image
         run: |
           docker build -t ${{ vars.DOCKER_CONTAINER_NAME }}:latest .
       
-      # Step 4: Push Docker image to DockerHub
+      # Step 5: Push Docker image to DockerHub
       - name: Push Docker Image to DockerHub
         run: |
           docker tag ${{ vars.DOCKER_CONTAINER_NAME }}:latest ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_CONTAINER_NAME }}:latest
           docker push ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_CONTAINER_NAME }}:latest
 
-      # Step 5: SSH into VDS and deploy
+      # Step 6: SSH into VDS and deploy
       - name: Deploy to VDS
         uses: appleboy/ssh-action@v0.1.8
         with:
