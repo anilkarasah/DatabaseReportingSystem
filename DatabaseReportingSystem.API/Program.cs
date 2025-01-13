@@ -26,6 +26,14 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(443, listenOptions =>
+    {
+        listenOptions.UseHttps("/etc/ssl/drs/fullchain.pem", "/etc/ssl/drs/privkey.pem");
+    });
+});
+
 builder.Services.AddDbContext<SystemDbContext>();
 builder.Services.AddDbContext<VectorDbContext>();
 
