@@ -26,8 +26,8 @@ jobs:
         run: |
           echo "${{ secrets.FULLCHAIN }}" | base64 -d > fullchain.pem
           echo "${{ secrets.PRIVKEY }}" | base64 -d > privkey.pem
-          mkdir -p /etc/ssl/drs
-          mv fullchain.pem privkey.pem /etc/ssl/drs
+          mkdir -p certs
+          mv fullchain.pem privkey.pem certs/
       
       # Step 4: Build Docker image
       - name: Build Docker Image
