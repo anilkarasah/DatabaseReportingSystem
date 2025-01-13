@@ -24,8 +24,8 @@ jobs:
       # Step 3: Add certificates
       - name: Add certificates
         run: |
-          echo "${{FULLCHAIN}}" | base64 -d > fullchain.pem
-          echo "${{PRIVKEY}}" | base64 -d > privkey.pem
+          echo "${{ secrets.FULLCHAIN }}" | base64 -d > fullchain.pem
+          echo "${{ secrets.PRIVKEY }}" | base64 -d > privkey.pem
           mkdir -p /etc/ssl/drs
           mv fullchain.pem privkey.pem /etc/ssl/drs
       
