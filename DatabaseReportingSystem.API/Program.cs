@@ -26,14 +26,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(443, listenOptions =>
-    {
-        listenOptions.UseHttps("/etc/ssl/drs/fullchain.pem", "/etc/ssl/drs/privkey.pem");
-    });
-});
-
 builder.Services.AddDbContext<SystemDbContext>();
 builder.Services.AddDbContext<VectorDbContext>();
 
@@ -53,8 +45,6 @@ builder.Services.Configure<ApiKeys>(builder.Configuration.GetSection("ApiKeys"))
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("Settings"));
 
 WebApplication app = builder.Build();
-
-app.UseHttpsRedirection();
 
 app.UseExceptionHandler();
 
