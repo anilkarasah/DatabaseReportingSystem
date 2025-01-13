@@ -46,6 +46,8 @@ builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("Settin
 
 WebApplication app = builder.Build();
 
+app.UseHttpsRedirection();
+
 app.UseExceptionHandler();
 
 app.UseCors();
