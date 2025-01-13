@@ -21,4 +21,5 @@ RUN dotnet publish "DatabaseReportingSystem.API.csproj" -c Release -o /app/publi
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+RUN chmod -R 644 /etc/ssl/drs/*
 ENTRYPOINT ["dotnet", "DatabaseReportingSystem.API.dll"]
