@@ -1,4 +1,4 @@
-name: Build and Push to DockerHub
+name: Build and Deploy to VDS
 
 on:
   push:
@@ -13,32 +13,38 @@ jobs:
       # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
-      
-      # Log in to DockerHub or private container registry
-      - name: Log in to DockerHub
-        uses: docker/login-action@v3
+
+      # Setup Dotnet 8 SDK
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
         with:
-          username: ${{ vars.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          dotnet-version: '8.0.x'
 
-      # Build Docker image
-      - name: Build Docker Image
-        run: |
-          docker build -t ${{ vars.DOCKER_CONTAINER_NAME }}:latest .
-      
-      # Push Docker image to DockerHub
-      - name: Push Docker Image to DockerHub
-        run: |
-          docker tag ${{ vars.DOCKER_CONTAINER_NAME }}:latest ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_CONTAINER_NAME }}:latest
-          docker push ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_CONTAINER_NAME }}:latest
+      # Restore API dependencies
+      - name: Restore Dependencies
+        run: dotnet restore
 
-      # SSH into VDS and deploy
-      - name: Deploy to VDS
-        uses: appleboy/ssh-action@v0.1.8
+      # Build project
+      - name: Build Project
+        run: dotnet publish -c Release -o out
+
+      # Copy files to server using SCP
+      - name: Copy Files to Server
+        uses: appleboy/scp-action@v0.2.0
+        with:
+          host: ${{ secrets.VDS_URI }}
+          username: ${{ secrets.VDS_USERNAME }}
+          password: ${{ secrets.VDS_PASSWORD }}
+          source: ./out/
+          target: /var/www/drs-api/
+
+      # Restart API
+      - name: Restart Application
+        uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.VDS_URI }}
           username: ${{ secrets.VDS_USERNAME }}
           password: ${{ secrets.VDS_PASSWORD }}
           script: |
-            docker pull ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_CONTAINER_NAME }}:latest
-            docker compose up -d
+            pkill -f 'dotnet /var/www/drs-api/DatabaseReportingSystem.API.dll' || true
+            nohup dotnet /var/www/drs-api/DatabaseReportingSystem.API.dll > /var/www/drs-api/log.txt 2>&1 &
