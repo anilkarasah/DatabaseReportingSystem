@@ -42,7 +42,7 @@ jobs:
         with:
           host: ${{ secrets.VDS_URI }}
           username: ${{ secrets.VDS_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.VDS_PASSWORD }}
           source: ./app.tar.gz
           target: /var/www/drs-api/
 
@@ -52,7 +52,7 @@ jobs:
         with:
           host: ${{ secrets.VDS_URI }}
           username: ${{ secrets.VDS_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.VDS_PASSWORD }}
           script: |
             cd /var/www/drs-api/
             tar -xzf app.tar.gz
