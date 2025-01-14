@@ -22,7 +22,7 @@ jobs:
 
       # Restore API dependencies
       - name: Restore Dependencies
-        run: dotnet restore
+        run: dotnet restore "DatabaseReportingSystem.API/DatabaseReportingSystem.API.csproj" --configfile nuget.config --ignore-failed-sources
 
       # Build project
       - name: Build Project
