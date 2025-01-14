@@ -28,10 +28,6 @@ jobs:
       - name: Build Project
         run: dotnet publish -c Release -o out
       
-      # Remove configuration files
-      - name: Remove configuration files
-        run: rm -f out/appsettings.json
-
       # Archive
       - name: Archive Build Artifacts
         run: tar -czf app.tar.gz -C out .
