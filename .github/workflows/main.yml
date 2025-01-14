@@ -1,4 +1,4 @@
-name: Build and Deploy to VDS
+name: Build and Deploy .NET 8 API to VDS
 
 on:
   push:
@@ -6,31 +6,47 @@ on:
       - main
 
 jobs:
-  build-and-push:
+  build:
+    name: Build and Package
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout Repository
+      uses: actions/checkout@v3
 
-      # Setup Dotnet 8 SDK
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.x'
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
 
-      # Restore API dependencies
-      - name: Restore Dependencies
-        run: dotnet restore "DatabaseReportingSystem.API/DatabaseReportingSystem.API.csproj" --configfile nuget.config --ignore-failed-sources
+    - name: Restore Dependencies
+      run: dotnet restore
 
-      # Build project
-      - name: Build Project
-        run: dotnet publish -c Release -o out
+    - name: Build Project
+      run: dotnet publish -c Release -o out
+
+    - name: Remove Sensitive Files
+      run: rm -f out/appsettings.json
+
+    - name: Archive Build Artifacts
+      run: tar -czf app.tar.gz -C out .
       
-      # Archive
-      - name: Archive Build Artifacts
-        run: tar -czf app.tar.gz -C out .
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-tarball
+        path: app.tar.gz
+
+  deploy:
+    name: Deploy to VDS
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: app-tarball
 
       # Copy files to server using SCP
       - name: Copy Archive to VDS
