@@ -25,9 +25,6 @@ jobs:
     - name: Build Project
       run: dotnet publish -c Release -o out
 
-    - name: Remove Sensitive Files
-      run: rm -f out/appsettings.json
-
     - name: Archive Build Artifacts
       run: tar -czf app.tar.gz -C out .
       
