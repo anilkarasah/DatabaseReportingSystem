@@ -58,5 +58,5 @@ jobs:
             tar -xzf app.tar.gz
             rm app.tar.gz
             export $(cat ~/api.env | xargs)
-            pkill -f 'dotnet DatabaseReportingSystem.API.dll' || true
-            nohup dotnet DatabaseReportingSystem.API.dll > log.txt 2>&1 &
+            pkill -f 'dotnet /var/www/drs-api/DatabaseReportingSystem.API.dll' || true
+            nohup dotnet /var/www/drs-api/DatabaseReportingSystem.API.dll > log.txt 2>&1 &
