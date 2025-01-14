@@ -30,7 +30,7 @@ jobs:
 
       # Copy files to server using SCP
       - name: Copy Files to Server
-        uses: appleboy/scp-action@v0.2.0
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.VDS_URI }}
           username: ${{ secrets.VDS_USERNAME }}
@@ -40,7 +40,7 @@ jobs:
 
       # Restart API
       - name: Restart Application
-        uses: appleboy/ssh-action@v0.1.10
+        uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.VDS_URI }}
           username: ${{ secrets.VDS_USERNAME }}
