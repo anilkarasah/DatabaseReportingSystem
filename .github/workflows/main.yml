@@ -27,15 +27,23 @@ jobs:
       # Build project
       - name: Build Project
         run: dotnet publish -c Release -o out
+      
+      # Remove configuration files
+      - name: Remove configuration files
+        run: rm -f out/appsettings.json
+
+      # Archive
+      - name: Archive Build Artifacts
+        run: tar -czf app.tar.gz -C out .
 
       # Copy files to server using SCP
-      - name: Copy Files to Server
+      - name: Copy Archive to VDS
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.VDS_URI }}
           username: ${{ secrets.VDS_USERNAME }}
-          password: ${{ secrets.VDS_PASSWORD }}
-          source: ./out/
+          key: ${{ secrets.SSH_KEY }}
+          source: ./app.tar.gz
           target: /var/www/drs-api/
 
       # Restart API
@@ -44,7 +52,11 @@ jobs:
         with:
           host: ${{ secrets.VDS_URI }}
           username: ${{ secrets.VDS_USERNAME }}
-          password: ${{ secrets.VDS_PASSWORD }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
-            pkill -f 'dotnet /var/www/drs-api/DatabaseReportingSystem.API.dll' || true
-            nohup dotnet /var/www/drs-api/DatabaseReportingSystem.API.dll > /var/www/drs-api/log.txt 2>&1 &
+            cd /var/www/drs-api/
+            tar -xzf app.tar.gz
+            rm app.tar.gz
+            export $(cat ~/api.env | xargs)
+            pkill -f 'dotnet DatabaseReportingSystem.API.dll' || true
+            nohup dotnet DatabaseReportingSystem.API.dll > log.txt 2>&1 &
