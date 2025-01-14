@@ -57,6 +57,15 @@ jobs:
             cd /var/www/drs-api/
             tar -xzf app.tar.gz
             rm app.tar.gz
-            export $(cat ~/api.env | xargs)
-            pkill -f 'dotnet /var/www/drs-api/DatabaseReportingSystem.API.dll' || true
-            nohup dotnet /var/www/drs-api/DatabaseReportingSystem.API.dll > log.txt 2>&1 &
+            
+            # Gracefully terminate the existing process
+            if pgrep -f 'dotnet /var/www/drs-api/DatabaseReportingSystem.API.dll'; then
+              pkill -SIGINT -f 'dotnet /var/www/drs-api/DatabaseReportingSystem.API.dll'
+              sleep 5  # Allow time for graceful shutdown
+            fi
+      
+            # Restart the application
+            set -o allexport
+            source ~/api.env
+            set +o allexport
+            nohup dotnet /var/www/drs-api/DatabaseReportingSystem.API.dll > /var/www/drs-api/log.txt 2>&1 &
