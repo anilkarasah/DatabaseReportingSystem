@@ -29,8 +29,8 @@ public sealed class ModelClientFactory(IOptions<ApiKeys> apiKeys, IServiceProvid
         {
             LargeLanguageModel.GPT => new GptModel("gpt-4o-mini", _apiKeys.GptApiKey),
             LargeLanguageModel.Grok => new GrokModel("grok-2-latest", _apiKeys.GrokApiKey),
-            LargeLanguageModel.Mistral => new MistralModel(),
-            LargeLanguageModel.CodeLLaMa => new CodeLlamaModel(),
+            LargeLanguageModel.Mistral => new MistralModel(_apiKeys),
+            LargeLanguageModel.CodeLLaMa => new CodeLlamaModel(_apiKeys),
             _ => throw new ArgumentException("Invalid language model.")
         };
 

@@ -26,7 +26,12 @@ public sealed class GptModel(string modelName, string apiKey) : ILanguageModel
 
     public OpenAIChatAgent GetChatAgent(string name, string systemMessage = "")
     {
-        return new OpenAIChatAgent(name: name, systemMessage: systemMessage, chatClient: CreateClient(), temperature: 1,
+        return new OpenAIChatAgent(
+            name: name,
+            systemMessage:
+            systemMessage,
+            chatClient: CreateClient(),
+            temperature: 1,
             maxTokens: null);
     }
 
