@@ -15,12 +15,19 @@ public static class Utilities
 {
     public static string TrimSqlString(string query)
     {
-        string[] parts = query.Split(["```sql", "```"], StringSplitOptions.None);
+        if (string.IsNullOrWhiteSpace(query)) return string.Empty;
 
-        if (parts.Length > 1) query = parts[1];
+        // Remove code block indicator
+        query = query.Contains("```sql")
+            ? query.Split(["```sql"], StringSplitOptions.RemoveEmptyEntries)[^1]
+            : query.Split(["```"], StringSplitOptions.RemoveEmptyEntries)[1];
 
+        query = query.Split(["```"], StringSplitOptions.RemoveEmptyEntries)[0];
+
+        // Remove new lines and tabs
         query = query.Replace("\n", " ").Replace("\t", "");
 
+        // Remove recurring spaces
         query = string.Join(" ", query.Split([' '], StringSplitOptions.RemoveEmptyEntries));
 
         return query.Trim();
