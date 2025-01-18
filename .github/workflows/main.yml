@@ -1,80 +1,32 @@
-name: Build and Deploy .NET 8 API to VDS
-
 on:
   push:
     branches:
       - main
 
 jobs:
-  build:
-    name: Build and Package
+  build-and-push:
+    name: Build and Push to DockerHub
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.0.x'
-
-    - name: Restore Dependencies
-      run: dotnet restore "DatabaseReportingSystem.API/DatabaseReportingSystem.API.csproj" --configfile nuget.config --ignore-failed-sources
-
-    - name: Build Project
-      run: dotnet publish -c Release -o out
-
-    - name: Archive Build Artifacts
-      run: tar -czf app.tar.gz -C out .
-      
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: app-tarball
-        path: app.tar.gz
-
-  deploy:
-    name: Deploy to VDS
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v3
+      # Log in to DockerHub or private container registry
+      - name: Log in to DockerHub
+        uses: docker/login-action@v3
         with:
-          name: app-tarball
+          username: ${{ vars.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Copy files to server using SCP
-      - name: Copy Archive to VDS
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.VDS_URI }}
-          username: ${{ secrets.VDS_USERNAME }}
-          password: ${{ secrets.VDS_PASSWORD }}
-          source: ./app.tar.gz
-          target: /var/www/drs-api/
+      # Build Docker image
+      - name: Build Docker Image
+        run: |
+          docker build -t ${{ vars.DOCKER_CONTAINER_NAME }}:latest .
 
-      # Restart API
-      - name: Restart Application
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.VDS_URI }}
-          username: ${{ secrets.VDS_USERNAME }}
-          password: ${{ secrets.VDS_PASSWORD }}
-          script: |
-            cd /var/www/drs-api/
-            tar -xzf app.tar.gz
-            rm app.tar.gz
-            
-            # Gracefully terminate the existing process
-            if pgrep -f 'dotnet /var/www/drs-api/DatabaseReportingSystem.API.dll'; then
-              pkill -SIGINT -f 'dotnet /var/www/drs-api/DatabaseReportingSystem.API.dll'
-              sleep 5  # Allow time for graceful shutdown
-            fi
-      
-            # Restart the application
-            set -o allexport
-            source ~/api.env
-            set +o allexport
-            nohup dotnet /var/www/drs-api/DatabaseReportingSystem.API.dll > /var/www/drs-api/log.txt 2>&1 &
+      # Push Docker image to DockerHub
+      - name: Push Docker Image to DockerHub
+        run: |
+          docker tag ${{ vars.DOCKER_CONTAINER_NAME }}:latest ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_CONTAINER_NAME }}:latest
+          docker push ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_CONTAINER_NAME }}:latest
