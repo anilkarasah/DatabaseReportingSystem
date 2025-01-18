@@ -20,17 +20,24 @@ public static class Utilities
             if (string.IsNullOrWhiteSpace(query)) return string.Empty;
 
             // Remove code block indicator
-            query = query.Contains("```sql")
-                ? query.Split(["```sql"], StringSplitOptions.RemoveEmptyEntries)[^1]
-                : query.Split(["```"], StringSplitOptions.RemoveEmptyEntries)[1];
+            if (query.Contains("```sql"))
+            {
+                query = query.Split("```sql", StringSplitOptions.RemoveEmptyEntries).Last();
+            }
+            else if (query.Contains("```"))
+            {
+                query = query.Split("```", StringSplitOptions.RemoveEmptyEntries).Last();
+            }
 
-            query = query.Split(["```"], StringSplitOptions.RemoveEmptyEntries)[0];
-
-            // Remove new lines and tabs
-            query = query.Replace("\n", " ").Replace("\t", "");
+            query = query.Split("```", StringSplitOptions.RemoveEmptyEntries).First();
 
             // Remove recurring spaces
             query = string.Join(" ", query.Split([' '], StringSplitOptions.RemoveEmptyEntries));
+
+            // Trim whitespace from the beginning and end
+            query = query
+                .Trim('\n')
+                .Trim('\t');
 
             return query.Trim();
         }
