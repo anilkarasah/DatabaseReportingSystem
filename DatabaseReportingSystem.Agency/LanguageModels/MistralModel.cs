@@ -9,7 +9,7 @@ namespace DatabaseReportingSystem.Agency.LanguageModels;
 
 public sealed class MistralModel(ApiKeys apiKeys) : ILanguageModel
 {
-    private readonly OpenAIClientOptions OpenAiClientOptions = new()
+    private readonly OpenAIClientOptions _openAiClientOptions = new()
     {
         Endpoint = new Uri(apiKeys.ApiUrl)
     };
@@ -28,7 +28,7 @@ public sealed class MistralModel(ApiKeys apiKeys) : ILanguageModel
 
         if (completion.Content.Count == 0) throw new InvalidOperationException("No response from Mistral.");
 
-        return Utilities.TrimSqlString(completion.Content[0].Text);
+        return Utilities.TrimSqlString(completion.Content[0].Text.Replace("\\_", "_"));
     }
 
     public OpenAIChatAgent GetChatAgent(string name, string systemMessage = "")
@@ -43,6 +43,6 @@ public sealed class MistralModel(ApiKeys apiKeys) : ILanguageModel
 
     private ChatClient CreateClient()
     {
-        return new OpenAIClient(_apiKeyCredential, OpenAiClientOptions).GetChatClient(ModelName);
+        return new OpenAIClient(_apiKeyCredential, _openAiClientOptions).GetChatClient(ModelName);
     }
 }
