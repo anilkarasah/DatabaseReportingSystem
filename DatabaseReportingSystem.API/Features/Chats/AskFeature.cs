@@ -64,6 +64,11 @@ public static class AskFeature
 
         string generatedQuery = await modelClient.LanguageModel.AskAsync(messages);
 
+        if (string.IsNullOrWhiteSpace(generatedQuery))
+        {
+            generatedQuery = "SELECT 'Unable to generate a query.' AS message";
+        }
+
         var modelResponse = new ModelResponse
         {
             MessageId = relatedMessage.MessageId,

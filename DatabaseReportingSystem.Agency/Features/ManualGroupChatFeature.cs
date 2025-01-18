@@ -62,6 +62,12 @@ public sealed class ManualGroupChatFeature(IOptions<ApiKeys> apiKeys, ILogger<Ma
 
                 _logger.LogDebug("Trimmed SQL query response: {Query}", lastQueryResponse);
 
+                if (string.IsNullOrWhiteSpace(lastQueryResponse))
+                {
+                    lastAnalyzerResponse = "INVALID: You did not provide any SQL queries.";
+                    goto iterate;
+                }
+
                 if (credentials is null)
                 {
                     _logger.LogInformation(
