@@ -15,22 +15,29 @@ public static class Utilities
 {
     public static string TrimSqlString(string query)
     {
-        if (string.IsNullOrWhiteSpace(query)) return string.Empty;
+        try
+        {
+            if (string.IsNullOrWhiteSpace(query)) return string.Empty;
 
-        // Remove code block indicator
-        query = query.Contains("```sql")
-            ? query.Split(["```sql"], StringSplitOptions.RemoveEmptyEntries)[^1]
-            : query.Split(["```"], StringSplitOptions.RemoveEmptyEntries)[1];
+            // Remove code block indicator
+            query = query.Contains("```sql")
+                ? query.Split(["```sql"], StringSplitOptions.RemoveEmptyEntries)[^1]
+                : query.Split(["```"], StringSplitOptions.RemoveEmptyEntries)[1];
 
-        query = query.Split(["```"], StringSplitOptions.RemoveEmptyEntries)[0];
+            query = query.Split(["```"], StringSplitOptions.RemoveEmptyEntries)[0];
 
-        // Remove new lines and tabs
-        query = query.Replace("\n", " ").Replace("\t", "");
+            // Remove new lines and tabs
+            query = query.Replace("\n", " ").Replace("\t", "");
 
-        // Remove recurring spaces
-        query = string.Join(" ", query.Split([' '], StringSplitOptions.RemoveEmptyEntries));
+            // Remove recurring spaces
+            query = string.Join(" ", query.Split([' '], StringSplitOptions.RemoveEmptyEntries));
 
-        return query.Trim();
+            return query.Trim();
+        }
+        catch (Exception)
+        {
+            return string.Empty;
+        }
     }
 
     public static string CreateUserMessage(UserPromptDto dto)
