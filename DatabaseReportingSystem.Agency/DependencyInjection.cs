@@ -10,6 +10,7 @@ public static class DependencyInjection
     {
         return services
             .AddTransient<AutoGenFeature>()
+            .AddScoped<ManualGroupChatFeature>()
             .AddTransient<ModelClientFactory>();
     }
 }

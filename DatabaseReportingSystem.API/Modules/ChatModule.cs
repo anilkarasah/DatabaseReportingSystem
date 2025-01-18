@@ -22,6 +22,8 @@ public static class ChatModule
 
         group.MapPost("{chatId:guid}/messages/{messageId:guid}/ask-autogen", AskFeature.AskUsingAutoGenAsync);
 
+        group.MapPost("{chatId:guid}/messages/{messageId:guid}/ask-manual", AskFeature.AskUsingManualGroupChatAsync);
+
         return builder;
     }
 }

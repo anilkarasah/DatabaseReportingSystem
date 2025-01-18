@@ -194,4 +194,9 @@ public static class Utilities
 
         return new DatabaseExecutionResult(dataTable.Rows.Count, elapsedTime.Milliseconds, columnNames, values);
     }
+
+    public static Result AnalyzeSyntaxOfSqlQuery(string query)
+    {
+        return Result.Fail();
+    }
 }

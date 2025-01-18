@@ -1,5 +1,5 @@
-using System.Text;
 using DatabaseReportingSystem.Shared;
+using OpenAI.Chat;
 
 namespace DatabaseReportingSystem.Agency.Strategies;
 
@@ -7,13 +7,15 @@ public sealed class ZeroShotStrategy(ZeroShotStrategy.Options options) : IStrate
 {
     private readonly Options _options = options;
 
-    public Task<string> GetMessagesAsync()
+    public bool OnlySystemPrompt { get; set; } = false;
+
+    public Task<List<ChatMessage>> GetMessagesAsync()
     {
-        var stringBuilder = new StringBuilder();
+        var messages = new List<ChatMessage>();
 
-        if (_options.UseSystemPrompt) stringBuilder.AppendLine(Constants.Strategy.BaseSystemPromptMessage);
+        if (_options.UseSystemPrompt) messages.Add(new SystemChatMessage(Constants.Strategy.BaseSystemPromptMessage));
 
-        return Task.FromResult(stringBuilder.ToString());
+        return Task.FromResult(messages);
     }
 
     public sealed class Options

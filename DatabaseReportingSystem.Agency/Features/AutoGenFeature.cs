@@ -9,8 +9,7 @@ using DatabaseReportingSystem.Shared.Settings;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using OpenAI.Chat;
-
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+using ChatMessage = OpenAI.Chat.ChatMessage;
 
 namespace DatabaseReportingSystem.Agency.Features;
 
@@ -26,29 +25,50 @@ public class AutoGenFeature(IOptions<ApiKeys> apiKeys)
         IStrategy strategy,
         ConnectionCredentialsDto? credentials)
     {
-        string queryWriterSystemPrompt =
-            await strategy.GetMessagesAsync();
+        strategy.OnlySystemPrompt = true;
+
+        var messages = await strategy.GetMessagesAsync();
 
         List<IAgent> agents = [];
 
+        string systemPrompt;
+
         if (credentials is not null)
         {
-            queryWriterSystemPrompt +=
-                "\n" +
+            const string systemMessageForQueryWriterWhenAnalyzerAvailable =
                 """
-                If the analyzer says 'INVALID', please regenerate the SQL query according to it. If it says 'VALID', you
-                should write 'TERMINATE' to end the conversation.
+                If the analyzer says 'INVALID', please regenerate the SQL query according to it. If it says 
+                'VALID', you should write 'TERMINATE' to end the conversation.
                 """;
+
+            ChatMessage? firstMessage = messages.FirstOrDefault();
+
+            if (firstMessage is not SystemChatMessage)
+            {
+                throw new InvalidOperationException("The first message should be a system chat message.");
+            }
+
+            systemPrompt = firstMessage.Content[0].Text + "\n\n" + systemMessageForQueryWriterWhenAnalyzerAvailable;
 
             const string analyzerAgentSystemPrompt =
                 """
                 You are a query analyzer. Given an input question, run the function for querying database. You will make 
                 sure that requested condition is met. Otherwise, you should tell what is wrong with the result, and 
-                what could be done. You should only say 'VALID' or 'INVALID: {reason}'. You should write 'TERMINATE', if
-                other agent has also written 'TERMINATE'.
+                what could be done. You should not modify the SQL query in any way. You should only say 'VALID' or 
+                'INVALID: {reason}'. If the query is valid, you should write 'TERMINATE' to end the conversation.
                 """;
 
-            var function = new AnalyzerFunction(databaseManagementSystem, credentials);
+            //ConnectionCredentialsDto updatedCredentials = credentials with {Dbms = databaseManagementSystem};
+
+            ConnectionCredentialsDto updatedCredentials = new(
+                DatabaseManagementSystem.MySql,
+                "213.142.159.62",
+                "7441",
+                "northwind",
+                "northwind",
+                "d7mK7TPT6mKRPr5xMrWVt5RWAtYuGllD");
+
+            var function = new AnalyzerFunction(databaseManagementSystem, updatedCredentials);
 
             var functionMiddleware = new FunctionCallMiddleware(
                 [function.RunQueryAsyncFunctionContract],
@@ -70,10 +90,20 @@ public class AutoGenFeature(IOptions<ApiKeys> apiKeys)
         }
         else
         {
-            queryWriterSystemPrompt += "\nYou should write 'TERMINATE' to end the conversation.";
+            const string systemMessageForQueryWriterWhenAnalyzerNotAvailable =
+                "You should write 'TERMINATE' to end the conversation.";
+
+            ChatMessage? firstMessage = messages.FirstOrDefault();
+
+            if (firstMessage is not SystemChatMessage)
+            {
+                throw new InvalidOperationException("The first message should be a system chat message.");
+            }
+
+            systemPrompt = firstMessage.Content[0].Text + "\n\n" + systemMessageForQueryWriterWhenAnalyzerNotAvailable;
         }
 
-        var queryWriterAgent = languageModel.GetChatAgent("query-writer", queryWriterSystemPrompt)
+        var queryWriterAgent = languageModel.GetChatAgent("query-writer", systemPrompt)
             .RegisterMessageConnector()
             .RegisterPrintMessage();
 
@@ -120,6 +150,6 @@ public partial class AnalyzerFunction(
 
         if (queryResult.IsFailure) throw new InvalidOperationException(queryResult.Error);
 
-        return JsonConvert.SerializeObject(queryResult.Value.Values);
+        return JsonConvert.SerializeObject(queryResult.Value);
     }
 }

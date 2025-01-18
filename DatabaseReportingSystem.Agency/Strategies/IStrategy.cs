@@ -1,6 +1,10 @@
+using OpenAI.Chat;
+
 namespace DatabaseReportingSystem.Agency.Strategies;
 
 public interface IStrategy
 {
-    Task<string> GetMessagesAsync();
+    bool OnlySystemPrompt { get; set; }
+
+    Task<List<ChatMessage>> GetMessagesAsync();
 }

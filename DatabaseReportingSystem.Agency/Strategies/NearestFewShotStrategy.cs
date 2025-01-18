@@ -3,6 +3,8 @@ using DatabaseReportingSystem.Shared;
 using DatabaseReportingSystem.Shared.Models;
 using DatabaseReportingSystem.Vector.Features;
 using Microsoft.Extensions.DependencyInjection;
+using OpenAI.Chat;
+using ChatMessage = OpenAI.Chat.ChatMessage;
 
 namespace DatabaseReportingSystem.Agency.Strategies;
 
@@ -10,32 +12,59 @@ public sealed class NearestFewShotStrategy(NearestFewShotStrategy.Options option
 {
     private readonly Options _options = options;
 
-    public async Task<string> GetMessagesAsync()
-    {
-        var stringBuilder = new StringBuilder();
+    public bool OnlySystemPrompt { get; set; } = false;
 
+    public async Task<List<ChatMessage>> GetMessagesAsync()
+    {
         var nearestQuestions = await QueryNearestQuestionsAsync();
 
-        if (_options.UseSystemPrompt) stringBuilder.AppendLine(Constants.Strategy.BaseSystemPromptMessage);
+        var messages = new List<ChatMessage>();
 
-        int exampleCount = 1;
-        foreach (GetNearestQuestions.NearestQuestionDto nearestQuestion in nearestQuestions)
+        if (OnlySystemPrompt)
         {
-            string userMessage = Utilities
-                .CreateUserMessage(new UserPromptDto(
-                    nearestQuestion.Question,
-                    nearestQuestion.Schema,
-                    DatabaseManagementSystem.Sqlite))
-                .ReplaceLineEndings(" ");
+            var stringBuilder = new StringBuilder();
 
-            stringBuilder.AppendLine($"Example {exampleCount}:");
-            stringBuilder.AppendLine(userMessage);
-            stringBuilder.AppendLine(nearestQuestion.Query);
+            if (_options.UseSystemPrompt) stringBuilder.AppendLine(Constants.Strategy.BaseSystemPromptMessage);
 
-            exampleCount++;
+            int exampleIndex = 1;
+            foreach (GetNearestQuestions.NearestQuestionDto nearestQuestion in nearestQuestions)
+            {
+                string userMessage = Utilities
+                    .CreateUserMessage(new UserPromptDto(
+                        nearestQuestion.Question,
+                        nearestQuestion.Schema,
+                        DatabaseManagementSystem.Sqlite))
+                    .ReplaceLineEndings(" ");
+
+                stringBuilder.AppendLine($"\n\nExample {exampleIndex}:");
+                stringBuilder.AppendLine(userMessage);
+                stringBuilder.AppendLine(nearestQuestion.Query);
+
+                exampleIndex++;
+            }
+
+            messages.Add(new SystemChatMessage(stringBuilder.ToString()));
+        }
+        else
+        {
+            if (_options.UseSystemPrompt)
+                messages.Add(new SystemChatMessage(Constants.Strategy.BaseSystemPromptMessage));
+
+            foreach (GetNearestQuestions.NearestQuestionDto nearestQuestion in nearestQuestions)
+            {
+                string userMessage = Utilities
+                    .CreateUserMessage(new UserPromptDto(
+                        nearestQuestion.Question,
+                        nearestQuestion.Schema,
+                        DatabaseManagementSystem.Sqlite))
+                    .ReplaceLineEndings(" ");
+
+                messages.Add(new UserChatMessage(userMessage));
+                messages.Add(new AssistantChatMessage(nearestQuestion.Query));
+            }
         }
 
-        return stringBuilder.ToString();
+        return messages;
     }
 
     private async Task<List<GetNearestQuestions.NearestQuestionDto>> QueryNearestQuestionsAsync()
