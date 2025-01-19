@@ -64,7 +64,8 @@ public static class AskFeature
 
         string generatedQuery = await modelClient.LanguageModel.AskAsync(messages);
 
-        if (string.IsNullOrWhiteSpace(generatedQuery))
+        if (string.IsNullOrWhiteSpace(generatedQuery) ||
+            Utilities.ValidateSqlQuerySyntax(chat.DatabaseManagementSystem, generatedQuery).IsFailure)
         {
             generatedQuery = "SELECT 'Unable to generate a query.' AS message";
         }

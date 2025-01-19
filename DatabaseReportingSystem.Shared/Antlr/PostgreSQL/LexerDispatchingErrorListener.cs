@@ -21,11 +21,14 @@ THE SOFTWARE.
 
 using Antlr4.Runtime;
 
-namespace DatabaseReportingSystem.Shared.Antlr.PostgreSQL;
-
-internal class LexerDispatchingErrorListener(Lexer parent) : IAntlrErrorListener<int>
+class LexerDispatchingErrorListener : IAntlrErrorListener<int>
 {
-    private readonly Lexer _parent = parent;
+    Lexer _parent;
+
+    public LexerDispatchingErrorListener(Lexer parent)
+    {
+        _parent = parent;
+    }
 
     public void SyntaxError(
         TextWriter output,

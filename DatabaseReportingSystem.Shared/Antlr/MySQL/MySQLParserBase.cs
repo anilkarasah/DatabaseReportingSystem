@@ -4,161 +4,159 @@
 
 using Antlr4.Runtime;
 
-namespace DatabaseReportingSystem.Shared.Antlr.MySQL;
-
-public abstract class MySqlParserBase : Parser
+public abstract class MySQLParserBase : Parser
 {
     // To parameterize the parsing process.
-    public int ServerVersion = 0;
-    public HashSet<SqlMode> SqlModes;
+    public int serverVersion = 0;
+    public HashSet<SqlMode> sqlModes = new HashSet<SqlMode>();
 
     /** Enable Multi Language Extension support. */
-    public bool SupportMle = true;
+    public bool supportMle = true;
 
-    protected MySqlParserBase(ITokenStream input, TextWriter output, TextWriter errorOutput) : base(input, output,
+    protected MySQLParserBase(ITokenStream input, TextWriter output, TextWriter errorOutput) : base(input, output,
         errorOutput)
     {
-        ServerVersion = 80200;
-        SqlModes = MySQL.SqlModes.SqlModeFromString("ANSI_QUOTES");
+        this.serverVersion = 80200;
+        this.sqlModes = SqlModes.sqlModeFromString("ANSI_QUOTES");
     }
 
-    public bool IsSqlModeActive(SqlMode mode)
+    public bool isSqlModeActive(SqlMode mode)
     {
-        return SqlModes.Contains(mode);
+        return this.sqlModes.Contains(mode);
     }
 
-    public bool IsPureIdentifier()
+    public bool isPureIdentifier()
     {
-        return IsSqlModeActive(SqlMode.AnsiQuotes);
+        return this.isSqlModeActive(SqlMode.AnsiQuotes);
     }
 
-    public bool IsTextStringLiteral()
+    public bool isTextStringLiteral()
     {
-        return !IsSqlModeActive(SqlMode.AnsiQuotes);
+        return !this.isSqlModeActive(SqlMode.AnsiQuotes);
     }
 
-    public bool IsStoredRoutineBody()
+    public bool isStoredRoutineBody()
     {
-        return ServerVersion >= 80032 && SupportMle;
+        return serverVersion >= 80032 && supportMle;
     }
 
-    public bool IsSelectStatementWithInto()
+    public bool isSelectStatementWithInto()
     {
-        return ServerVersion >= 80024 && ServerVersion < 80031;
+        return serverVersion >= 80024 && serverVersion < 80031;
     }
 
-    public bool IsServerVersionGe80004()
+    public bool isServerVersionGe80004()
     {
-        return ServerVersion >= 80004;
+        return this.serverVersion >= 80004;
     }
 
-    public bool IsServerVersionGe80011()
+    public bool isServerVersionGe80011()
     {
-        return ServerVersion >= 80011;
+        return this.serverVersion >= 80011;
     }
 
-    public bool IsServerVersionGe80013()
+    public bool isServerVersionGe80013()
     {
-        return ServerVersion >= 80013;
+        return this.serverVersion >= 80013;
     }
 
-    public bool IsServerVersionGe80014()
+    public bool isServerVersionGe80014()
     {
-        return ServerVersion >= 80014;
+        return this.serverVersion >= 80014;
     }
 
-    public bool IsServerVersionGe80016()
+    public bool isServerVersionGe80016()
     {
-        return ServerVersion >= 80016;
+        return this.serverVersion >= 80016;
     }
 
-    public bool IsServerVersionGe80017()
+    public bool isServerVersionGe80017()
     {
-        return ServerVersion >= 80017;
+        return this.serverVersion >= 80017;
     }
 
-    public bool IsServerVersionGe80018()
+    public bool isServerVersionGe80018()
     {
-        return ServerVersion >= 80018;
+        return this.serverVersion >= 80018;
     }
 
-    public bool IsServerVersionGe80019()
+    public bool isServerVersionGe80019()
     {
-        return ServerVersion >= 80019;
+        return this.serverVersion >= 80019;
     }
 
-    public bool IsServerVersionGe80024()
+    public bool isServerVersionGe80024()
     {
-        return ServerVersion >= 80024;
+        return this.serverVersion >= 80024;
     }
 
-    public bool IsServerVersionGe80025()
+    public bool isServerVersionGe80025()
     {
-        return ServerVersion >= 80025;
+        return this.serverVersion >= 80025;
     }
 
-    public bool IsServerVersionGe80027()
+    public bool isServerVersionGe80027()
     {
-        return ServerVersion >= 80027;
+        return this.serverVersion >= 80027;
     }
 
-    public bool IsServerVersionGe80031()
+    public bool isServerVersionGe80031()
     {
-        return ServerVersion >= 80031;
+        return this.serverVersion >= 80031;
     }
 
-    public bool IsServerVersionGe80032()
+    public bool isServerVersionGe80032()
     {
-        return ServerVersion >= 80032;
+        return this.serverVersion >= 80032;
     }
 
-    public bool IsServerVersionGe80100()
+    public bool isServerVersionGe80100()
     {
-        return ServerVersion >= 80100;
+        return this.serverVersion >= 80100;
     }
 
-    public bool IsServerVersionGe80200()
+    public bool isServerVersionGe80200()
     {
-        return ServerVersion >= 80200;
+        return this.serverVersion >= 80200;
     }
 
-    public bool IsServerVersionLt80011()
+    public bool isServerVersionLt80011()
     {
-        return ServerVersion < 80011;
+        return this.serverVersion < 80011;
     }
 
-    public bool IsServerVersionLt80012()
+    public bool isServerVersionLt80012()
     {
-        return ServerVersion < 80012;
+        return this.serverVersion < 80012;
     }
 
-    public bool IsServerVersionLt80014()
+    public bool isServerVersionLt80014()
     {
-        return ServerVersion < 80014;
+        return this.serverVersion < 80014;
     }
 
-    public bool IsServerVersionLt80016()
+    public bool isServerVersionLt80016()
     {
-        return ServerVersion < 80016;
+        return this.serverVersion < 80016;
     }
 
-    public bool IsServerVersionLt80017()
+    public bool isServerVersionLt80017()
     {
-        return ServerVersion < 80017;
+        return this.serverVersion < 80017;
     }
 
-    public bool IsServerVersionLt80024()
+    public bool isServerVersionLt80024()
     {
-        return ServerVersion < 80024;
+        return this.serverVersion < 80024;
     }
 
-    public bool IsServerVersionLt80025()
+    public bool isServerVersionLt80025()
     {
-        return ServerVersion < 80025;
+        return this.serverVersion < 80025;
     }
 
-    public bool IsServerVersionLt80031()
+    public bool isServerVersionLt80031()
     {
-        return ServerVersion < 80031;
+        return this.serverVersion < 80031;
     }
 }

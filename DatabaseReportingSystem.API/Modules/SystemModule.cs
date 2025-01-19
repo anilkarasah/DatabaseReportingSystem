@@ -1,3 +1,4 @@
+using DatabaseReportingSystem.Features;
 using DatabaseReportingSystem.Features.Connections;
 
 namespace DatabaseReportingSystem.Modules;
@@ -6,15 +7,19 @@ public static class SystemModule
 {
     public static IEndpointRouteBuilder MapConnectionCredentialsModule(this IEndpointRouteBuilder builder)
     {
-        RouteGroupBuilder group = builder.MapGroup("connection-credentials");
+        RouteGroupBuilder connectionCredentialsGroup = builder.MapGroup("connection-credentials");
 
-        group.MapPut("/", EditConnectionCredentialsFeature.EditConnectionCredentialsAsync);
+        connectionCredentialsGroup.MapPut("/", EditConnectionCredentialsFeature.EditConnectionCredentialsAsync);
 
-        group.MapGet("/", GetConnectionCredentialsFeature.GetConnectionCredentialsAsync);
+        connectionCredentialsGroup.MapGet("/", GetConnectionCredentialsFeature.GetConnectionCredentialsAsync);
 
-        group.MapPost("test", TestConnectionFeature.TestConnectionAsync);
+        connectionCredentialsGroup.MapPost("test", TestConnectionFeature.TestConnectionAsync);
 
-        group.MapPost("execute", QueryFeature.QueryAsync);
+        connectionCredentialsGroup.MapPost("execute", QueryFeature.QueryAsync);
+        
+        RouteGroupBuilder validatorsGroup = builder.MapGroup("validators");
+        
+        validatorsGroup.MapPost("sql", SqlSyntaxValidatorFeature.ValidateSqlSyntax);
 
         return builder;
     }

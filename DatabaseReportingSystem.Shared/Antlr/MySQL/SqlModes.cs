@@ -1,5 +1,3 @@
-namespace DatabaseReportingSystem.Shared.Antlr.MySQL;
-
 public class SqlModes
 {
     /**
@@ -7,41 +5,38 @@ public class SqlModes
      *
      * @param modes The input string to parse.
      */
-    public static HashSet<SqlMode> SqlModeFromString(string modes)
+    public static HashSet<SqlMode> sqlModeFromString(string modes)
     {
         var result = new HashSet<SqlMode>();
-        string[] parts = modes.ToUpper().Split(",");
-        foreach (string mode in parts)
+        var parts = modes.ToUpper().Split(",");
+        foreach (var mode in parts)
         {
-            switch (mode)
+            if (mode == "ANSI" || mode == "DB2" || mode == "MAXDB" || mode == "MSSQL" || mode == "ORACLE" ||
+                mode == "POSTGRESQL")
             {
-                case "ANSI":
-                case "DB2":
-                case "MAXDB":
-                case "MSSQL":
-                case "ORACLE":
-                case "POSTGRESQL":
-                    result.Add(SqlMode.AnsiQuotes);
-                    result.Add(SqlMode.PipesAsConcat);
-                    result.Add(SqlMode.IgnoreSpace);
-                    break;
-                case "ANSI_QUOTES":
-                    result.Add(SqlMode.AnsiQuotes);
-                    break;
-                case "PIPES_AS_CONCAT":
-                    result.Add(SqlMode.PipesAsConcat);
-                    break;
-                case "NO_BACKSLASH_ESCAPES":
-                    result.Add(SqlMode.NoBackslashEscapes);
-                    break;
-                case "IGNORE_SPACE":
-                    result.Add(SqlMode.IgnoreSpace);
-                    break;
-                case "HIGH_NOT_PRECEDENCE":
-                case "MYSQL323":
-                case "MYSQL40":
-                    result.Add(SqlMode.HighNotPrecedence);
-                    break;
+                result.Add(SqlMode.AnsiQuotes);
+                result.Add(SqlMode.PipesAsConcat);
+                result.Add(SqlMode.IgnoreSpace);
+            }
+            else if (mode == "ANSI_QUOTES")
+            {
+                result.Add(SqlMode.AnsiQuotes);
+            }
+            else if (mode == "PIPES_AS_CONCAT")
+            {
+                result.Add(SqlMode.PipesAsConcat);
+            }
+            else if (mode == "NO_BACKSLASH_ESCAPES")
+            {
+                result.Add(SqlMode.NoBackslashEscapes);
+            }
+            else if (mode == "IGNORE_SPACE")
+            {
+                result.Add(SqlMode.IgnoreSpace);
+            }
+            else if (mode == "HIGH_NOT_PRECEDENCE" || mode == "MYSQL323" || mode == "MYSQL40")
+            {
+                result.Add(SqlMode.HighNotPrecedence);
             }
         }
 

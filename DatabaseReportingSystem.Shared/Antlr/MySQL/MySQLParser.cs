@@ -28,12 +28,11 @@ using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
-using DatabaseReportingSystem.Shared.Antlr.MySQL;
 using DFA = Antlr4.Runtime.Dfa.DFA;
 
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.2")]
 [System.CLSCompliant(false)]
-public partial class MySQLParser : MySqlParserBase {
+public partial class MySQLParser : MySQLParserBase {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
@@ -2089,7 +2088,7 @@ public partial class MySQLParser : MySqlParserBase {
 			case 8:
 				{
 				State = 1618;
-				if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+				if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 				State = 1619;
 				alterUndoTablespace();
 				}
@@ -3143,7 +3142,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 4);
 				{
 				State = 1753;
-				if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+				if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 				State = 1754;
 				_la = TokenStream.LA(1);
 				if ( !(_la==SECONDARY_LOAD_SYMBOL || _la==SECONDARY_UNLOAD_SYMBOL) ) {
@@ -4062,7 +4061,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 5:
 					{
 					State = 1928;
-					if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+					if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 					State = 1929;
 					Match(CHECK_SYMBOL);
 					State = 1930;
@@ -4072,7 +4071,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 6:
 					{
 					State = 1931;
-					if (!(this.IsServerVersionGe80019())) throw new FailedPredicateException(this, "this.isServerVersionGe80019()");
+					if (!(this.isServerVersionGe80019())) throw new FailedPredicateException(this, "this.isServerVersionGe80019()");
 					State = 1932;
 					Match(CONSTRAINT_SYMBOL);
 					State = 1933;
@@ -4132,7 +4131,7 @@ public partial class MySQLParser : MySqlParserBase {
 					case 1:
 						{
 						State = 1947;
-						if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+						if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 						State = 1948;
 						exprWithParentheses();
 						}
@@ -4157,7 +4156,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 3:
 					{
 					State = 1954;
-					if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+					if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 					State = 1955;
 					Match(SET_SYMBOL);
 					State = 1956;
@@ -4184,7 +4183,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 10);
 				{
 				State = 1964;
-				if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+				if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 				State = 1965;
 				Match(ALTER_SYMBOL);
 				State = 1966;
@@ -4199,7 +4198,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 11);
 				{
 				State = 1970;
-				if (!(this.IsServerVersionGe80019())) throw new FailedPredicateException(this, "this.isServerVersionGe80019()");
+				if (!(this.isServerVersionGe80019())) throw new FailedPredicateException(this, "this.isServerVersionGe80019()");
 				State = 1971;
 				Match(ALTER_SYMBOL);
 				State = 1972;
@@ -4281,7 +4280,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 1:
 					{
 					State = 1996;
-					if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+					if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 					State = 1997;
 					Match(DEFAULT_SYMBOL);
 					}
@@ -5015,7 +5014,7 @@ public partial class MySQLParser : MySqlParserBase {
 			case 3:
 				{
 				State = 2078;
-				if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+				if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 				State = 2079;
 				alterTablespaceOptions();
 				}
@@ -5413,7 +5412,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 7);
 				{
 				State = 2122;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 2123;
 				tsOptionEngineAttribute();
 				}
@@ -5861,7 +5860,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 2171;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 2195;
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,98,Context) ) {
@@ -6115,7 +6114,7 @@ public partial class MySQLParser : MySqlParserBase {
 			case 14:
 				{
 				State = 2213;
-				if (!(this.IsServerVersionGe80011())) throw new FailedPredicateException(this, "this.isServerVersionGe80011()");
+				if (!(this.isServerVersionGe80011())) throw new FailedPredicateException(this, "this.isServerVersionGe80011()");
 				State = 2214;
 				createSpatialReference();
 				}
@@ -6123,7 +6122,7 @@ public partial class MySQLParser : MySqlParserBase {
 			case 15:
 				{
 				State = 2215;
-				if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+				if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 				State = 2216;
 				createUndoTablespace();
 				}
@@ -6277,7 +6276,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 2232;
-				if (!(this.IsServerVersionGe80016())) throw new FailedPredicateException(this, "this.isServerVersionGe80016()");
+				if (!(this.isServerVersionGe80016())) throw new FailedPredicateException(this, "this.isServerVersionGe80016()");
 				State = 2233;
 				defaultEncryption();
 				}
@@ -7132,7 +7131,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 2339;
-				if (!(this.IsStoredRoutineBody())) throw new FailedPredicateException(this, "this.isStoredRoutineBody()");
+				if (!(this.isStoredRoutineBody())) throw new FailedPredicateException(this, "this.isStoredRoutineBody()");
 				State = 2340;
 				Match(AS_SYMBOL);
 				State = 2341;
@@ -7609,7 +7608,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 2:
 					{
 					State = 2403;
-					if (!(this.IsServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
+					if (!(this.isServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
 					State = 2404;
 					identifier();
 					}
@@ -8745,7 +8744,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 2566;
-				if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+				if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 				State = 2569;
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,156,Context) ) {
@@ -9019,7 +9018,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 10);
 				{
 				State = 2595;
-				if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+				if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 				State = 2596;
 				tsOptionEncryption();
 				}
@@ -10819,7 +10818,7 @@ public partial class MySQLParser : MySqlParserBase {
 			case 13:
 				{
 				State = 2819;
-				if (!(this.IsServerVersionGe80011())) throw new FailedPredicateException(this, "this.isServerVersionGe80011()");
+				if (!(this.isServerVersionGe80011())) throw new FailedPredicateException(this, "this.isServerVersionGe80011()");
 				State = 2820;
 				dropSpatialReference();
 				}
@@ -10827,7 +10826,7 @@ public partial class MySQLParser : MySqlParserBase {
 			case 14:
 				{
 				State = 2821;
-				if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+				if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 				State = 2822;
 				dropUndoTablespace();
 				}
@@ -12342,7 +12341,7 @@ public partial class MySQLParser : MySqlParserBase {
 					case 1:
 						{
 						State = 2995;
-						if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+						if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 						State = 2996;
 						tableAlias();
 						}
@@ -13569,7 +13568,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 3156;
-			if (!(this.IsServerVersionGe80018())) throw new FailedPredicateException(this, "this.isServerVersionGe80018()");
+			if (!(this.isServerVersionGe80018())) throw new FailedPredicateException(this, "this.isServerVersionGe80018()");
 			State = 3157;
 			Match(AS_SYMBOL);
 			State = 3158;
@@ -14046,7 +14045,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 3224;
-			if (!(this.IsServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
+			if (!(this.isServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
 			State = 3225;
 			Match(FROM_SYMBOL);
 			}
@@ -14103,7 +14102,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 3228;
-				if (!(this.IsServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
+				if (!(this.isServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
 				State = 3229;
 				_la = TokenStream.LA(1);
 				if ( !(_la==URL_SYMBOL || _la==S3_SYMBOL) ) {
@@ -14159,7 +14158,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 3232;
-			if (!(this.IsServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
+			if (!(this.isServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
 			State = 3238;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,277,Context) ) {
@@ -14223,7 +14222,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 3240;
-			if (!(this.IsServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
+			if (!(this.isServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
 			State = 3241;
 			Match(IN_SYMBOL);
 			State = 3242;
@@ -14611,7 +14610,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 3288;
-			if (!(this.IsServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
+			if (!(this.isServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
 			State = 3289;
 			Match(ALGORITHM_SYMBOL);
 			State = 3290;
@@ -14660,7 +14659,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 3293;
-			if (!(this.IsServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
+			if (!(this.isServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
 			State = 3294;
 			Match(PARALLEL_SYMBOL);
 			State = 3295;
@@ -14711,7 +14710,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 3298;
-			if (!(this.IsServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
+			if (!(this.isServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
 			State = 3299;
 			Match(MEMORY_SYMBOL);
 			State = 3300;
@@ -15015,7 +15014,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 4);
 				{
 				State = 3340;
-				if (!(this.IsSelectStatementWithInto())) throw new FailedPredicateException(this, "this.isSelectStatementWithInto()");
+				if (!(this.isSelectStatementWithInto())) throw new FailedPredicateException(this, "this.isSelectStatementWithInto()");
 				State = 3341;
 				queryExpressionParens();
 				State = 3342;
@@ -15209,7 +15208,7 @@ public partial class MySQLParser : MySqlParserBase {
 					case 2:
 						{
 						State = 3361;
-						if (!(this.IsServerVersionGe80031())) throw new FailedPredicateException(this, "this.isServerVersionGe80031()");
+						if (!(this.isServerVersionGe80031())) throw new FailedPredicateException(this, "this.isServerVersionGe80031()");
 						State = 3362;
 						_la = TokenStream.LA(1);
 						if ( !(_la==EXCEPT_SYMBOL || _la==INTERSECT_SYMBOL) ) {
@@ -15366,7 +15365,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 3382;
-				if (!(this.IsServerVersionGe80019())) throw new FailedPredicateException(this, "this.isServerVersionGe80019()");
+				if (!(this.isServerVersionGe80019())) throw new FailedPredicateException(this, "this.isServerVersionGe80019()");
 				State = 3383;
 				tableValueConstructor();
 				}
@@ -15375,7 +15374,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 3384;
-				if (!(this.IsServerVersionGe80019())) throw new FailedPredicateException(this, "this.isServerVersionGe80019()");
+				if (!(this.isServerVersionGe80019())) throw new FailedPredicateException(this, "this.isServerVersionGe80019()");
 				State = 3385;
 				explicitTable();
 				}
@@ -16205,7 +16204,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 3480;
-			if (!(this.IsServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
+			if (!(this.isServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
 			State = 3481;
 			Match(QUALIFY_SYMBOL);
 			State = 3482;
@@ -17235,7 +17234,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 3596;
-				if (!(this.IsServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
+				if (!(this.isServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
 				State = 3597;
 				Match(GROUP_SYMBOL);
 				State = 3598;
@@ -17820,7 +17819,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 3651;
-			if (!(this.IsServerVersionGe80031())) throw new FailedPredicateException(this, "this.isServerVersionGe80031()");
+			if (!(this.isServerVersionGe80031())) throw new FailedPredicateException(this, "this.isServerVersionGe80031()");
 			State = 3653;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
@@ -18395,7 +18394,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 1:
 					{
 					State = 3709;
-					if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+					if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 					State = 3710;
 					identifier();
 					}
@@ -18957,7 +18956,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 5);
 				{
 				State = 3783;
-				if (!(this.IsServerVersionGe80004())) throw new FailedPredicateException(this, "this.isServerVersionGe80004()");
+				if (!(this.isServerVersionGe80004())) throw new FailedPredicateException(this, "this.isServerVersionGe80004()");
 				State = 3784;
 				tableFunction();
 				}
@@ -19203,7 +19202,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 3814;
-				if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+				if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 				State = 3815;
 				Match(LATERAL_SYMBOL);
 				State = 3816;
@@ -19537,7 +19536,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 1:
 					{
 					State = 3860;
-					if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+					if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 					State = 3861;
 					collate();
 					}
@@ -19989,7 +19988,7 @@ public partial class MySQLParser : MySqlParserBase {
 			case 2:
 				{
 				State = 3909;
-				if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+				if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 				State = 3910;
 				Match(EQUAL_OPERATOR);
 				}
@@ -22177,7 +22176,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 4197;
-				if (!(this.IsServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
+				if (!(this.isServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
 				State = 4198;
 				Match(BINARY_SYMBOL);
 				State = 4199;
@@ -22359,7 +22358,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 4217;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 4218;
 				Match(REPLICATION_SYMBOL);
 				State = 4219;
@@ -22991,7 +22990,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 31);
 				{
 				State = 4352;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 4353;
 				Match(SOURCE_CONNECTION_AUTO_FAILOVER_SYMBOL);
 				State = 4354;
@@ -23004,7 +23003,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 32);
 				{
 				State = 4356;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 4357;
 				Match(ASSIGN_GTIDS_TO_ANONYMOUS_TRANSACTIONS_SYMBOL);
 				State = 4358;
@@ -23017,7 +23016,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 33);
 				{
 				State = 4360;
-				if (!(this.IsServerVersionGe80027())) throw new FailedPredicateException(this, "this.isServerVersionGe80027()");
+				if (!(this.isServerVersionGe80027())) throw new FailedPredicateException(this, "this.isServerVersionGe80027()");
 				State = 4361;
 				Match(GTID_ONLY_SYMBOL);
 				State = 4362;
@@ -26832,7 +26831,7 @@ public partial class MySQLParser : MySqlParserBase {
 			case 3:
 				{
 				State = 4712;
-				if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+				if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 				State = 4713;
 				Match(INSTANCE_SYMBOL);
 				State = 4714;
@@ -27229,7 +27228,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 1:
 					{
 					State = 4758;
-					if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+					if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 					State = 4759;
 					createUserList();
 					}
@@ -27237,7 +27236,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 2:
 					{
 					State = 4760;
-					if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+					if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 					State = 4761;
 					alterUserList();
 					}
@@ -27562,7 +27561,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 4808;
-				if (!(this.IsServerVersionLt80025())) throw new FailedPredicateException(this, "this.isServerVersionLt80025()");
+				if (!(this.isServerVersionLt80025())) throw new FailedPredicateException(this, "this.isServerVersionLt80025()");
 				State = 4809;
 				oldAlterUser();
 				}
@@ -27571,7 +27570,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 4810;
-				if (!(this.IsServerVersionGe80025())) throw new FailedPredicateException(this, "this.isServerVersionGe80025()");
+				if (!(this.isServerVersionGe80025())) throw new FailedPredicateException(this, "this.isServerVersionGe80025()");
 				{
 				State = 4811;
 				user();
@@ -28312,7 +28311,7 @@ public partial class MySQLParser : MySqlParserBase {
 			case 1:
 				{
 				State = 4970;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 4971;
 				userAttributes();
 				}
@@ -28805,7 +28804,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 4:
 					{
 					State = 5027;
-					if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+					if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 					State = 5028;
 					Match(REQUIRE_SYMBOL);
 					State = 5029;
@@ -29265,7 +29264,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 5102;
-				if (!(this.IsServerVersionLt80011())) throw new FailedPredicateException(this, "this.isServerVersionLt80011()");
+				if (!(this.isServerVersionLt80011())) throw new FailedPredicateException(this, "this.isServerVersionLt80011()");
 				State = 5103;
 				createUserList();
 				}
@@ -29274,7 +29273,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 5104;
-				if (!(this.IsServerVersionGe80011())) throw new FailedPredicateException(this, "this.isServerVersionGe80011()");
+				if (!(this.isServerVersionGe80011())) throw new FailedPredicateException(this, "this.isServerVersionGe80011()");
 				State = 5105;
 				userList();
 				}
@@ -29563,7 +29562,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 5130;
-			if (!(this.IsServerVersionLt80011())) throw new FailedPredicateException(this, "this.isServerVersionLt80011()");
+			if (!(this.isServerVersionLt80011())) throw new FailedPredicateException(this, "this.isServerVersionLt80011()");
 			State = 5131;
 			requireClause();
 			}
@@ -29728,7 +29727,7 @@ public partial class MySQLParser : MySqlParserBase {
 			case 1:
 				{
 				State = 5149;
-				if (!(this.IsServerVersionGe80031())) throw new FailedPredicateException(this, "this.isServerVersionGe80031()");
+				if (!(this.isServerVersionGe80031())) throw new FailedPredicateException(this, "this.isServerVersionGe80031()");
 				State = 5150;
 				ifExists();
 				}
@@ -29846,7 +29845,7 @@ public partial class MySQLParser : MySqlParserBase {
 			case 1:
 				{
 				State = 5190;
-				if (!(this.IsServerVersionGe80031())) throw new FailedPredicateException(this, "this.isServerVersionGe80031()");
+				if (!(this.isServerVersionGe80031())) throw new FailedPredicateException(this, "this.isServerVersionGe80031()");
 				State = 5191;
 				ignoreUnknownUser();
 				}
@@ -30385,7 +30384,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 4);
 				{
 				State = 5259;
-				if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+				if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 				State = 5260;
 				schemaRef();
 				State = 5261;
@@ -30609,7 +30608,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 5286;
-				if (!(this.IsServerVersionLt80011())) throw new FailedPredicateException(this, "this.isServerVersionLt80011()");
+				if (!(this.isServerVersionLt80011())) throw new FailedPredicateException(this, "this.isServerVersionLt80011()");
 				State = 5295;
 				ErrorHandler.Sync(this);
 				switch (TokenStream.LA(1)) {
@@ -31172,7 +31171,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 5380;
-			if (!(this.IsServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
+			if (!(this.isServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
 			State = 5381;
 			_la = TokenStream.LA(1);
 			if ( !(_la==AUTO_SYMBOL || _la==MANUAL_SYMBOL) ) {
@@ -31263,7 +31262,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 5390;
-				if (!(this.IsServerVersionGe80031())) throw new FailedPredicateException(this, "this.isServerVersionGe80031()");
+				if (!(this.isServerVersionGe80031())) throw new FailedPredicateException(this, "this.isServerVersionGe80031()");
 				State = 5391;
 				Match(USING_SYMBOL);
 				State = 5392;
@@ -31314,7 +31313,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 5396;
-			if (!(this.IsServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
+			if (!(this.isServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
 			State = 5397;
 			Match(WITH_SYMBOL);
 			State = 5398;
@@ -31930,7 +31929,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 5458;
-			if (!(this.IsServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
+			if (!(this.isServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
 			State = 5459;
 			Match(SET_SYMBOL);
 			State = 5460;
@@ -32181,7 +32180,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 3:
 					{
 					State = 5499;
-					if (!(this.IsServerVersionLt80014())) throw new FailedPredicateException(this, "this.isServerVersionLt80014()");
+					if (!(this.isServerVersionLt80014())) throw new FailedPredicateException(this, "this.isServerVersionLt80014()");
 					State = 5500;
 					Match(PASSWORD_SYMBOL);
 					State = 5501;
@@ -32199,7 +32198,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 5);
 				{
 				State = 5507;
-				if (!(this.IsServerVersionGe80018())) throw new FailedPredicateException(this, "this.isServerVersionGe80018()");
+				if (!(this.isServerVersionGe80018())) throw new FailedPredicateException(this, "this.isServerVersionGe80018()");
 				State = 5508;
 				Match(PASSWORD_SYMBOL);
 				State = 5511;
@@ -32685,7 +32684,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 3:
 					{
 					State = 5578;
-					if (!(this.IsServerVersionGe80011())) throw new FailedPredicateException(this, "this.isServerVersionGe80011()");
+					if (!(this.isServerVersionGe80011())) throw new FailedPredicateException(this, "this.isServerVersionGe80011()");
 					State = 5579;
 					Match(DEFAULT_SYMBOL);
 					}
@@ -33531,7 +33530,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 5671;
-			if (!(this.IsServerVersionGe80100())) throw new FailedPredicateException(this, "this.isServerVersionGe80100()");
+			if (!(this.isServerVersionGe80100())) throw new FailedPredicateException(this, "this.isServerVersionGe80100()");
 			State = 5672;
 			Match(SHOW_SYMBOL);
 			State = 5673;
@@ -38487,7 +38486,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 5);
 				{
 				State = 6215;
-				if (!(this.IsServerVersionGe80011())) throw new FailedPredicateException(this, "this.isServerVersionGe80011()");
+				if (!(this.isServerVersionGe80011())) throw new FailedPredicateException(this, "this.isServerVersionGe80011()");
 				State = 6216;
 				restartServer();
 				}
@@ -38648,7 +38647,7 @@ public partial class MySQLParser : MySqlParserBase {
 			case 1:
 				{
 				State = 6229;
-				if (!(this.IsServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
+				if (!(this.isServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
 				State = 6230;
 				Match(FOR_SYMBOL);
 				State = 6231;
@@ -38724,7 +38723,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 1:
 					{
 					State = 6240;
-					if (!(this.IsServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
+					if (!(this.isServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
 					State = 6241;
 					explainInto();
 					}
@@ -38736,7 +38735,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 6244;
-				if (!(this.IsServerVersionLt80012())) throw new FailedPredicateException(this, "this.isServerVersionLt80012()");
+				if (!(this.isServerVersionLt80012())) throw new FailedPredicateException(this, "this.isServerVersionLt80012()");
 				State = 6245;
 				Match(EXTENDED_SYMBOL);
 				}
@@ -38745,7 +38744,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 6246;
-				if (!(this.IsServerVersionGe80018())) throw new FailedPredicateException(this, "this.isServerVersionGe80018()");
+				if (!(this.isServerVersionGe80018())) throw new FailedPredicateException(this, "this.isServerVersionGe80018()");
 				State = 6247;
 				Match(ANALYZE_SYMBOL);
 				}
@@ -38754,7 +38753,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 4);
 				{
 				State = 6248;
-				if (!(this.IsServerVersionGe80019())) throw new FailedPredicateException(this, "this.isServerVersionGe80019()");
+				if (!(this.isServerVersionGe80019())) throw new FailedPredicateException(this, "this.isServerVersionGe80019()");
 				State = 6249;
 				Match(ANALYZE_SYMBOL);
 				State = 6250;
@@ -39673,7 +39672,7 @@ public partial class MySQLParser : MySqlParserBase {
 			case 2:
 				{
 				State = 6334;
-				if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+				if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 				State = 6335;
 				Match(MEMBER_SYMBOL);
 				State = 6337;
@@ -41224,7 +41223,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 6535;
-			if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+			if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 			State = 6536;
 			Match(ARRAY_SYMBOL);
 			}
@@ -41860,7 +41859,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 2:
 					{
 					State = 6645;
-					if (!(this.IsServerVersionLt80024())) throw new FailedPredicateException(this, "this.isServerVersionLt80024()");
+					if (!(this.isServerVersionLt80024())) throw new FailedPredicateException(this, "this.isServerVersionLt80024()");
 					State = 6646;
 					simpleExprWithParentheses();
 					}
@@ -42166,7 +42165,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 6695;
-			if (!(this.IsServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
+			if (!(this.isServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
 			State = 6696;
 			Match(TABLESAMPLE_SYMBOL);
 			State = 6697;
@@ -42313,7 +42312,7 @@ public partial class MySQLParser : MySqlParserBase {
 			case 3:
 				{
 				State = 6710;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 6711;
 				stableInteger();
 				}
@@ -43491,7 +43490,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 26);
 				{
 				State = 6919;
-				if (!(this.IsServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
+				if (!(this.isServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
 				State = 6920;
 				Match(LOG_SYMBOL);
 				State = 6921;
@@ -43776,7 +43775,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 44);
 				{
 				State = 7005;
-				if (!(this.IsServerVersionLt80011())) throw new FailedPredicateException(this, "this.isServerVersionLt80011()");
+				if (!(this.isServerVersionLt80011())) throw new FailedPredicateException(this, "this.isServerVersionLt80011()");
 				State = 7006;
 				Match(PASSWORD_SYMBOL);
 				State = 7007;
@@ -45214,7 +45213,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 2:
 					{
 					State = 7229;
-					if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+					if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 					State = 7230;
 					lValueIdentifier();
 					State = 7232;
@@ -45621,7 +45620,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 7);
 				{
 				State = 7277;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 7278;
 				Match(YEAR_SYMBOL);
 				}
@@ -45688,7 +45687,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 12);
 				{
 				State = 7292;
-				if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+				if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 				State = 7293;
 				realType();
 				}
@@ -45697,7 +45696,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 13);
 				{
 				State = 7294;
-				if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+				if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 				State = 7295;
 				Match(FLOAT_SYMBOL);
 				State = 7297;
@@ -45716,7 +45715,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 14);
 				{
 				State = 7299;
-				if (!(this.IsServerVersionGe80027())) throw new FailedPredicateException(this, "this.isServerVersionGe80027()");
+				if (!(this.isServerVersionGe80027())) throw new FailedPredicateException(this, "this.isServerVersionGe80027()");
 				State = 7300;
 				_la = TokenStream.LA(1);
 				if ( !(_la==GEOMETRYCOLLECTION_SYMBOL || _la==LINESTRING_SYMBOL || ((((_la - 374)) & ~0x3f) == 0 && ((1L << (_la - 374)) & 108086391056891911L) != 0)) ) {
@@ -49499,7 +49498,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 7668;
-				if (!(this.IsServerVersionLt80016())) throw new FailedPredicateException(this, "this.isServerVersionLt80016()");
+				if (!(this.isServerVersionLt80016())) throw new FailedPredicateException(this, "this.isServerVersionLt80016()");
 				State = 7669;
 				checkConstraint();
 				}
@@ -49599,7 +49598,7 @@ public partial class MySQLParser : MySqlParserBase {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 7676;
-			if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+			if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 			State = 7678;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
@@ -50294,7 +50293,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 7793;
-				if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+				if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 				State = 7794;
 				Match(NOT_SYMBOL);
 				State = 7795;
@@ -50318,7 +50317,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 2:
 					{
 					State = 7798;
-					if (!(this.IsServerVersionGe80013())) throw new FailedPredicateException(this, "this.isServerVersionGe80013()");
+					if (!(this.isServerVersionGe80013())) throw new FailedPredicateException(this, "this.isServerVersionGe80013()");
 					State = 7799;
 					exprWithParentheses();
 					}
@@ -50446,7 +50445,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 14);
 				{
 				State = 7829;
-				if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+				if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 				State = 7831;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
@@ -50465,7 +50464,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 15);
 				{
 				State = 7834;
-				if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+				if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 				State = 7835;
 				constraintEnforcement();
 				}
@@ -50474,7 +50473,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 16);
 				{
 				State = 7836;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 7837;
 				_localctx.value = Match(ENGINE_ATTRIBUTE_SYMBOL);
 				State = 7839;
@@ -50495,7 +50494,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 17);
 				{
 				State = 7842;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 7843;
 				_localctx.value = Match(SECONDARY_ENGINE_ATTRIBUTE_SYMBOL);
 				State = 7845;
@@ -50516,7 +50515,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 18);
 				{
 				State = 7848;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 7849;
 				visibility();
 				}
@@ -51360,7 +51359,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 7945;
-				if (!(this.IsServerVersionGe80013())) throw new FailedPredicateException(this, "this.isServerVersionGe80013()");
+				if (!(this.isServerVersionGe80013())) throw new FailedPredicateException(this, "this.isServerVersionGe80013()");
 				State = 7946;
 				exprWithParentheses();
 				State = 7948;
@@ -51583,7 +51582,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 4);
 				{
 				State = 7966;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 7967;
 				Match(ENGINE_ATTRIBUTE_SYMBOL);
 				State = 7969;
@@ -51604,7 +51603,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 5);
 				{
 				State = 7972;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 7973;
 				Match(SECONDARY_ENGINE_ATTRIBUTE_SYMBOL);
 				State = 7975;
@@ -53389,7 +53388,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 8217;
-				if (!(this.IsServerVersionLt80011())) throw new FailedPredicateException(this, "this.isServerVersionLt80011()");
+				if (!(this.isServerVersionLt80011())) throw new FailedPredicateException(this, "this.isServerVersionLt80011()");
 				State = 8218;
 				Match(DEFAULT_SYMBOL);
 				}
@@ -53449,7 +53448,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 8222;
-				if (!(this.IsServerVersionLt80011())) throw new FailedPredicateException(this, "this.isServerVersionLt80011()");
+				if (!(this.isServerVersionLt80011())) throw new FailedPredicateException(this, "this.isServerVersionLt80011()");
 				State = 8223;
 				Match(DEFAULT_SYMBOL);
 				}
@@ -53458,7 +53457,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 8224;
-				if (!(this.IsServerVersionGe80018())) throw new FailedPredicateException(this, "this.isServerVersionGe80018()");
+				if (!(this.isServerVersionGe80018())) throw new FailedPredicateException(this, "this.isServerVersionGe80018()");
 				State = 8225;
 				Match(BINARY_SYMBOL);
 				}
@@ -53897,7 +53896,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 8262;
-				if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+				if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 				State = 8263;
 				_localctx.option = Match(SECONDARY_ENGINE_SYMBOL);
 				State = 8265;
@@ -54382,7 +54381,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 26);
 				{
 				State = 8380;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 8381;
 				_localctx.option = Match(START_SYMBOL);
 				State = 8382;
@@ -54393,7 +54392,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 27);
 				{
 				State = 8383;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 8384;
 				_localctx.option = Match(ENGINE_ATTRIBUTE_SYMBOL);
 				State = 8386;
@@ -54414,7 +54413,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 28);
 				{
 				State = 8389;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 8390;
 				_localctx.option = Match(SECONDARY_ENGINE_ATTRIBUTE_SYMBOL);
 				State = 8392;
@@ -54435,7 +54434,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 29);
 				{
 				State = 8395;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 8396;
 				tsOptionAutoextendSize();
 				}
@@ -56123,7 +56122,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 8631;
-				if (!(this.IsServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
+				if (!(this.isServerVersionGe80032())) throw new FailedPredicateException(this, "this.isServerVersionGe80032()");
 				State = 8635;
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,1097,Context) ) {
@@ -60691,7 +60690,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 9003;
-				if (!(this.IsPureIdentifier())) throw new FailedPredicateException(this, "this.isPureIdentifier()");
+				if (!(this.isPureIdentifier())) throw new FailedPredicateException(this, "this.isPureIdentifier()");
 				State = 9004;
 				Match(DOUBLE_QUOTED_TEXT);
 				}
@@ -61258,7 +61257,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 9044;
-				if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+				if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 				State = 9045;
 				Match(HEX_NUMBER);
 				}
@@ -61405,7 +61404,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 9058;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 9059;
 				nullAsLiteral();
 				}
@@ -61583,7 +61582,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 9074;
-				if (!(this.IsServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
+				if (!(this.isServerVersionGe80024())) throw new FailedPredicateException(this, "this.isServerVersionGe80024()");
 				State = 9075;
 				nullAsLiteral();
 				}
@@ -61755,7 +61754,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 9092;
-				if (!(this.IsTextStringLiteral())) throw new FailedPredicateException(this, "this.isTextStringLiteral()");
+				if (!(this.isTextStringLiteral())) throw new FailedPredicateException(this, "this.isTextStringLiteral()");
 				State = 9093;
 				_localctx.value = Match(DOUBLE_QUOTED_TEXT);
 				}
@@ -61879,7 +61878,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 9102;
-				if (!(this.IsServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
+				if (!(this.isServerVersionGe80017())) throw new FailedPredicateException(this, "this.isServerVersionGe80017()");
 				State = 9103;
 				Match(HEX_NUMBER);
 				}
@@ -63155,7 +63154,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 9196;
-				if (!(this.IsServerVersionLt80017())) throw new FailedPredicateException(this, "this.isServerVersionLt80017()");
+				if (!(this.isServerVersionLt80017())) throw new FailedPredicateException(this, "this.isServerVersionLt80017()");
 				State = 9203;
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,1164,Context) ) {
@@ -63186,7 +63185,7 @@ public partial class MySQLParser : MySqlParserBase {
 				case 5:
 					{
 					State = 9201;
-					if (!(this.IsServerVersionGe80011())) throw new FailedPredicateException(this, "this.isServerVersionGe80011()");
+					if (!(this.isServerVersionGe80011())) throw new FailedPredicateException(this, "this.isServerVersionGe80011()");
 					State = 9202;
 					Match(RESTART_SYMBOL);
 					}
@@ -63431,7 +63430,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 9218;
-				if (!(this.IsServerVersionLt80017())) throw new FailedPredicateException(this, "this.isServerVersionLt80017()");
+				if (!(this.isServerVersionLt80017())) throw new FailedPredicateException(this, "this.isServerVersionLt80017()");
 				State = 9229;
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,1167,Context) ) {
@@ -64070,7 +64069,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 9241;
-				if (!(this.IsServerVersionGe80019())) throw new FailedPredicateException(this, "this.isServerVersionGe80019()");
+				if (!(this.isServerVersionGe80019())) throw new FailedPredicateException(this, "this.isServerVersionGe80019()");
 				State = 9242;
 				_la = TokenStream.LA(1);
 				if ( !(_la==TIMESTAMP_SYMBOL || _la==TIME_SYMBOL || ((((_la - 739)) & ~0x3f) == 0 && ((1L << (_la - 739)) & 16381L) != 0)) ) {
@@ -64086,7 +64085,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 9243;
-				if (!(this.IsServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
+				if (!(this.isServerVersionGe80200())) throw new FailedPredicateException(this, "this.isServerVersionGe80200()");
 				State = 9244;
 				_la = TokenStream.LA(1);
 				if ( !(((((_la - 804)) & ~0x3f) == 0 && ((1L << (_la - 804)) & 2237L) != 0)) ) {
@@ -64156,7 +64155,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 9247;
-				if (!(this.IsServerVersionLt80017())) throw new FailedPredicateException(this, "this.isServerVersionLt80017()");
+				if (!(this.isServerVersionLt80017())) throw new FailedPredicateException(this, "this.isServerVersionLt80017()");
 				State = 9250;
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,1171,Context) ) {
@@ -64833,7 +64832,7 @@ public partial class MySQLParser : MySqlParserBase {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 9270;
-				if (!(this.IsServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
+				if (!(this.isServerVersionGe80014())) throw new FailedPredicateException(this, "this.isServerVersionGe80014()");
 				State = 9271;
 				Match(ADMIN_SYMBOL);
 				}
@@ -64946,356 +64945,356 @@ public partial class MySQLParser : MySqlParserBase {
 	}
 	private bool alterStatement_sempred(AlterStatementContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 0: return this.IsServerVersionGe80014();
+		case 0: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool standaloneAlterCommands_sempred(StandaloneAlterCommandsContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 1: return this.IsServerVersionGe80014();
+		case 1: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool alterListItem_sempred(AlterListItemContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 2: return this.IsServerVersionGe80017();
-		case 3: return this.IsServerVersionGe80019();
-		case 4: return this.IsServerVersionGe80014();
-		case 5: return this.IsServerVersionGe80024();
-		case 6: return this.IsServerVersionGe80017();
-		case 7: return this.IsServerVersionGe80019();
-		case 8: return this.IsServerVersionGe80014();
+		case 2: return this.isServerVersionGe80017();
+		case 3: return this.isServerVersionGe80019();
+		case 4: return this.isServerVersionGe80014();
+		case 5: return this.isServerVersionGe80024();
+		case 6: return this.isServerVersionGe80017();
+		case 7: return this.isServerVersionGe80019();
+		case 8: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool alterTablespace_sempred(AlterTablespaceContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 9: return this.IsServerVersionGe80014();
+		case 9: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool alterTablespaceOption_sempred(AlterTablespaceOptionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 10: return this.IsServerVersionGe80024();
+		case 10: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool alterInstanceStatement_sempred(AlterInstanceStatementContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 11: return this.IsServerVersionGe80024();
+		case 11: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool createStatement_sempred(CreateStatementContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 12: return this.IsServerVersionGe80011();
-		case 13: return this.IsServerVersionGe80014();
+		case 12: return this.isServerVersionGe80011();
+		case 13: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool createDatabaseOption_sempred(CreateDatabaseOptionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 14: return this.IsServerVersionGe80016();
+		case 14: return this.isServerVersionGe80016();
 		}
 		return true;
 	}
 	private bool storedRoutineBody_sempred(StoredRoutineBodyContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 15: return this.IsStoredRoutineBody();
+		case 15: return this.isStoredRoutineBody();
 		}
 		return true;
 	}
 	private bool routineOption_sempred(RoutineOptionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 16: return this.IsServerVersionGe80032();
+		case 16: return this.isServerVersionGe80032();
 		}
 		return true;
 	}
 	private bool tsDataFileName_sempred(TsDataFileNameContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 17: return this.IsServerVersionGe80014();
+		case 17: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool tablespaceOption_sempred(TablespaceOptionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 18: return this.IsServerVersionGe80014();
+		case 18: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool dropStatement_sempred(DropStatementContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 19: return this.IsServerVersionGe80011();
-		case 20: return this.IsServerVersionGe80014();
+		case 19: return this.isServerVersionGe80011();
+		case 20: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool deleteStatement_sempred(DeleteStatementContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 21: return this.IsServerVersionGe80017();
+		case 21: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
 	private bool valuesReference_sempred(ValuesReferenceContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 22: return this.IsServerVersionGe80018();
+		case 22: return this.isServerVersionGe80018();
 		}
 		return true;
 	}
 	private bool loadFrom_sempred(LoadFromContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 23: return this.IsServerVersionGe80200();
+		case 23: return this.isServerVersionGe80200();
 		}
 		return true;
 	}
 	private bool loadSourceType_sempred(LoadSourceTypeContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 24: return this.IsServerVersionGe80200();
+		case 24: return this.isServerVersionGe80200();
 		}
 		return true;
 	}
 	private bool sourceCount_sempred(SourceCountContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 25: return this.IsServerVersionGe80200();
+		case 25: return this.isServerVersionGe80200();
 		}
 		return true;
 	}
 	private bool sourceOrder_sempred(SourceOrderContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 26: return this.IsServerVersionGe80200();
+		case 26: return this.isServerVersionGe80200();
 		}
 		return true;
 	}
 	private bool loadAlgorithm_sempred(LoadAlgorithmContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 27: return this.IsServerVersionGe80200();
+		case 27: return this.isServerVersionGe80200();
 		}
 		return true;
 	}
 	private bool loadParallel_sempred(LoadParallelContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 28: return this.IsServerVersionGe80200();
+		case 28: return this.isServerVersionGe80200();
 		}
 		return true;
 	}
 	private bool loadMemory_sempred(LoadMemoryContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 29: return this.IsServerVersionGe80200();
+		case 29: return this.isServerVersionGe80200();
 		}
 		return true;
 	}
 	private bool selectStatementWithInto_sempred(SelectStatementWithIntoContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 30: return this.IsSelectStatementWithInto();
+		case 30: return this.isSelectStatementWithInto();
 		}
 		return true;
 	}
 	private bool queryExpressionBody_sempred(QueryExpressionBodyContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 31: return this.IsServerVersionGe80031();
+		case 31: return this.isServerVersionGe80031();
 		}
 		return true;
 	}
 	private bool queryPrimary_sempred(QueryPrimaryContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 32: return this.IsServerVersionGe80019();
-		case 33: return this.IsServerVersionGe80019();
+		case 32: return this.isServerVersionGe80019();
+		case 33: return this.isServerVersionGe80019();
 		}
 		return true;
 	}
 	private bool qualifyClause_sempred(QualifyClauseContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 34: return this.IsServerVersionGe80200();
+		case 34: return this.isServerVersionGe80200();
 		}
 		return true;
 	}
 	private bool groupByClause_sempred(GroupByClauseContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 35: return this.IsServerVersionGe80032();
+		case 35: return this.isServerVersionGe80032();
 		}
 		return true;
 	}
 	private bool lockingClauseList_sempred(LockingClauseListContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 36: return this.IsServerVersionGe80031();
+		case 36: return this.isServerVersionGe80031();
 		}
 		return true;
 	}
 	private bool tableReference_sempred(TableReferenceContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 37: return this.IsServerVersionGe80017();
+		case 37: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
 	private bool tableFactor_sempred(TableFactorContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 38: return this.IsServerVersionGe80004();
+		case 38: return this.isServerVersionGe80004();
 		}
 		return true;
 	}
 	private bool derivedTable_sempred(DerivedTableContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 39: return this.IsServerVersionGe80014();
+		case 39: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool jtColumn_sempred(JtColumnContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 40: return this.IsServerVersionGe80014();
+		case 40: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool tableAlias_sempred(TableAliasContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 41: return this.IsServerVersionGe80017();
+		case 41: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
 	private bool masterOrBinaryLogsAndGtids_sempred(MasterOrBinaryLogsAndGtidsContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 42: return this.IsServerVersionGe80032();
+		case 42: return this.isServerVersionGe80032();
 		}
 		return true;
 	}
 	private bool changeReplicationSource_sempred(ChangeReplicationSourceContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 43: return this.IsServerVersionGe80024();
+		case 43: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool sourceDefinition_sempred(SourceDefinitionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 44: return this.IsServerVersionGe80024();
-		case 45: return this.IsServerVersionGe80024();
-		case 46: return this.IsServerVersionGe80027();
+		case 44: return this.isServerVersionGe80024();
+		case 45: return this.isServerVersionGe80024();
+		case 46: return this.isServerVersionGe80027();
 		}
 		return true;
 	}
 	private bool cloneStatement_sempred(CloneStatementContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 47: return this.IsServerVersionGe80014();
+		case 47: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool alterUserStatement_sempred(AlterUserStatementContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 48: return this.IsServerVersionGe80014();
-		case 49: return this.IsServerVersionGe80014();
+		case 48: return this.isServerVersionGe80014();
+		case 49: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool alterUser_sempred(AlterUserContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 50: return this.IsServerVersionLt80025();
-		case 51: return this.IsServerVersionGe80025();
+		case 50: return this.isServerVersionLt80025();
+		case 51: return this.isServerVersionGe80025();
 		}
 		return true;
 	}
 	private bool createUserTail_sempred(CreateUserTailContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 52: return this.IsServerVersionGe80024();
+		case 52: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool accountLockPasswordExpireOptions_sempred(AccountLockPasswordExpireOptionsContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 53: return this.IsServerVersionGe80014();
+		case 53: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool grantTargetList_sempred(GrantTargetListContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 54: return this.IsServerVersionLt80011();
-		case 55: return this.IsServerVersionGe80011();
+		case 54: return this.isServerVersionLt80011();
+		case 55: return this.isServerVersionGe80011();
 		}
 		return true;
 	}
 	private bool versionedRequireClause_sempred(VersionedRequireClauseContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 56: return this.IsServerVersionLt80011();
+		case 56: return this.isServerVersionLt80011();
 		}
 		return true;
 	}
 	private bool revokeStatement_sempred(RevokeStatementContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 57: return this.IsServerVersionGe80031();
-		case 58: return this.IsServerVersionGe80031();
+		case 57: return this.isServerVersionGe80031();
+		case 58: return this.isServerVersionGe80031();
 		}
 		return true;
 	}
 	private bool grantIdentifier_sempred(GrantIdentifierContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 59: return this.IsServerVersionGe80017();
+		case 59: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
 	private bool grantOption_sempred(GrantOptionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 60: return this.IsServerVersionLt80011();
+		case 60: return this.isServerVersionLt80011();
 		}
 		return true;
 	}
 	private bool histogramAutoUpdate_sempred(HistogramAutoUpdateContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 61: return this.IsServerVersionGe80200();
+		case 61: return this.isServerVersionGe80200();
 		}
 		return true;
 	}
 	private bool histogramUpdateParam_sempred(HistogramUpdateParamContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 62: return this.IsServerVersionGe80031();
+		case 62: return this.isServerVersionGe80031();
 		}
 		return true;
 	}
 	private bool histogramNumBuckets_sempred(HistogramNumBucketsContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 63: return this.IsServerVersionGe80200();
+		case 63: return this.isServerVersionGe80200();
 		}
 		return true;
 	}
 	private bool installSetValueList_sempred(InstallSetValueListContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 64: return this.IsServerVersionGe80032();
+		case 64: return this.isServerVersionGe80032();
 		}
 		return true;
 	}
 	private bool startOptionValueList_sempred(StartOptionValueListContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 65: return this.IsServerVersionLt80014();
-		case 66: return this.IsServerVersionGe80018();
+		case 65: return this.isServerVersionLt80014();
+		case 66: return this.isServerVersionGe80018();
 		}
 		return true;
 	}
 	private bool optionValueNoOptionType_sempred(OptionValueNoOptionTypeContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 67: return this.IsServerVersionGe80011();
+		case 67: return this.isServerVersionGe80011();
 		}
 		return true;
 	}
 	private bool showParseTreeStatement_sempred(ShowParseTreeStatementContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 68: return this.IsServerVersionGe80100();
+		case 68: return this.isServerVersionGe80100();
 		}
 		return true;
 	}
 	private bool utilityStatement_sempred(UtilityStatementContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 69: return this.IsServerVersionGe80011();
+		case 69: return this.isServerVersionGe80011();
 		}
 		return true;
 	}
 	private bool explainStatement_sempred(ExplainStatementContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 70: return this.IsServerVersionGe80032();
+		case 70: return this.isServerVersionGe80032();
 		}
 		return true;
 	}
 	private bool explainOptions_sempred(ExplainOptionsContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 71: return this.IsServerVersionGe80032();
-		case 72: return this.IsServerVersionLt80012();
-		case 73: return this.IsServerVersionGe80018();
-		case 74: return this.IsServerVersionGe80019();
+		case 71: return this.isServerVersionGe80032();
+		case 72: return this.isServerVersionLt80012();
+		case 73: return this.isServerVersionGe80018();
+		case 74: return this.isServerVersionGe80019();
 		}
 		return true;
 	}
@@ -65317,7 +65316,7 @@ public partial class MySQLParser : MySqlParserBase {
 	}
 	private bool predicate_sempred(PredicateContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 81: return this.IsServerVersionGe80017();
+		case 81: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
@@ -65342,181 +65341,181 @@ public partial class MySQLParser : MySqlParserBase {
 	}
 	private bool arrayCast_sempred(ArrayCastContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 91: return this.IsServerVersionGe80017();
+		case 91: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
 	private bool windowFunctionCall_sempred(WindowFunctionCallContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 92: return this.IsServerVersionLt80024();
+		case 92: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool tablesampleClause_sempred(TablesampleClauseContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 93: return this.IsServerVersionGe80200();
+		case 93: return this.isServerVersionGe80200();
 		}
 		return true;
 	}
 	private bool leadLagInfo_sempred(LeadLagInfoContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 94: return this.IsServerVersionGe80024();
+		case 94: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool runtimeFunctionCall_sempred(RuntimeFunctionCallContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 95: return this.IsServerVersionGe80032();
-		case 96: return this.IsServerVersionLt80011();
+		case 95: return this.isServerVersionGe80032();
+		case 96: return this.isServerVersionLt80011();
 		}
 		return true;
 	}
 	private bool lvalueVariable_sempred(LvalueVariableContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 97: return this.IsServerVersionGe80017();
+		case 97: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
 	private bool castType_sempred(CastTypeContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 98: return this.IsServerVersionGe80024();
-		case 99: return this.IsServerVersionGe80017();
-		case 100: return this.IsServerVersionGe80017();
-		case 101: return this.IsServerVersionGe80027();
+		case 98: return this.isServerVersionGe80024();
+		case 99: return this.isServerVersionGe80017();
+		case 100: return this.isServerVersionGe80017();
+		case 101: return this.isServerVersionGe80027();
 		}
 		return true;
 	}
 	private bool checkOrReferences_sempred(CheckOrReferencesContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 102: return this.IsServerVersionLt80016();
+		case 102: return this.isServerVersionLt80016();
 		}
 		return true;
 	}
 	private bool constraintEnforcement_sempred(ConstraintEnforcementContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 103: return this.IsServerVersionGe80017();
+		case 103: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
 	private bool columnAttribute_sempred(ColumnAttributeContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 104: return this.IsServerVersionGe80014();
-		case 105: return this.IsServerVersionGe80013();
-		case 106: return this.IsServerVersionGe80017();
-		case 107: return this.IsServerVersionGe80017();
-		case 108: return this.IsServerVersionGe80024();
-		case 109: return this.IsServerVersionGe80024();
-		case 110: return this.IsServerVersionGe80024();
+		case 104: return this.isServerVersionGe80014();
+		case 105: return this.isServerVersionGe80013();
+		case 106: return this.isServerVersionGe80017();
+		case 107: return this.isServerVersionGe80017();
+		case 108: return this.isServerVersionGe80024();
+		case 109: return this.isServerVersionGe80024();
+		case 110: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool keyPartOrExpression_sempred(KeyPartOrExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 111: return this.IsServerVersionGe80013();
+		case 111: return this.isServerVersionGe80013();
 		}
 		return true;
 	}
 	private bool commonIndexOption_sempred(CommonIndexOptionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 112: return this.IsServerVersionGe80024();
-		case 113: return this.IsServerVersionGe80024();
+		case 112: return this.isServerVersionGe80024();
+		case 113: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool charsetName_sempred(CharsetNameContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 114: return this.IsServerVersionLt80011();
+		case 114: return this.isServerVersionLt80011();
 		}
 		return true;
 	}
 	private bool collationName_sempred(CollationNameContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 115: return this.IsServerVersionLt80011();
-		case 116: return this.IsServerVersionGe80018();
+		case 115: return this.isServerVersionLt80011();
+		case 116: return this.isServerVersionGe80018();
 		}
 		return true;
 	}
 	private bool createTableOption_sempred(CreateTableOptionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 117: return this.IsServerVersionGe80014();
-		case 118: return this.IsServerVersionGe80024();
-		case 119: return this.IsServerVersionGe80024();
-		case 120: return this.IsServerVersionGe80024();
-		case 121: return this.IsServerVersionGe80024();
+		case 117: return this.isServerVersionGe80014();
+		case 118: return this.isServerVersionGe80024();
+		case 119: return this.isServerVersionGe80024();
+		case 120: return this.isServerVersionGe80024();
+		case 121: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool persistedVariableIdentifier_sempred(PersistedVariableIdentifierContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 122: return this.IsServerVersionGe80032();
+		case 122: return this.isServerVersionGe80032();
 		}
 		return true;
 	}
 	private bool pureIdentifier_sempred(PureIdentifierContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 123: return this.IsPureIdentifier();
+		case 123: return this.isPureIdentifier();
 		}
 		return true;
 	}
 	private bool real_ulonglong_number_sempred(Real_ulonglong_numberContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 124: return this.IsServerVersionGe80017();
+		case 124: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
 	private bool signedLiteralOrNull_sempred(SignedLiteralOrNullContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 125: return this.IsServerVersionGe80024();
+		case 125: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool literalOrNull_sempred(LiteralOrNullContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 126: return this.IsServerVersionGe80024();
+		case 126: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool textStringLiteral_sempred(TextStringLiteralContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 127: return this.IsTextStringLiteral();
+		case 127: return this.isTextStringLiteral();
 		}
 		return true;
 	}
 	private bool textStringHash_sempred(TextStringHashContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 128: return this.IsServerVersionGe80017();
+		case 128: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
 	private bool identifierKeyword_sempred(IdentifierKeywordContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 129: return this.IsServerVersionLt80017();
-		case 130: return this.IsServerVersionGe80011();
+		case 129: return this.isServerVersionLt80017();
+		case 130: return this.isServerVersionGe80011();
 		}
 		return true;
 	}
 	private bool labelKeyword_sempred(LabelKeywordContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 131: return this.IsServerVersionLt80017();
+		case 131: return this.isServerVersionLt80017();
 		}
 		return true;
 	}
 	private bool identifierKeywordsUnambiguous_sempred(IdentifierKeywordsUnambiguousContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 132: return this.IsServerVersionGe80019();
-		case 133: return this.IsServerVersionGe80200();
+		case 132: return this.isServerVersionGe80019();
+		case 133: return this.isServerVersionGe80200();
 		}
 		return true;
 	}
 	private bool roleKeyword_sempred(RoleKeywordContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 134: return this.IsServerVersionLt80017();
+		case 134: return this.isServerVersionLt80017();
 		}
 		return true;
 	}
 	private bool roleOrLabelKeyword_sempred(RoleOrLabelKeywordContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 135: return this.IsServerVersionGe80014();
+		case 135: return this.isServerVersionGe80014();
 		}
 		return true;
 	}

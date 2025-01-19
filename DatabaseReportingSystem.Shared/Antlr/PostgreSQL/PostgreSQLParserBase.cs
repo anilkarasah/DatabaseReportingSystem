@@ -19,45 +19,40 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-using System.Text;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
-
-namespace DatabaseReportingSystem.Shared.Antlr.PostgreSQL;
+using System.Text;
 
 public abstract class PostgreSQLParserBase : Parser
 {
-    protected PostgreSQLParserBase(ITokenStream input)
-        : base(input)
-    {
-    }
+    public PostgreSQLParserBase(ITokenStream input)
+        : base(input) { }
 
-    protected PostgreSQLParserBase(ITokenStream input, TextWriter output, TextWriter errorOutput)
-        : base(input, output, errorOutput)
-    {
-    }
+    public PostgreSQLParserBase(ITokenStream input, TextWriter output, TextWriter errorOutput)
+        : base(input, output, errorOutput) { }
 
     internal IParseTree GetParsedSqlTree(string script, int line = 0)
     {
-        PostgreSQLParser ph = getPostgreSQLParser(script);
-        PostgreSQLParser.RootContext? result = ph.root();
+        var ph = getPostgreSQLParser(script);
+        var result = ph.root();
         return result;
     }
 
     internal void ParseRoutineBody()
     {
-        PostgreSQLParser.Createfunc_opt_listContext localctx = Context as PostgreSQLParser.Createfunc_opt_listContext;
-        string? lang =
-            localctx
+        PostgreSQLParser.Createfunc_opt_listContext _localctx =
+            this.Context as PostgreSQLParser.Createfunc_opt_listContext;
+        var lang =
+            _localctx
                 .createfunc_opt_item()
                 .FirstOrDefault(coi => coi.LANGUAGE() != null)
                 ?.nonreservedword_or_sconst()?.nonreservedword()?.identifier()?
                 .Identifier()?.GetText();
-        PostgreSQLParser.Createfunc_opt_itemContext? func_as = localctx.createfunc_opt_item()
+        var func_as = _localctx.createfunc_opt_item()
             .FirstOrDefault(coi => coi.func_as() != null);
         if (func_as != null)
         {
-            string txt = GetRoutineBodyString(func_as.func_as().sconst(0));
+            var txt = GetRoutineBodyString(func_as.func_as().sconst(0));
             switch (lang)
             {
                 case "plpgsql":
@@ -86,44 +81,47 @@ public abstract class PostgreSQLParserBase : Parser
     private string unquote(string s)
     {
         var r = new StringBuilder(s.Length);
-        int i = 0;
+        var i = 0;
         while (i < s.Length)
         {
-            char c = s[i];
+            var c = s[i];
             r.Append(c);
             if (c == '\'' && i < s.Length - 1 && (s[i + 1] == '\'')) i++;
             i++;
         }
+
         return r.ToString();
     }
 
     private string GetRoutineBodyString(PostgreSQLParser.SconstContext rule)
     {
-        PostgreSQLParser.AnysconstContext? anysconst = rule.anysconst();
-        ITerminalNode? StringConstant = anysconst.StringConstant();
+        var anysconst = rule.anysconst();
+        var StringConstant = anysconst.StringConstant();
         if (null != StringConstant) return unquote(TrimQuotes(StringConstant.GetText()));
-        ITerminalNode? UnicodeEscapeStringConstant = anysconst.UnicodeEscapeStringConstant();
+        var UnicodeEscapeStringConstant = anysconst.UnicodeEscapeStringConstant();
         if (null != UnicodeEscapeStringConstant) return TrimQuotes(UnicodeEscapeStringConstant.GetText());
-        ITerminalNode? EscapeStringConstant = anysconst.EscapeStringConstant();
+        var EscapeStringConstant = anysconst.EscapeStringConstant();
         if (null != EscapeStringConstant) return TrimQuotes(EscapeStringConstant.GetText());
         string result = "";
         var dollartext = anysconst.DollarText();
-        foreach (ITerminalNode? s in dollartext)
+        foreach (var s in dollartext)
         {
             result += s;
         }
+
         return result;
     }
 
     private PostgreSQLParser getPostgreSQLParser(string script)
     {
-        ICharStream? charStream = CharStreams.fromString(script);
+        var charStream = CharStreams.fromString(script);
         var lexer = new PostgreSQLLexer(charStream);
         var tokens = new CommonTokenStream(lexer);
         var parser = new PostgreSQLParser(tokens);
         lexer.RemoveErrorListeners();
         parser.RemoveErrorListeners();
-        var listener_lexer = new LexerDispatchingErrorListener((InputStream as CommonTokenStream).TokenSource as Lexer);
+        var listener_lexer =
+            new LexerDispatchingErrorListener((this.InputStream as CommonTokenStream).TokenSource as Lexer);
         var listener_parser = new ParserDispatchingErrorListener(this);
         lexer.AddErrorListener(listener_lexer);
         parser.AddErrorListener(listener_parser);
@@ -132,8 +130,8 @@ public abstract class PostgreSQLParserBase : Parser
 
     public bool OnlyAcceptableOps()
     {
-        IToken? c = ((CommonTokenStream)InputStream).LT(1);
-        string? text = c.Text;
+        var c = ((CommonTokenStream)this.InputStream).LT(1);
+        var text = c.Text;
         return text == "!" || text == "!!"
                            || text == "!=-" // Code for specific example.
             ;

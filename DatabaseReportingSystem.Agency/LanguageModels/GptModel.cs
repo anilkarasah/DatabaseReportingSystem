@@ -21,7 +21,11 @@ public sealed class GptModel(string modelName, string apiKey) : ILanguageModel
 
         if (completion.Content.Count == 0) throw new InvalidOperationException("No response from GPT.");
 
-        return Utilities.TrimSqlString(completion.Content[0].Text);
+        string trimmedQuery = Utilities.TrimSqlString(completion.Content[0].Text);
+
+        return trimmedQuery.EndsWith(';')
+            ? trimmedQuery
+            : trimmedQuery + ';';
     }
 
     public OpenAIChatAgent GetChatAgent(string name, string systemMessage = "")

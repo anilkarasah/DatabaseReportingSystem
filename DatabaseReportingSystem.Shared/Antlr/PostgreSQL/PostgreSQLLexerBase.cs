@@ -19,29 +19,31 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-using System.Diagnostics;
 using Antlr4.Runtime;
-
-namespace DatabaseReportingSystem.Shared.Antlr.PostgreSQL;
+using System.Diagnostics;
 
 public abstract class PostgreSQLLexerBase : Lexer
 {
-    protected Stack<string> tags = new();
+    protected Stack<string> tags = new Stack<string>();
 
-    protected PostgreSQLLexerBase(ICharStream input)
-        : base(input) { }
+    public PostgreSQLLexerBase(ICharStream input)
+        : base(input)
+    {
+    }
 
-    protected PostgreSQLLexerBase(ICharStream input, TextWriter output, TextWriter errorOutput)
-        : base(input, output, errorOutput) { }
+    public PostgreSQLLexerBase(ICharStream input, TextWriter output, TextWriter errorOutput)
+        : base(input, output, errorOutput)
+    {
+    }
 
     public void PushTag()
     {
-        tags.Push(Text);
+        tags.Push(this.Text);
     }
 
     public bool IsTag()
     {
-        return Text.Equals(tags.Peek());
+        return this.Text.Equals(tags.Peek());
     }
 
     public void PopTag()
@@ -56,22 +58,22 @@ public abstract class PostgreSQLLexerBase : Lexer
 
     public bool CheckLaMinus()
     {
-        return InputStream.LA(1) != '-';
+        return this.InputStream.LA(1) != '-';
     }
 
     public bool CheckLaStar()
     {
-        return InputStream.LA(1) != '*';
+        return this.InputStream.LA(1) != '*';
     }
 
     public bool CharIsLetter()
     {
-        return char.IsLetter((char)InputStream.LA(-1));
+        return Char.IsLetter((char)InputStream.LA(-1));
     }
 
     public void HandleNumericFail()
     {
-        InputStream.Seek(InputStream.Index - 2);
+        InputStream.Seek(this.InputStream.Index - 2);
         Type = PostgreSQLLexer.Integral;
     }
 
@@ -83,12 +85,11 @@ public abstract class PostgreSQLLexerBase : Lexer
 
     public bool CheckIfUtf32Letter()
     {
-        return char.IsLetter(char
-            .ConvertFromUtf32(char.ConvertToUtf32((char)InputStream.LA(-2), (char)InputStream.LA(-1))).Substring(0)[0]);
+        return Char.IsLetter(Char.ConvertFromUtf32(Char.ConvertToUtf32((char)InputStream.LA(-2), (char)InputStream.LA(-1))).Substring(0)[0]);
     }
 
     public bool IsSemiColon()
     {
-        return ';' == (char)InputStream.LA(1);
+        return  ';' == (char)InputStream.LA(1);
     }
 }

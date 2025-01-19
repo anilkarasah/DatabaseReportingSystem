@@ -3,6 +3,8 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Diagnostics;
+using Antlr4.Runtime;
+using DatabaseReportingSystem.Shared.Antlr;
 using DatabaseReportingSystem.Shared.Helpers;
 using DatabaseReportingSystem.Shared.Models;
 using MySql.Data.MySqlClient;
@@ -216,8 +218,30 @@ public static class Utilities
         return new DatabaseExecutionResult(dataTable.Rows.Count, elapsedTime.Milliseconds, columnNames, values);
     }
 
-    public static Result AnalyzeSyntaxOfSqlQuery(string query)
+    public static Result<string> ValidateSqlQuerySyntax(DatabaseManagementSystem databaseManagementSystem, string query)
     {
-        return Result.Fail();
+        try
+        {
+            ICharStream inputStream = new AntlrInputStream(query);
+            Lexer lexer = AntlrFactory.CreateLexer(databaseManagementSystem, inputStream);
+            CommonTokenStream tokenStream = new CommonTokenStream(lexer);
+            Parser parser = AntlrFactory.CreateParser(databaseManagementSystem, tokenStream);
+
+            var syntaxErrorListener = new SyntaxErrorListener();
+            parser.RemoveErrorListeners();
+            parser.AddErrorListener(syntaxErrorListener);
+
+            parser.GetType().GetMethod(parser.RuleNames[0])?.Invoke(parser, null);
+
+            return parser.NumberOfSyntaxErrors == 0
+                ? Result<string>.Ok("Syntax is valid!")
+                : Result<string>.Fail(string.Join("; ", syntaxErrorListener
+                    .Errors
+                    .Select(e => $"Error: {e.Message} at line {e.Line}, column {e.Column}")));
+        }
+        catch (Exception e)
+        {
+            return Result<string>.Fail(e.Message);
+        }
     }
 }

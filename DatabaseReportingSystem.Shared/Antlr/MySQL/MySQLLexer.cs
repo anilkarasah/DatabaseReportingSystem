@@ -25,12 +25,11 @@ using System.Text;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Misc;
-using DatabaseReportingSystem.Shared.Antlr.MySQL;
 using DFA = Antlr4.Runtime.Dfa.DFA;
 
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.2")]
 [System.CLSCompliant(false)]
-public partial class MySQLLexer : MySqlLexerBase {
+public partial class MySQLLexer : MySQLLexerBase {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
@@ -845,207 +844,207 @@ public partial class MySQLLexer : MySqlLexerBase {
 	}
 	private void LOGICAL_OR_OPERATOR_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 0:  this.DoLogicalOr();  break;
+		case 0:  this.doLogicalOr();  break;
 		}
 	}
 	private void INT_NUMBER_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 1:  this.DoIntNumber();  break;
+		case 1:  this.doIntNumber();  break;
 		}
 	}
 	private void DOT_IDENTIFIER_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 2:  this.EmitDot();  break;
+		case 2:  this.emitDot();  break;
 		}
 	}
 	private void ADDDATE_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 3:  this.DoAdddate();  break;
+		case 3:  this.doAdddate();  break;
 		}
 	}
 	private void BIT_AND_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 4:  this.DoBitAnd();  break;
+		case 4:  this.doBitAnd();  break;
 		}
 	}
 	private void BIT_OR_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 5:  this.DoBitOr();  break;
+		case 5:  this.doBitOr();  break;
 		}
 	}
 	private void BIT_XOR_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 6:  this.DoBitXor();  break;
+		case 6:  this.doBitXor();  break;
 		}
 	}
 	private void CAST_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 7:  this.DoCast();  break;
+		case 7:  this.doCast();  break;
 		}
 	}
 	private void COUNT_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 8:  this.DoCount();  break;
+		case 8:  this.doCount();  break;
 		}
 	}
 	private void CURDATE_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 9:  this.DoCurdate();  break;
+		case 9:  this.doCurdate();  break;
 		}
 	}
 	private void CURRENT_DATE_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 10:  this.DoCurrentDate();  break;
+		case 10:  this.doCurrentDate();  break;
 		}
 	}
 	private void CURRENT_TIME_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 11:  this.DoCurrentTime();  break;
+		case 11:  this.doCurrentTime();  break;
 		}
 	}
 	private void CURTIME_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 12:  this.DoCurtime();  break;
+		case 12:  this.doCurtime();  break;
 		}
 	}
 	private void DATE_ADD_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 13:  this.DoDateAdd();  break;
+		case 13:  this.doDateAdd();  break;
 		}
 	}
 	private void DATE_SUB_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 14:  this.DoDateSub();  break;
+		case 14:  this.doDateSub();  break;
 		}
 	}
 	private void EXTRACT_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 15:  this.DoExtract();  break;
+		case 15:  this.doExtract();  break;
 		}
 	}
 	private void GROUP_CONCAT_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 16:  this.DoGroupConcat();  break;
+		case 16:  this.doGroupConcat();  break;
 		}
 	}
 	private void MAX_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 17:  this.DoMax();  break;
+		case 17:  this.doMax();  break;
 		}
 	}
 	private void MID_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 18:  this.DoMid();  break;
+		case 18:  this.doMid();  break;
 		}
 	}
 	private void MIN_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 19:  this.DoMin();  break;
+		case 19:  this.doMin();  break;
 		}
 	}
 	private void NOT_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 20:  this.DoNot();  break;
+		case 20:  this.doNot();  break;
 		}
 	}
 	private void NOW_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 21:  this.DoNow();  break;
+		case 21:  this.doNow();  break;
 		}
 	}
 	private void POSITION_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 22:  this.DoPosition();  break;
+		case 22:  this.doPosition();  break;
 		}
 	}
 	private void SESSION_USER_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 23:  this.DoSessionUser();  break;
+		case 23:  this.doSessionUser();  break;
 		}
 	}
 	private void STDDEV_SAMP_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 24:  this.DoStddevSamp();  break;
+		case 24:  this.doStddevSamp();  break;
 		}
 	}
 	private void STDDEV_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 25:  this.DoStddev();  break;
+		case 25:  this.doStddev();  break;
 		}
 	}
 	private void STDDEV_POP_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 26:  this.DoStddevPop();  break;
+		case 26:  this.doStddevPop();  break;
 		}
 	}
 	private void STD_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 27:  this.DoStd();  break;
+		case 27:  this.doStd();  break;
 		}
 	}
 	private void SUBDATE_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 28:  this.DoSubdate();  break;
+		case 28:  this.doSubdate();  break;
 		}
 	}
 	private void SUBSTR_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 29:  this.DoSubstr();  break;
+		case 29:  this.doSubstr();  break;
 		}
 	}
 	private void SUBSTRING_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 30:  this.DoSubstring();  break;
+		case 30:  this.doSubstring();  break;
 		}
 	}
 	private void SUM_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 31:  this.DoSum();  break;
+		case 31:  this.doSum();  break;
 		}
 	}
 	private void SYSDATE_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 32:  this.DoSysdate();  break;
+		case 32:  this.doSysdate();  break;
 		}
 	}
 	private void SYSTEM_USER_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 33:  this.DoSystemUser();  break;
+		case 33:  this.doSystemUser();  break;
 		}
 	}
 	private void TRIM_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 34:  this.DoTrim();  break;
+		case 34:  this.doTrim();  break;
 		}
 	}
 	private void VARIANCE_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 35:  this.DoVariance();  break;
+		case 35:  this.doVariance();  break;
 		}
 	}
 	private void VAR_POP_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 36:  this.DoVarPop();  break;
+		case 36:  this.doVarPop();  break;
 		}
 	}
 	private void VAR_SAMP_SYMBOL_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 37:  this.DoVarSamp();  break;
+		case 37:  this.doVarSamp();  break;
 		}
 	}
 	private void UNDERSCORE_CHARSET_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 38:  this.DoUnderscoreCharset();  break;
+		case 38:  this.doUnderscoreCharset();  break;
 		}
 	}
 	private void MYSQL_COMMENT_START_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 39:  this.StartInVersionComment();  break;
+		case 39:  this.startInVersionComment();  break;
 		}
 	}
 	private void VERSION_COMMENT_END_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
-		case 40:  this.EndInVersionComment();  break;
+		case 40:  this.endInVersionComment();  break;
 		}
 	}
 	public override bool Sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
@@ -1182,763 +1181,763 @@ public partial class MySQLLexer : MySqlLexerBase {
 	}
 	private bool MASTER_AUTO_POSITION_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 0: return this.IsServerVersionLt80024();
+		case 0: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_BIND_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 1: return this.IsServerVersionLt80024();
+		case 1: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_CONNECT_RETRY_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 2: return this.IsServerVersionLt80024();
+		case 2: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_DELAY_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 3: return this.IsServerVersionLt80024();
+		case 3: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_HOST_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 4: return this.IsServerVersionLt80024();
+		case 4: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_LOG_FILE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 5: return this.IsServerVersionLt80024();
+		case 5: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_LOG_POS_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 6: return this.IsServerVersionLt80024();
+		case 6: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_PASSWORD_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 7: return this.IsServerVersionLt80024();
+		case 7: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_PORT_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 8: return this.IsServerVersionLt80024();
+		case 8: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_RETRY_COUNT_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 9: return this.IsServerVersionLt80024();
+		case 9: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_SSL_CAPATH_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 10: return this.IsServerVersionLt80024();
+		case 10: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_SSL_CA_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 11: return this.IsServerVersionLt80024();
+		case 11: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_SSL_CERT_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 12: return this.IsServerVersionLt80024();
+		case 12: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_SSL_CIPHER_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 13: return this.IsServerVersionLt80024();
+		case 13: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_SSL_CRL_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 14: return this.IsServerVersionLt80024();
+		case 14: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_SSL_CRLPATH_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 15: return this.IsServerVersionLt80024();
+		case 15: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_SSL_KEY_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 16: return this.IsServerVersionLt80024();
+		case 16: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_SSL_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 17: return this.IsServerVersionLt80024();
+		case 17: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_SSL_VERIFY_SERVER_CERT_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 18: return this.IsServerVersionLt80024();
+		case 18: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 19: return this.IsServerVersionLt80024();
+		case 19: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_TLS_VERSION_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 20: return this.IsServerVersionLt80024();
+		case 20: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_USER_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 21: return this.IsServerVersionLt80024();
+		case 21: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool MASTER_HEARTBEAT_PERIOD_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 22: return this.IsServerVersionLt80024();
+		case 22: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool UDF_RETURNS_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 23: return this.IsServerVersionLt80031();
+		case 23: return this.isServerVersionLt80031();
 		}
 		return true;
 	}
 	private bool REMOTE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 24: return this.IsServerVersionLt80014();
+		case 24: return this.isServerVersionLt80014();
 		}
 		return true;
 	}
 	private bool GET_MASTER_PUBLIC_KEY_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 25: return this.IsServerVersionLt80024();
+		case 25: return this.isServerVersionLt80024();
 		}
 		return true;
 	}
 	private bool RESTART_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 26: return this.IsServerVersionGe80011();
+		case 26: return this.isServerVersionGe80011();
 		}
 		return true;
 	}
 	private bool DEFINITION_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 27: return this.IsServerVersionGe80011();
+		case 27: return this.isServerVersionGe80011();
 		}
 		return true;
 	}
 	private bool DESCRIPTION_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 28: return this.IsServerVersionGe80011();
+		case 28: return this.isServerVersionGe80011();
 		}
 		return true;
 	}
 	private bool ORGANIZATION_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 29: return this.IsServerVersionGe80011();
+		case 29: return this.isServerVersionGe80011();
 		}
 		return true;
 	}
 	private bool REFERENCE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 30: return this.IsServerVersionGe80011();
+		case 30: return this.isServerVersionGe80011();
 		}
 		return true;
 	}
 	private bool OPTIONAL_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 31: return this.IsServerVersionGe80013();
+		case 31: return this.isServerVersionGe80013();
 		}
 		return true;
 	}
 	private bool SECONDARY_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 32: return this.IsServerVersionGe80013();
+		case 32: return this.isServerVersionGe80013();
 		}
 		return true;
 	}
 	private bool SECONDARY_ENGINE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 33: return this.IsServerVersionGe80013();
+		case 33: return this.isServerVersionGe80013();
 		}
 		return true;
 	}
 	private bool SECONDARY_LOAD_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 34: return this.IsServerVersionGe80013();
+		case 34: return this.isServerVersionGe80013();
 		}
 		return true;
 	}
 	private bool SECONDARY_UNLOAD_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 35: return this.IsServerVersionGe80013();
+		case 35: return this.isServerVersionGe80013();
 		}
 		return true;
 	}
 	private bool ACTIVE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 36: return this.IsServerVersionGe80014();
+		case 36: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool INACTIVE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 37: return this.IsServerVersionGe80014();
+		case 37: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool LATERAL_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 38: return this.IsServerVersionGe80014();
+		case 38: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool RETAIN_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 39: return this.IsServerVersionGe80014();
+		case 39: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool OLD_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 40: return this.IsServerVersionGe80014();
+		case 40: return this.isServerVersionGe80014();
 		}
 		return true;
 	}
 	private bool NETWORK_NAMESPACE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 41: return this.IsServerVersionGe80017();
+		case 41: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
 	private bool ENFORCED_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 42: return this.IsServerVersionGe80017();
+		case 42: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
 	private bool ARRAY_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 43: return this.IsServerVersionGe80017();
+		case 43: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
 	private bool OJ_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 44: return this.IsServerVersionGe80017();
+		case 44: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
 	private bool MEMBER_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 45: return this.IsServerVersionGe80017();
+		case 45: return this.isServerVersionGe80017();
 		}
 		return true;
 	}
 	private bool RANDOM_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 46: return this.IsServerVersionGe80018();
+		case 46: return this.isServerVersionGe80018();
 		}
 		return true;
 	}
 	private bool MASTER_COMPRESSION_ALGORITHM_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 47: return this.IsMasterCompressionAlgorithm();
+		case 47: return this.isMasterCompressionAlgorithm();
 		}
 		return true;
 	}
 	private bool MASTER_ZSTD_COMPRESSION_LEVEL_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 48: return this.ServerVersion >= 80018;
+		case 48: return this.serverVersion >= 80018;
 		}
 		return true;
 	}
 	private bool PRIVILEGE_CHECKS_USER_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 49: return this.ServerVersion >= 80018;
+		case 49: return this.serverVersion >= 80018;
 		}
 		return true;
 	}
 	private bool MASTER_TLS_CIPHERSUITES_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 50: return this.ServerVersion >= 80018;
+		case 50: return this.serverVersion >= 80018;
 		}
 		return true;
 	}
 	private bool REQUIRE_ROW_FORMAT_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 51: return this.ServerVersion >= 80019;
+		case 51: return this.serverVersion >= 80019;
 		}
 		return true;
 	}
 	private bool PASSWORD_LOCK_TIME_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 52: return this.ServerVersion >= 80019;
+		case 52: return this.serverVersion >= 80019;
 		}
 		return true;
 	}
 	private bool FAILED_LOGIN_ATTEMPTS_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 53: return this.ServerVersion >= 80019;
+		case 53: return this.serverVersion >= 80019;
 		}
 		return true;
 	}
 	private bool REQUIRE_TABLE_PRIMARY_KEY_CHECK_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 54: return this.ServerVersion >= 80019;
+		case 54: return this.serverVersion >= 80019;
 		}
 		return true;
 	}
 	private bool STREAM_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 55: return this.ServerVersion >= 80019;
+		case 55: return this.serverVersion >= 80019;
 		}
 		return true;
 	}
 	private bool OFF_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 56: return this.ServerVersion >= 80019;
+		case 56: return this.serverVersion >= 80019;
 		}
 		return true;
 	}
 	private bool RETURNING_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 57: return this.IsServerVersionGe80024();
+		case 57: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool JSON_VALUE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 58: return this.IsServerVersionGe80024();
+		case 58: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool TLS_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 59: return this.IsServerVersionGe80024();
+		case 59: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool ATTRIBUTE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 60: return this.IsServerVersionGe80024();
+		case 60: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool ENGINE_ATTRIBUTE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 61: return this.IsServerVersionGe80024();
+		case 61: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SECONDARY_ENGINE_ATTRIBUTE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 62: return this.IsServerVersionGe80024();
+		case 62: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_CONNECTION_AUTO_FAILOVER_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 63: return this.IsServerVersionGe80024();
+		case 63: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool ZONE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 64: return this.IsServerVersionGe80024();
+		case 64: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool GRAMMAR_SELECTOR_DERIVED_EXPR_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 65: return this.IsServerVersionGe80024();
+		case 65: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool REPLICA_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 66: return this.IsServerVersionGe80024();
+		case 66: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool REPLICAS_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 67: return this.IsServerVersionGe80024();
+		case 67: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool ASSIGN_GTIDS_TO_ANONYMOUS_TRANSACTIONS_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 68: return this.IsServerVersionGe80024();
+		case 68: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool GET_SOURCE_PUBLIC_KEY_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 69: return this.IsServerVersionGe80024();
+		case 69: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_AUTO_POSITION_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 70: return this.IsServerVersionGe80024();
+		case 70: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_BIND_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 71: return this.IsServerVersionGe80024();
+		case 71: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_COMPRESSION_ALGORITHM_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 72: return this.IsServerVersionGe80024();
+		case 72: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_CONNECT_RETRY_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 73: return this.IsServerVersionGe80024();
+		case 73: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_DELAY_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 74: return this.IsServerVersionGe80024();
+		case 74: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_HEARTBEAT_PERIOD_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 75: return this.IsServerVersionGe80024();
+		case 75: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_HOST_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 76: return this.IsServerVersionGe80024();
+		case 76: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_LOG_FILE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 77: return this.IsServerVersionGe80024();
+		case 77: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_LOG_POS_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 78: return this.IsServerVersionGe80024();
+		case 78: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_PASSWORD_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 79: return this.IsServerVersionGe80024();
+		case 79: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_PORT_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 80: return this.IsServerVersionGe80024();
+		case 80: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_PUBLIC_KEY_PATH_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 81: return this.IsServerVersionGe80024();
+		case 81: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_RETRY_COUNT_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 82: return this.IsServerVersionGe80024();
+		case 82: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_SSL_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 83: return this.IsServerVersionGe80024();
+		case 83: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_SSL_CA_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 84: return this.IsServerVersionGe80024();
+		case 84: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_SSL_CAPATH_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 85: return this.IsServerVersionGe80024();
+		case 85: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_SSL_CERT_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 86: return this.IsServerVersionGe80024();
+		case 86: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_SSL_CIPHER_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 87: return this.IsServerVersionGe80024();
+		case 87: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_SSL_CRL_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 88: return this.IsServerVersionGe80024();
+		case 88: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_SSL_CRLPATH_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 89: return this.IsServerVersionGe80024();
+		case 89: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_SSL_KEY_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 90: return this.IsServerVersionGe80024();
+		case 90: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_SSL_VERIFY_SERVER_CERT_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 91: return this.IsServerVersionGe80024();
+		case 91: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_TLS_CIPHERSUITES_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 92: return this.IsServerVersionGe80024();
+		case 92: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_TLS_VERSION_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 93: return this.IsServerVersionGe80024();
+		case 93: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_USER_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 94: return this.IsServerVersionGe80024();
+		case 94: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool SOURCE_ZSTD_COMPRESSION_LEVEL_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 95: return this.IsServerVersionGe80024();
+		case 95: return this.isServerVersionGe80024();
 		}
 		return true;
 	}
 	private bool ST_COLLECT_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 96: return this.ServerVersion >= 80025;
+		case 96: return this.serverVersion >= 80025;
 		}
 		return true;
 	}
 	private bool KEYRING_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 97: return this.ServerVersion >= 80025;
+		case 97: return this.serverVersion >= 80025;
 		}
 		return true;
 	}
 	private bool AUTHENTICATION_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 98: return this.ServerVersion >= 80027;
+		case 98: return this.serverVersion >= 80027;
 		}
 		return true;
 	}
 	private bool FACTOR_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 99: return this.ServerVersion >= 80027;
+		case 99: return this.serverVersion >= 80027;
 		}
 		return true;
 	}
 	private bool FINISH_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 100: return this.ServerVersion >= 80027;
+		case 100: return this.serverVersion >= 80027;
 		}
 		return true;
 	}
 	private bool INITIATE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 101: return this.ServerVersion >= 80027;
+		case 101: return this.serverVersion >= 80027;
 		}
 		return true;
 	}
 	private bool REGISTRATION_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 102: return this.ServerVersion >= 80027;
+		case 102: return this.serverVersion >= 80027;
 		}
 		return true;
 	}
 	private bool UNREGISTER_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 103: return this.ServerVersion >= 80027;
+		case 103: return this.serverVersion >= 80027;
 		}
 		return true;
 	}
 	private bool INITIAL_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 104: return this.ServerVersion >= 80027;
+		case 104: return this.serverVersion >= 80027;
 		}
 		return true;
 	}
 	private bool CHALLENGE_RESPONSE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 105: return this.ServerVersion >= 80027;
+		case 105: return this.serverVersion >= 80027;
 		}
 		return true;
 	}
 	private bool GTID_ONLY_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 106: return this.ServerVersion >= 80027;
+		case 106: return this.serverVersion >= 80027;
 		}
 		return true;
 	}
 	private bool INTERSECT_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 107: return this.ServerVersion >= 80031;
+		case 107: return this.serverVersion >= 80031;
 		}
 		return true;
 	}
 	private bool BULK_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 108: return this.ServerVersion >= 80200;
+		case 108: return this.serverVersion >= 80200;
 		}
 		return true;
 	}
 	private bool URL_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 109: return this.ServerVersion >= 80200;
+		case 109: return this.serverVersion >= 80200;
 		}
 		return true;
 	}
 	private bool GENERATE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 110: return this.ServerVersion >= 80032;
+		case 110: return this.serverVersion >= 80032;
 		}
 		return true;
 	}
 	private bool PARSE_TREE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 111: return this.ServerVersion >= 80100;
+		case 111: return this.serverVersion >= 80100;
 		}
 		return true;
 	}
 	private bool LOG_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 112: return this.ServerVersion >= 80032;
+		case 112: return this.serverVersion >= 80032;
 		}
 		return true;
 	}
 	private bool GTIDS_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 113: return this.ServerVersion >= 80032;
+		case 113: return this.serverVersion >= 80032;
 		}
 		return true;
 	}
 	private bool PARALLEL_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 114: return this.ServerVersion >= 80200;
+		case 114: return this.serverVersion >= 80200;
 		}
 		return true;
 	}
 	private bool S3_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 115: return this.ServerVersion >= 80200;
+		case 115: return this.serverVersion >= 80200;
 		}
 		return true;
 	}
 	private bool QUALIFY_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 116: return this.ServerVersion >= 80200;
+		case 116: return this.serverVersion >= 80200;
 		}
 		return true;
 	}
 	private bool AUTO_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 117: return this.ServerVersion >= 80200;
+		case 117: return this.serverVersion >= 80200;
 		}
 		return true;
 	}
 	private bool MANUAL_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 118: return this.ServerVersion >= 80200;
+		case 118: return this.serverVersion >= 80200;
 		}
 		return true;
 	}
 	private bool BERNOULLI_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 119: return this.ServerVersion >= 80200;
+		case 119: return this.serverVersion >= 80200;
 		}
 		return true;
 	}
 	private bool TABLESAMPLE_SYMBOL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 120: return this.ServerVersion >= 80200;
+		case 120: return this.serverVersion >= 80200;
 		}
 		return true;
 	}
 	private bool BACK_TICK_QUOTED_ID_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 121: return this.IsBackTickQuotedId();
+		case 121: return this.isBackTickQuotedId();
 		}
 		return true;
 	}
 	private bool DOUBLE_QUOTED_TEXT_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 122: return this.IsDoubleQuotedText();
+		case 122: return this.isDoubleQuotedText();
 		}
 		return true;
 	}
 	private bool SINGLE_QUOTED_TEXT_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 123: return this.IsSingleQuotedText();
+		case 123: return this.isSingleQuotedText();
 		}
 		return true;
 	}
 	private bool DOLLAR_QUOTED_STRING_TEXT_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 124: return this.SupportMle;
+		case 124: return this.supportMle;
 		}
 		return true;
 	}
 	private bool VERSION_COMMENT_START_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 125: return this.IsVersionComment();
+		case 125: return this.isVersionComment();
 		}
 		return true;
 	}
 	private bool VERSION_COMMENT_END_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 126: return this.IsInVersionComment();
+		case 126: return this.isInVersionComment();
 		}
 		return true;
 	}

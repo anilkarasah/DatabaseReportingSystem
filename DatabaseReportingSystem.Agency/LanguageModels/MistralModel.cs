@@ -28,7 +28,11 @@ public sealed class MistralModel(ApiKeys apiKeys) : ILanguageModel
 
         if (completion.Content.Count == 0) throw new InvalidOperationException("No response from Mistral.");
 
-        return Utilities.TrimSqlString(completion.Content[0].Text.Replace("\\_", "_"));
+        string trimmedQuery = Utilities.TrimSqlString(completion.Content[0].Text.Replace("\\_", "_"));
+
+        return trimmedQuery.EndsWith(';')
+            ? trimmedQuery
+            : trimmedQuery + ';';
     }
 
     public OpenAIChatAgent GetChatAgent(string name, string systemMessage = "")
