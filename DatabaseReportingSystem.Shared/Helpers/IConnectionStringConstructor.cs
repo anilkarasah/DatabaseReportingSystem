@@ -25,6 +25,6 @@ public sealed class SqlServerConnectionStringConstructor : IConnectionStringCons
 {
     public string Generate(string host, string port, string database, string schema, string username, string password)
     {
-        return $"Server={host},{port};Database={database};User Id={username};Password={password};";
+        return $"Data Source={host},{port};Initial Catalog={database};User Id={username};Password={password}; TrustServerCertificate=True";
     }
 }
