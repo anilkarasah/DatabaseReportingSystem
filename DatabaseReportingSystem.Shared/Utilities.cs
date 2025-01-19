@@ -152,7 +152,12 @@ public static class Utilities
 
             object? result = await command.ExecuteScalarAsync();
 
-            if (result is (long or int) and 1) return Result.Ok();
+            switch (result)
+            {
+                case long and 1:
+                case 1:
+                    return Result.Ok();
+            }
         }
         catch (Exception e)
         {
